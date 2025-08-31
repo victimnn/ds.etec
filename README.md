@@ -1,70 +1,205 @@
-# Getting Started with Create React App
+# 🎓 Desenvolvimento de Sistemas - Etec João Belarmino
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Site institucional do curso Técnico em Desenvolvimento de Sistemas integrado ao Ensino Médio da Etec João Belarmino de Amparo.
 
-## Available Scripts
+## 🚀 Tecnologias
 
-In the project directory, you can run:
+## 🚀 Tecnologias Utilizadas
 
-### `npm start`
+### Frontend
+- **Next.js 15.2.4** - Framework React para produção
+- **React 19** - Biblioteca para interfaces de usuário
+- **TypeScript 5** - Superset JavaScript com tipagem estática
+- **Tailwind CSS 4.1.9** - Framework CSS utilitário
+- **Radix UI** - Componentes acessíveis e customizáveis
+- **Lucide React** - Ícones modernos e consistentes
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Ferramentas de Desenvolvimento
+- **pnpm** - Gerenciador de pacotes rápido e eficiente
+- **PostCSS** - Processador CSS
+- **ESLint** - Linter para JavaScript/TypeScript
+- **Vercel Analytics** - Análise de performance e métricas
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📁 Estrutura do Projeto
 
-### `npm test`
+```
+ds.etec/
+├── app/                    # App Router (Next.js 15)
+│   ├── globals.css        # Estilos globais
+│   ├── layout.tsx         # Layout principal
+│   ├── page.tsx           # Página inicial
+│   ├── sobre/             # Página sobre o curso
+│   ├── projetos/          # Página de projetos
+│   ├── vestibulinho/      # Página do vestibulinho
+│   ├── mercado/           # Página do mercado de trabalho
+│   └── contato/           # Página de contato
+├── components/            # Componentes React
+│   ├── ui/               # Componentes shadcn/ui
+│   ├── header.tsx        # Cabeçalho do site
+│   ├── footer.tsx        # Rodapé do site
+│   └── theme-provider.tsx # Provedor de tema
+├── constants/            # Constantes do projeto
+│   └── navigation.ts     # Configuração de navegação
+├── lib/                  # Utilitários e configurações
+│   └── utils.ts          # Funções utilitárias
+├── types/                # Definições de tipos TypeScript
+│   └── index.ts          # Tipos globais
+├── utils/                # Utilitários específicos
+│   └── format.ts         # Funções de formatação
+├── public/               # Arquivos estáticos
+└── docs/                 # Documentação
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🎨 Paleta de Cores
 
-### `npm run build`
+O projeto utiliza uma paleta de cores roxa com detalhes em rosa:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Roxo Principal**: `oklch(0.45 0.15 280)` - Cor primária
+- **Rosa Secundário**: `oklch(0.95 0.02 320)` - Cor secundária
+- **Roxo Escuro**: `oklch(0.12 0.02 280)` - Fundo escuro
+- **Rosa Claro**: `oklch(0.95 0.01 300)` - Texto claro
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🛠️ Como Executar
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Pré-requisitos
 
-### `npm run eject`
+- Node.js 18+ 
+- pnpm (recomendado) ou npm
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Instalação
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. **Clone o repositório**
+```bash
+git clone https://github.com/victimnn/ds.etec.git
+cd ds.etec
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+2. **Instale as dependências**
+```bash
+pnpm install
+# ou
+npm install
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+3. **Execute em modo de desenvolvimento**
+```bash
+pnpm dev
+# ou
+npm run dev
+```
 
-## Learn More
+4. **Acesse a aplicação**
+Abra [http://localhost:3000](http://localhost:3000) no seu navegador.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Scripts Disponíveis
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+# Desenvolvimento
+pnpm dev              # Inicia o servidor de desenvolvimento
+pnpm build            # Gera build de produção
+pnpm start            # Inicia o servidor de produção
 
-### Code Splitting
+# Qualidade de Código
+pnpm lint             # Executa o ESLint
+pnpm lint:fix         # Corrige problemas do ESLint
+pnpm type-check       # Verifica tipos TypeScript
+pnpm format           # Formata o código com Prettier
+pnpm format:check     # Verifica formatação
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+# Manutenção
+pnpm clean            # Limpa cache e reinstala dependências
+```
 
-### Analyzing the Bundle Size
+## 🎨 Design System
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+O projeto utiliza um design system consistente baseado em:
 
-### Making a Progressive Web App
+- **Cores**: Paleta roxa institucional com acentos rosa
+- **Tipografia**: Inter (Google Fonts)
+- **Componentes**: Radix UI + shadcn/ui
+- **Responsividade**: Mobile-first approach
+- **Acessibilidade**: Componentes acessíveis por padrão
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Estrutura de Componentes
 
-### Advanced Configuration
+### Páginas Principais
+- **🏠 Home** - Apresentação do curso e call-to-actions
+- **📚 Sobre** - Informações detalhadas sobre o curso
+- **📝 Vestibulinho** - Processo seletivo e inscrições
+- **💼 Projetos** - Portfólio de projetos dos alunos
+- **🏢 Mercado** - Informações sobre mercado de trabalho
+- **📞 Contato** - Formulário e informações de contato
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Características Técnicas
+- ✅ **SSR/SSG** - Renderização otimizada
+- ✅ **Responsivo** - Funciona em todos os dispositivos
+- ✅ **Acessível** - Seguindo padrões WCAG
+- ✅ **Performance** - Otimizado para velocidade
+- ✅ **SEO** - Meta tags e estrutura otimizada
 
-### Deployment
+Configurado com regras para TypeScript e Next.js, incluindo:
+- Verificação de tipos
+- Regras de importação
+- Formatação consistente
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Prettier
 
-### `npm run build` fails to minify
+Configurado para formatação automática com:
+- Aspas simples
+- Vírgula final
+- Largura máxima de 80 caracteres
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### TypeScript
+
+Configurado com:
+- Strict mode ativado
+- Path mapping para imports
+- Target ES2020
+
+3. **Execução Sistemática**
+   - Implementar incrementalmente
+   - Seguir padrões de qualidade
+   - Manter consistência visual
+
+4. **Verificação e Testes**
+   - Testar funcionalidades
+   - Verificar responsividade
+   - Validar integrações
+
+### Padrões de Qualidade
+
+- **Código**: TypeScript, ESLint, padrões consistentes
+- **UI/UX**: Design system, responsividade, acessibilidade
+- **Segurança**: Validação de dados, autenticação quando necessário
+- **Performance**: Otimizações de carregamento e renderização
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+## 🤝 Contribuição
+
+1. Faça um fork do projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
+
+## 📞 Contato
+
+**Etec João Belarmino de Amparo**
+
+### 📧 Emails Institucionais
+- **Direção Acadêmica**: [e067acad@cps.sp.gov.br](mailto:e067acad@cps.sp.gov.br)
+- **Direção de Serviços**: [e067adm@cps.sp.gov.br](mailto:e067adm@cps.sp.gov.br)
+- **APM (Associação de Pais e Mestres)**: [apmjb@yahoo.com.br](mailto:apmjb@yahoo.com.br)
+
+### 📱 Telefone
+- **WhatsApp**: [(19) 3808-1016](https://wa.me/551938081016)
+
+### 🌐 Website
+- **Site Oficial**: [https://www.etecjoaobelarmino.com.br/](https://www.etecjoaobelarmino.com.br/)
+
+---
+
+**Desenvolvido pela equipe do 3 Desenvolvimento de Sistemas de 2025**

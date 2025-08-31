@@ -1,0 +1,161 @@
+/* stylelint-disable at-rule-no-unknown */
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Cores de Fundo - Tons suaves de roxo e rosa */
+  --background: #faf9ff;
+  --foreground: #2d1b69;
+  --card: #fdfcff;
+  --card-foreground: #2d1b69;
+  --popover: #fdfcff;
+  --popover-foreground: #2d1b69;
+  
+  /* Cores Primárias - Roxo vibrante */
+  --primary: #7c3aed;
+  --primary-foreground: #faf9ff;
+  
+  /* Cores Secundárias - Rosa suave */
+  --secondary: #f3e8ff;
+  --secondary-foreground: #581c87;
+  
+  /* Cores de Destaque - Dourado complementar */
+  --accent: #fbbf24;
+  --accent-foreground: #581c87;
+  
+  /* Cores Neutras - Tons de roxo suaves */
+  --muted: #f5f3ff;
+  --muted-foreground: #8b5cf6;
+  
+  /* Cores de Destruição - Vermelho suave */
+  --destructive: #ef4444;
+  --destructive-foreground: #faf9ff;
+  
+  /* Cores de Interface */
+  --border: #e9d5ff;
+  --input: #e9d5ff;
+  --ring: #7c3aed;
+  
+  /* Cores de Gráficos - Paleta harmoniosa */
+  --chart-1: #8b5cf6;  /* Roxo principal */
+  --chart-2: #a855f7;  /* Rosa */
+  --chart-3: #fbbf24;  /* Dourado */
+  --chart-4: #06b6d4;  /* Turquesa */
+  --chart-5: #ec4899;  /* Magenta */
+  
+  --radius: 0.625rem;
+  
+  /* Cores da Sidebar */
+  --sidebar: #faf9ff;
+  --sidebar-foreground: #2d1b69;
+  --sidebar-primary: #7c3aed;
+  --sidebar-primary-foreground: #faf9ff;
+  --sidebar-accent: #f3e8ff;
+  --sidebar-accent-foreground: #581c87;
+  --sidebar-border: #e9d5ff;
+  --sidebar-ring: #7c3aed;
+}
+
+.dark {
+  /* Cores de Fundo - Tons suaves de azul escuro e cinza */
+  --background: #0f172a;  /* Slate 900 - Fundo principal mais suave */
+  --foreground: #f8fafc;  /* Slate 50 - Texto principal mais suave */
+  --card: #1e293b;        /* Slate 800 - Cards com contraste suave */
+  --card-foreground: #f1f5f9;  /* Slate 100 - Texto dos cards */
+  --popover: #1e293b;     /* Slate 800 - Popovers */
+  --popover-foreground: #f1f5f9;  /* Slate 100 - Texto dos popovers */
+  
+  /* Cores Primárias - Azul vibrante e suave */
+  --primary: #3b82f6;     /* Blue 500 - Azul mais suave */
+  --primary-foreground: #ffffff;  /* Branco puro para contraste */
+  
+  /* Cores Secundárias - Azul escuro suave */
+  --secondary: #1e40af;   /* Blue 800 - Azul escuro */
+  --secondary-foreground: #dbeafe;  /* Blue 100 - Texto secundário */
+  
+  /* Cores de Destaque - Dourado suave */
+  --accent: #f59e0b;      /* Amber 500 - Dourado mais suave */
+  --accent-foreground: #1e293b;  /* Slate 800 - Texto escuro */
+  
+  /* Cores Neutras - Tons de cinza azulado */
+  --muted: #334155;       /* Slate 700 - Fundo neutro */
+  --muted-foreground: #94a3b8;  /* Slate 400 - Texto neutro */
+  
+  /* Cores de Destruição - Vermelho suave */
+  --destructive: #ef4444; /* Red 500 - Vermelho */
+  --destructive-foreground: #fef2f2;  /* Red 50 - Fundo vermelho */
+  
+  /* Cores de Interface */
+  --border: #475569;      /* Slate 600 - Bordas suaves */
+  --input: #475569;       /* Slate 600 - Inputs */
+  --ring: #3b82f6;        /* Blue 500 - Ring azul */
+  
+  /* Cores de Gráficos - Paleta escura harmoniosa */
+  --chart-1: #3b82f6;     /* Blue 500 - Azul principal */
+  --chart-2: #8b5cf6;     /* Violet 500 - Roxo */
+  --chart-3: #f59e0b;     /* Amber 500 - Dourado */
+  --chart-4: #06b6d4;     /* Cyan 500 - Turquesa */
+  --chart-5: #ec4899;     /* Pink 500 - Rosa */
+  
+  /* Cores da Sidebar */
+  --sidebar: #1e293b;     /* Slate 800 - Sidebar escura */
+  --sidebar-foreground: #f1f5f9;  /* Slate 100 - Texto da sidebar */
+  --sidebar-primary: #3b82f6;     /* Blue 500 - Primário da sidebar */
+  --sidebar-primary-foreground: #ffffff;  /* Branco para contraste */
+  --sidebar-accent: #1e40af;      /* Blue 800 - Accent da sidebar */
+  --sidebar-accent-foreground: #dbeafe;   /* Blue 100 - Texto do accent */
+  --sidebar-border: #475569;      /* Slate 600 - Borda da sidebar */
+  --sidebar-ring: #3b82f6;        /* Blue 500 - Ring da sidebar */
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
