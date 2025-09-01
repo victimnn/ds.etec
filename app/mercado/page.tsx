@@ -5,112 +5,39 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { Building, TrendingUp, Users, Star, Quote, Briefcase, DollarSign, Target, Award, ExternalLink, ArrowRight, Code, Smartphone, Database, Server, Wrench, Globe } from 'lucide-react'
+import { Building, TrendingUp, Users, Star, Quote, Briefcase, DollarSign, Target, Award, ExternalLink, ArrowRight, Code } from 'lucide-react'
 import Image from "next/image"
 import Link from "next/link"
+import { HeroButtons } from "@/components/ui/hero-buttons"
 
 export default function MercadoPage() {
-  const [activeTab, setActiveTab] = useState('areas')
 
-  const areas = [
-    {
-      titulo: "Desenvolvimento Web",
-      descricao: "Criação de sites, sistemas web e e-commerce",
-      salario: "R$ 2.500 - R$ 8.000",
-      demanda: "Alta",
-      tecnologias: ["HTML/CSS", "JavaScript", "React", "Node.js"],
-      icon: Globe,
-      crescimento: "+15% ao ano"
-    },
-    {
-      titulo: "Desenvolvimento Mobile",
-      descricao: "Apps para Android e iOS",
-      salario: "R$ 3.000 - R$ 9.000",
-      demanda: "Muito Alta",
-      tecnologias: ["React Native", "Flutter", "Java", "Swift"],
-      icon: Smartphone,
-      crescimento: "+25% ao ano"
-    },
-    {
-      titulo: "Análise de Sistemas",
-      descricao: "Análise de requisitos e especificação de sistemas",
-      salario: "R$ 3.500 - R$ 10.000",
-      demanda: "Alta",
-      tecnologias: ["UML", "SQL", "Metodologias Ágeis"],
-      icon: Target,
-      crescimento: "+12% ao ano"
-    },
-    {
-      titulo: "Banco de Dados",
-      descricao: "Administração e desenvolvimento de BD",
-      salario: "R$ 4.000 - R$ 12.000",
-      demanda: "Alta",
-      tecnologias: ["MySQL", "PostgreSQL", "MongoDB", "Oracle"],
-      icon: Database,
-      crescimento: "+18% ao ano"
-    },
-    {
-      titulo: "DevOps",
-      descricao: "Automação e infraestrutura",
-      salario: "R$ 5.000 - R$ 15.000",
-      demanda: "Muito Alta",
-      tecnologias: ["Docker", "AWS", "Jenkins", "Kubernetes"],
-      icon: Server,
-      crescimento: "+30% ao ano"
-    },
-    {
-      titulo: "Suporte Técnico",
-      descricao: "Manutenção e suporte de sistemas",
-      salario: "R$ 2.000 - R$ 5.000",
-      demanda: "Média",
-      tecnologias: ["Windows", "Linux", "Redes", "Hardware"],
-      icon: Wrench,
-      crescimento: "+8% ao ano"
-    }
-  ]
+
 
   const empresas = [
     { 
-      nome: "TechSolutions Amparo", 
+      nome: "Sistema RAM", 
       tipo: "Software House", 
-      vagas: "5-10 vagas/ano",
       setor: "Tecnologia",
       localizacao: "Amparo, SP"
     },
     { 
-      nome: "Indústrias Reunidas", 
-      tipo: "Indústria", 
-      vagas: "2-5 vagas/ano",
-      setor: "Industrial",
+      nome: "Shark It", 
+      tipo: "Consultoria", 
+      setor: "Tecnologia",
       localizacao: "Amparo, SP"
     },
     { 
-      nome: "Prefeitura de Amparo", 
-      tipo: "Setor Público", 
-      vagas: "1-3 vagas/ano",
-      setor: "Público",
-      localizacao: "Amparo, SP"
-    },
-    { 
-      nome: "Banco Regional", 
-      tipo: "Financeiro", 
-      vagas: "3-8 vagas/ano",
-      setor: "Financeiro",
+      nome: "Assist Soluções", 
+      tipo: "Software House", 
+      setor: "Tecnologia",
       localizacao: "Região de Campinas"
     },
     { 
-      nome: "Hospital São Luiz", 
-      tipo: "Saúde", 
-      vagas: "2-4 vagas/ano",
-      setor: "Saúde",
-      localizacao: "Amparo, SP"
-    },
-    { 
-      nome: "Cooperativa Agrícola", 
-      tipo: "Agronegócio", 
-      vagas: "1-2 vagas/ano",
-      setor: "Agronegócio",
-      localizacao: "Região de Amparo"
+      nome: "Build Solutions ", 
+      tipo: "Software House", 
+      setor: "Tecnologia",
+      localizacao: "Pedreira, SP"
     }
   ]
 
@@ -149,30 +76,30 @@ export default function MercadoPage() {
 
   const estatisticas = [
     {
-      titulo: "95%",
-      descricao: "Taxa de Empregabilidade",
+      titulo: "100%",
+      descricao: "Oportunidades de Autodesenvolvimento",
       icon: TrendingUp,
       cor: "text-green-600",
       bg: "bg-green-100"
     },
     {
-      titulo: "50+",
+      titulo: "3+",
       descricao: "Empresas Parceiras",
       icon: Building,
       cor: "text-primary",
       bg: "bg-primary/10"
     },
     {
-      titulo: "6 meses",
-      descricao: "Tempo Médio para 1º Emprego",
+      titulo: "5+",
+      descricao: "Empresas assistindo o TCC anualmente",
       icon: Users,
       cor: "text-primary",
       bg: "bg-primary/10"
     },
     {
-      titulo: "R$ 3.200",
-      descricao: "Salário Médio Inicial",
-      icon: DollarSign,
+      titulo: "10+",
+      descricao: "Projetos desenvolvidos anualmente",
+      icon: Code,
       cor: "text-accent",
       bg: "bg-accent/10"
     }
@@ -195,25 +122,8 @@ export default function MercadoPage() {
               Descubra as inúmeras oportunidades de carreira para técnicos em Desenvolvimento de Sistemas. 
               Um mercado em constante crescimento com salários atrativos e alta demanda por profissionais qualificados.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                size="lg" 
-                asChild
-                className="bg-accent text-accent-foreground hover:bg-accent/90 transition-all duration-200 hover:scale-105 hover:shadow-lg"
-              >
-                <Link href="/vestibulinho">
-                  <ArrowRight className="w-4 h-4 mr-2" />
-                  Inscreva-se Agora
-                </Link>
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline"
-                className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary transition-all duration-200 hover:scale-105 hover:shadow-lg"
-              >
-                <Briefcase className="w-4 h-4 mr-2" />
-                Ver Vagas
-              </Button>
+            <div className="flex justify-center">
+              <HeroButtons />
             </div>
           </div>
         </div>
@@ -251,72 +161,7 @@ export default function MercadoPage() {
         </div>
       </section>
 
-      {/* Áreas de Atuação */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
-              Áreas de Atuação
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Principais campos de trabalho para técnicos em Desenvolvimento de Sistemas
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {areas.map((area, index) => {
-              const IconComponent = area.icon
-              return (
-                <Card key={index} className="h-full transition-all duration-300 hover:scale-105 hover:shadow-xl hover:border-primary/50 group">
-                  <CardHeader>
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:bg-primary/20">
-                        <IconComponent className="w-6 h-6 text-primary" />
-                      </div>
-                      <Badge 
-                        variant={area.demanda === 'Muito Alta' ? 'default' : area.demanda === 'Alta' ? 'secondary' : 'outline'} 
-                        className="transition-all duration-200 group-hover:scale-105"
-                      >
-                        {area.demanda}
-                      </Badge>
-                    </div>
-                    <CardTitle className="text-lg group-hover:text-primary transition-colors duration-200">
-                      {area.titulo}
-                    </CardTitle>
-                    <CardDescription className="text-sm">
-                      {area.descricao}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
-                      <div className="p-3 bg-green-50 rounded-lg">
-                        <p className="font-bold text-green-700 text-lg">{area.salario}</p>
-                        <p className="text-sm text-green-600">Faixa salarial mensal</p>
-                      </div>
-                      
-                      <div className="p-3 bg-blue-50 rounded-lg">
-                        <p className="font-bold text-blue-700 text-sm">{area.crescimento}</p>
-                        <p className="text-xs text-blue-600">Crescimento do mercado</p>
-                      </div>
-                      
-                      <div>
-                        <p className="font-medium mb-2 text-sm">Principais tecnologias:</p>
-                        <div className="flex flex-wrap gap-1">
-                          {area.tecnologias.map((tech, techIndex) => (
-                            <Badge key={techIndex} variant="outline" className="text-xs transition-all duration-200 hover:scale-105">
-                              {tech}
-                            </Badge>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              )
-            })}
-          </div>
-        </div>
-      </section>
+    
 
       {/* Empresas Parceiras */}
       <section className="py-16 bg-muted">
@@ -348,15 +193,6 @@ export default function MercadoPage() {
                     </Badge>
                   </div>
                 </CardHeader>
-                <CardContent>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-muted-foreground font-medium">{empresa.vagas}</span>
-                    <Button variant="outline" size="sm" className="transition-all duration-200 hover:scale-105">
-                      <ExternalLink className="w-3 h-3 mr-1" />
-                      Ver Vagas
-                    </Button>
-                  </div>
-                </CardContent>
               </Card>
             ))}
           </div>
@@ -533,42 +369,6 @@ export default function MercadoPage() {
               </AccordionItem>
             </Accordion>
           </div>
-        </div>
-      </section>
-
-      {/* CTA Final */}
-      <section className="py-16 bg-primary text-primary-foreground">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-6">
-            Pronto para Começar sua Carreira?
-          </h2>
-          <p className="text-xl text-primary-foreground/90 mb-8 max-w-3xl mx-auto leading-relaxed">
-            O mercado de tecnologia está esperando por você. Faça parte da próxima turma e construa um futuro promissor 
-            com uma formação sólida e reconhecida pelo mercado.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              size="lg" 
-              asChild
-              className="bg-accent text-accent-foreground hover:bg-accent/90 transition-all duration-200 hover:scale-105 hover:shadow-lg"
-            >
-              <Link href="/vestibulinho">
-                <ArrowRight className="w-4 h-4 mr-2" />
-                Inscreva-se no Vestibulinho
-              </Link>
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline"
-              className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary transition-all duration-200 hover:scale-105 hover:shadow-lg"
-            >
-              <Briefcase className="w-4 h-4 mr-2" />
-              Conheça o Curso
-            </Button>
-          </div>
-          <p className="text-sm text-primary-foreground/70 mt-6">
-            Inscrições abertas para o processo seletivo 2024
-          </p>
         </div>
       </section>
     </div>

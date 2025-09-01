@@ -11,8 +11,8 @@ import { HeroButtons, ContactButtons } from "@/components/ui/hero-buttons"
 export default function HomePage() {
   const estatisticas = [
     {
-      titulo: "95%",
-      descricao: "Taxa de Empregabilidade",
+      titulo: "+400",
+      descricao: "Alunos Formados",
       icon: Star,
       cor: "text-green-600",
       bg: "bg-green-100"
@@ -69,28 +69,28 @@ export default function HomePage() {
 
   const projetosDestaque = [
     {
-      titulo: "Sistema de Gestão Escolar",
-      descricao: "Aplicação web completa para gestão de notas, frequência e comunicação",
-      imagem: "/school-management-system-interface.png",
+      titulo: "Sistema de Gestão de Transporte Escolar",
+      descricao: "Aplicação web completa para gestão de transporte escolar para empresas e passageiros",
+      imagem: "/bushere.png",
       tecnologia: "React + Node.js",
       categoria: "Web",
-      premio: "1º Lugar - Feira de Ciências 2024"
     },
     {
-      titulo: "App de Delivery Local",
-      descricao: "Aplicativo móvel para delivery de restaurantes locais de Amparo",
-      imagem: "/food-delivery-app.png",
-      tecnologia: "React Native",
-      categoria: "Mobile",
-      implementado: true
+      titulo: "Site sobre conscientização sobre Capivaras",
+      descricao: "Site sobre conscientização sobre Capivara",
+      imagem: "/capivara.png",
+      tecnologia: "React + Next.js",
+      categoria: "Web",
+      implementado: true,
+      demo: "https://capivara-app.vercel.app",
+      github: "https://github.com/victimnn/capivara-app"
     },
     {
-      titulo: "Jogo Educativo de Programação",
-      descricao: "Game 2D para ensinar conceitos básicos de programação",
+      titulo: "Mão Robótica",
+      descricao: "Mão Robótica para ensinar conceitos básicos de programação",
       imagem: "/educational-programming-game.png",
-      tecnologia: "Unity + C#",
+      tecnologia: "Arduino + Python",
       categoria: "Game",
-      premio: "Melhor Projeto Educacional"
     }
   ]
 
@@ -198,7 +198,7 @@ export default function HomePage() {
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
-                  Aprenda linguagens modernas como Python, JavaScript, Java e C#
+                  Aprenda linguagens modernas como PHP, JavaScript, Kotlin, C++ e C#.
                 </p>
               </CardContent>
             </Card>
@@ -362,12 +362,6 @@ export default function HomePage() {
                     <Badge className="bg-primary">
                       {projeto.categoria}
                     </Badge>
-                    {projeto.premio && (
-                      <Badge className="bg-yellow-500 text-yellow-900">
-                        <Star className="w-3 h-3 mr-1" />
-                        Prêmio
-                      </Badge>
-                    )}
                     {projeto.implementado && (
                       <Badge className="bg-green-500 text-green-900">
                         <CheckCircle className="w-3 h-3 mr-1" />
@@ -388,12 +382,32 @@ export default function HomePage() {
                   <div className="flex items-center justify-between">
                     <Badge variant="secondary">{projeto.tecnologia}</Badge>
                     <div className="flex gap-2">
-                      <Button variant="ghost" size="sm" className="hover:bg-primary hover:text-primary-foreground transition-all duration-200">
-                        <Play className="w-4 h-4" />
-                      </Button>
-                      <Button variant="ghost" size="sm" className="hover:bg-primary hover:text-primary-foreground transition-all duration-200">
-                        <Github className="w-4 h-4" />
-                      </Button>
+                      {projeto.demo && (
+                        <Button 
+                          asChild
+                          variant="ghost" 
+                          size="sm" 
+                          className="hover:bg-primary hover:text-primary-foreground transition-all duration-200"
+                          title="Ver Demo"
+                        >
+                          <Link href={projeto.demo} target="_blank" rel="noopener noreferrer">
+                            <Play className="w-4 h-4" />
+                          </Link>
+                        </Button>
+                      )}
+                      {projeto.github && (
+                        <Button 
+                          asChild
+                          variant="ghost" 
+                          size="sm" 
+                          className="hover:bg-primary hover:text-primary-foreground transition-all duration-200"
+                          title="Ver Código"
+                        >
+                          <Link href={projeto.github} target="_blank" rel="noopener noreferrer">
+                            <Github className="w-4 h-4" />
+                          </Link>
+                        </Button>
+                      )}
                     </div>
                   </div>
                 </CardContent>
@@ -436,7 +450,13 @@ export default function HomePage() {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="aspect-square relative rounded-lg overflow-hidden group">
+              <Link 
+                key={i} 
+                href="https://instagram.com/ds.etec" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="aspect-square relative rounded-lg overflow-hidden group block"
+              >
                 <Image
                   src="/instagram-post.png"
                   alt={`Post do Instagram ${i}`}
@@ -449,7 +469,7 @@ export default function HomePage() {
                     <Instagram className="w-8 h-8 text-white" />
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -465,9 +485,8 @@ export default function HomePage() {
             Inscreva-se no vestibulinho e faça parte da próxima turma de desenvolvedores da Etec João Belarmino. 
             Uma oportunidade única de formação técnica de qualidade.
           </p>
-          <ContactButtons />
           <p className="text-sm text-primary-foreground/70 mt-6">
-            Inscrições abertas para o processo seletivo 2024
+            Inscrições abertas para o processo seletivo 2025
           </p>
         </div>
       </section>

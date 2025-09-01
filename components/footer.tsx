@@ -25,7 +25,7 @@ export function Footer() {
   const informacoes = [
     { 
       titulo: "Horário de Funcionamento", 
-      valor: "Segunda a Sexta: 7h às 22h",
+      valor: "Segunda a Sexta: 7h às 23h",
       icon: Clock 
     },
     { 
@@ -33,10 +33,31 @@ export function Footer() {
       valor: "80 alunos (40 por período)",
       icon: Users 
     },
-    { 
-      titulo: "Taxa de Empregabilidade", 
-      valor: "95% dos egressos empregados",
-      icon: Award 
+  ]
+
+  const contatos = [
+    {
+      titulo: "Telefone",
+      icon: Phone,
+      links: [
+        { texto: "(19) 3808-1016", href: "tel:+551938081016" },
+        { texto: "(19) 3807-2288", href: "tel:+551938072288" },
+        { texto: "(19) 3807-8982", href: "tel:+551938078982" }
+      ]
+    },
+    {
+      titulo: "E-mail",
+      icon: Mail,
+      links: [
+        { texto: "e067acad@cps.sp.gov.br", href: "mailto:e067acad@cps.sp.gov.br" },
+        { texto: "e067adm@cps.sp.gov.br", href: "mailto:e067adm@cps.sp.gov.br" },
+        { texto: "apmjb@yahoo.com.br", href: "mailto:apmjb@yahoo.com.br" }
+      ]
+    },
+    {
+      titulo: "Endereço",
+      icon: MapPin,
+      endereco: "Rua Sete de Setembro, 299 - Centro\nAmparo - SP, 13900-372"
     }
   ]
 
@@ -47,27 +68,6 @@ export function Footer() {
       icon: Instagram,
       cor: "from-purple-500 to-pink-500",
       hover: "from-purple-600 to-pink-600"
-    },
-    { 
-      nome: "Facebook", 
-      href: "https://facebook.com/etecjoaobelarmino", 
-      icon: Facebook,
-      cor: "from-blue-500 to-blue-600",
-      hover: "from-blue-600 to-blue-700"
-    },
-    { 
-      nome: "YouTube", 
-      href: "https://youtube.com/@etecjoaobelarmino", 
-      icon: Youtube,
-      cor: "from-red-500 to-red-600",
-      hover: "from-red-600 to-red-700"
-    },
-    { 
-      nome: "LinkedIn", 
-      href: "https://linkedin.com/company/etec-joao-belarmino", 
-      icon: Linkedin,
-      cor: "from-blue-600 to-blue-700",
-      hover: "from-blue-700 to-blue-800"
     }
   ]
 
@@ -159,74 +159,59 @@ export function Footer() {
           </div>
 
           {/* Contato e Redes Sociais */}
-          <div className="space-y-6">
-            <h3 className="font-bold text-lg">Contato</h3>
-            
+          <div className="space-y-8">
             {/* Informações de Contato */}
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3 group hover:bg-primary-foreground/5 p-2 rounded-lg transition-all duration-200">
-                <div className="w-8 h-8 bg-primary-foreground/10 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-200 group-hover:scale-110 group-hover:bg-primary-foreground/20">
-                  <Phone className="w-4 h-4 text-primary-foreground/80" />
-                </div>
-                <div>
-                  <div className="font-medium text-sm group-hover:text-primary-foreground transition-colors duration-200">
-                    Telefone
-                  </div>
-                  <a 
-                    href="tel:+551938079600" 
-                    className="text-xs text-primary-foreground/60 hover:text-primary-foreground transition-colors duration-200"
-                  >
-                    (19) 3807-9600
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-center space-x-3 group hover:bg-primary-foreground/5 p-2 rounded-lg transition-all duration-200">
-                <div className="w-8 h-8 bg-primary-foreground/10 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-200 group-hover:scale-110 group-hover:bg-primary-foreground/20">
-                  <Mail className="w-4 h-4 text-primary-foreground/80" />
-                </div>
-                <div>
-                  <div className="font-medium text-sm group-hover:text-primary-foreground transition-colors duration-200">
-                    E-mail
-                  </div>
-                  <a 
-                    href="mailto:secretaria@etecjoaobelarmino.com.br" 
-                    className="text-xs text-primary-foreground/60 hover:text-primary-foreground transition-colors duration-200"
-                  >
-                    secretaria@etecjoaobelarmino.com.br
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-3 group hover:bg-primary-foreground/5 p-2 rounded-lg transition-all duration-200">
-                <div className="w-8 h-8 bg-primary-foreground/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5 transition-all duration-200 group-hover:scale-110 group-hover:bg-primary-foreground/20">
-                  <MapPin className="w-4 h-4 text-primary-foreground/80" />
-                </div>
-                <div>
-                  <div className="font-medium text-sm group-hover:text-primary-foreground transition-colors duration-200">
-                    Endereço
-                  </div>
-                  <div className="text-xs text-primary-foreground/60">
-                    Rua Luiz Gonzaga Travassos, 1-59<br />
-                    Amparo - SP, 13900-000
-                  </div>
-                </div>
+            <div className="space-y-6">
+              <h3 className="font-bold text-lg">Contato</h3>
+              <div className="space-y-4">
+                {contatos.map((contato, index) => {
+                  const IconComponent = contato.icon
+                  return (
+                    <div key={index} className="flex items-start space-x-3 group hover:bg-primary-foreground/5 p-2 rounded-lg transition-all duration-200">
+                      <div className="w-8 h-8 bg-primary-foreground/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5 transition-all duration-200 group-hover:scale-110 group-hover:bg-primary-foreground/20">
+                        <IconComponent className="w-4 h-4 text-primary-foreground/80" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="font-medium text-sm group-hover:text-primary-foreground transition-colors duration-200">
+                          {contato.titulo}
+                        </div>
+                        {contato.links ? (
+                          <div className="space-y-1">
+                            {contato.links.map((link, linkIndex) => (
+                              <a 
+                                key={linkIndex}
+                                href={link.href} 
+                                className="block text-xs text-primary-foreground/60 hover:text-primary-foreground transition-colors duration-200"
+                              >
+                                {link.texto}
+                              </a>
+                            ))}
+                          </div>
+                        ) : (
+                          <div className="text-xs text-primary-foreground/60 whitespace-pre-line">
+                            {contato.endereco}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  )
+                })}
               </div>
             </div>
 
             {/* Redes Sociais */}
-            <div className="space-y-3">
+            <div className="space-y-4">
               <h4 className="font-semibold text-sm">Redes Sociais</h4>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-3">
                 {redesSociais.map((rede, index) => (
                   <Link 
                     key={index}
                     href={rede.href} 
                     target="_blank"
-                    className={`bg-gradient-to-r ${rede.cor} hover:${rede.hover} p-2 rounded-lg transition-all duration-200 hover:scale-110 hover:shadow-lg group`}
+                    className={`bg-gradient-to-r ${rede.cor} hover:${rede.hover} p-3 rounded-lg transition-all duration-200 hover:scale-110 hover:shadow-lg group`}
                     title={rede.nome}
                   >
-                    <rede.icon className="w-4 h-4 text-white" />
+                    <rede.icon className="w-5 h-5 text-white" />
                   </Link>
                 ))}
               </div>
@@ -255,7 +240,7 @@ export function Footer() {
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
             <div className="text-sm text-primary-foreground/70">
-              <p>&copy; 2024 Etec João Belarmino de Amparo - Centro Paula Souza. Todos os direitos reservados.</p>
+              <p>&copy; 2025 Etec João Belarmino de Amparo - Centro Paula Souza. Todos os direitos reservados.</p>
             </div>
             <div className="flex items-center space-x-4 text-sm text-primary-foreground/70">
               <Link href="/sobre" className="hover:text-primary-foreground transition-colors duration-200">

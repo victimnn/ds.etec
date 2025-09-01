@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -10,21 +10,82 @@ import { HeroButtons, ContactButtons } from "@/components/ui/hero-buttons"
 
 export default function VestibulinhoPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [currentDate, setCurrentDate] = useState(new Date())
+
+  // Atualizar a data atual a cada minuto
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentDate(new Date())
+    }, 60000) // Atualizar a cada minuto
+
+    return () => clearInterval(interval)
+  }, [])
+
+  // Função para converter data brasileira para objeto Date
+  const parseData = (dataStr: string) => {
+    const meses = {
+      'Janeiro': 0, 'Fevereiro': 1, 'Março': 2, 'Abril': 3, 'Maio': 4, 'Junho': 5,
+      'Julho': 6, 'Agosto': 7, 'Setembro': 8, 'Outubro': 9, 'Novembro': 10, 'Dezembro': 11
+    }
+    
+    // Extrair dia e mês da string
+    const match = dataStr.match(/(\d+)\s+de\s+(\w+)/)
+    if (match) {
+      const dia = parseInt(match[1])
+      const mes = meses[match[2] as keyof typeof meses]
+      // Se for janeiro ou fevereiro, usar 2026, senão 2025
+      const ano = mes <= 1 ? 2026 : 2025
+      return new Date(ano, mes, dia)
+    }
+    
+    // Para datas com intervalo (ex: "19 a 20 de Janeiro")
+    const matchIntervalo = dataStr.match(/(\d+)\s+a\s+(\d+)\s+de\s+(\w+)/)
+    if (matchIntervalo) {
+      const diaInicio = parseInt(matchIntervalo[1])
+      const diaFim = parseInt(matchIntervalo[2])
+      const mes = meses[matchIntervalo[3] as keyof typeof meses]
+      // Se for janeiro ou fevereiro, usar 2026, senão 2025
+      const ano = mes <= 1 ? 2026 : 2025
+      return new Date(ano, mes, diaFim) // Usar o último dia do intervalo
+    }
+    
+    return null
+  }
+
+  // Função para determinar o status baseado na data atual
+  const getStatus = (dataStr: string) => {
+    const dataEvento = parseData(dataStr)
+    if (!dataEvento) return "pendente"
+    
+    const diffTime = dataEvento.getTime() - currentDate.getTime()
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+    
+    if (diffDays < 0) {
+      return "concluido"
+    } else if (diffDays <= 7) {
+      return "proximo"
+    } else {
+      return "pendente"
+    }
+  }
 
   const cronograma = [
-    { evento: "Abertura das Inscrições", data: "15 de Maio", status: "concluido" },
-    { evento: "Encerramento das Inscrições", data: "15 de Junho", status: "concluido" },
-    { evento: "Divulgação dos Locais de Prova", data: "25 de Junho", status: "concluido" },
-    { evento: "Aplicação da Prova", data: "15 de Julho", status: "proximo" },
-    { evento: "Divulgação do Gabarito", data: "16 de Julho", status: "pendente" },
-    { evento: "Resultado Final", data: "30 de Julho", status: "pendente" },
-    { evento: "Matrícula dos Aprovados", data: "5 a 15 de Agosto", status: "pendente" },
+    { evento: "Abertura das Inscrições", data: "10 de Setembro", status: getStatus("10 de Setembro") },
+    { evento: "Encerramento das Inscrições", data: "3 de Novembro", status: getStatus("3 de Novembro") },
+    { evento: "Divulgação dos Locais de Prova", data: "25 de Novembro", status: getStatus("25 de Novembro") },
+    { evento: "Aplicação da Prova", data: "30 de Novembro", status: getStatus("30 de Novembro") },
+    { evento: "Divulgação do Gabarito", data: "3 de Dezembro", status: getStatus("3 de Dezembro") },
+    { evento: "Resultado Final", data: "15 de Janeiro", status: getStatus("15 de Janeiro") },
+    { evento: "Convocação para matrícula", data: "16 de Janeiro", status: getStatus("16 de Janeiro") },
+    { evento: "Matrícula dos Aprovados da Primeira Chamada", data: "19 a 20 de Janeiro", status: getStatus("19 a 20 de Janeiro") },
+    { evento: "Convocação para matrícula da Segunda Chamada", data: "23 de Janeiro", status: getStatus("23 de Janeiro") },
+    { evento: "Matrícula dos Aprovados da Segunda Chamada", data: "26 a 27 de Fevereiro", status: getStatus("26 a 27 de Fevereiro") },
   ]
 
   const faqs = [
     {
       pergunta: "Quais são os pré-requisitos para se inscrever?",
-      resposta: "Para se inscrever no curso Técnico em Desenvolvimento de Sistemas integrado ao Ensino Médio, é necessário ter concluído o Ensino Fundamental (9º ano) ou estar cursando o 9º ano em 2024."
+      resposta: "Para se inscrever no curso Técnico em Desenvolvimento de Sistemas integrado ao Ensino Médio, é necessário ter concluído o Ensino Fundamental (9º ano) ou estar cursando o 9º ano em 2025."
     },
     {
       pergunta: "Como é a prova do vestibulinho?",
@@ -32,7 +93,7 @@ export default function VestibulinhoPage() {
     },
     {
       pergunta: "Quantas vagas são oferecidas?",
-      resposta: "São oferecidas 40 vagas para o curso Técnico em Desenvolvimento de Sistemas integrado ao Ensino Médio, com início das aulas em fevereiro de 2025."
+      resposta: "São oferecidas 80 vagas para o curso Técnico em Desenvolvimento de Sistemas integrado ao Ensino Médio, sendo 40 para a turma matutina e 40 para a turma vespertina, com início das aulas em fevereiro de 2025."
     },
     {
       pergunta: "O curso é gratuito?",
@@ -40,15 +101,15 @@ export default function VestibulinhoPage() {
     },
     {
       pergunta: "Qual é a duração do curso?",
-      resposta: "O curso tem duração de 3 anos, sendo oferecido na modalidade integrada ao Ensino Médio, em período integral (manhã e tarde)."
+      resposta: "O curso tem duração de 3 anos, sendo oferecido na modalidade integrada ao Ensino Médio, em período matutino e vespertino."
     },
     {
       pergunta: "Posso fazer o curso trabalhando?",
-      resposta: "O curso é oferecido em período integral, das 7h às 17h, o que pode dificultar a conciliação com trabalho. Recomendamos avaliar sua disponibilidade antes da inscrição."
+      resposta: "O curso é oferecido em período matutino e vespertino, das 7h10 às 14h e as 13h10 às 19h20, o que pode dificultar a conciliação com trabalho. Recomendamos avaliar sua disponibilidade antes da inscrição."
     },
     {
       pergunta: "Como funciona a matrícula após aprovação?",
-      resposta: "Após a divulgação do resultado, os aprovados devem comparecer à escola no período determinado para efetuar a matrícula, apresentando todos os documentos necessários listados no edital."
+      resposta: "Após a convocação, os aprovados devem comparecer à escola no período determinado para efetuar a matrícula, apresentando todos os documentos necessários listados no edital."
     },
     {
       pergunta: "Há material didático incluso?",
@@ -60,19 +121,14 @@ export default function VestibulinhoPage() {
     setIsSubmitting(true)
     // Simular redirecionamento
     setTimeout(() => {
-      window.open('https://www.vestibulinhoetec.com.br', '_blank')
+      window.open('https://vestibulinho.etec.sp.gov.br/home/', '_blank')
       setIsSubmitting(false)
     }, 1000)
   }
 
   const handleDownloadEdital = () => {
-    // Simular download do edital
-    const link = document.createElement('a')
-    link.href = '/edital-vestibulinho-2024.pdf'
-    link.download = 'edital-vestibulinho-2024.pdf'
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
+    // Abrir página de documentos do vestibulinho
+    window.open('https://vestibulinho.etec.sp.gov.br/documentos/default.asp', '_blank', 'noopener,noreferrer')
   }
 
   return (
@@ -83,10 +139,10 @@ export default function VestibulinhoPage() {
         <div className="relative container mx-auto px-4 py-20 lg:py-32">
           <div className="text-center max-w-4xl mx-auto">
             <Badge className="bg-secondary text-secondary-foreground hover:bg-secondary/80 mb-6">
-              Processo Seletivo 2024
+              Processo Seletivo 2026
             </Badge>
             <h1 className="text-4xl lg:text-6xl font-bold leading-tight mb-6">
-              Vestibulinho 2024
+              Vestibulinho 2026
             </h1>
             <p className="text-xl text-primary-foreground/90 leading-relaxed max-w-3xl mx-auto mb-8">
               Inscreva-se no curso Técnico em Desenvolvimento de Sistemas integrado ao Ensino Médio. 
@@ -119,11 +175,11 @@ export default function VestibulinhoPage() {
                 size="lg" 
                 variant="outline" 
                 onClick={handleDownloadEdital}
-                className="group relative overflow-hidden border-2 border-white/30 dark:border-slate-300/30 text-white dark:text-slate-200 hover:bg-white dark:hover:bg-slate-800 hover:text-gray-900 dark:hover:text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 backdrop-blur-sm"
+                className="group relative overflow-hidden border-2 border-white/40 dark:border-slate-200/40 text-black dark:text-black hover:bg-white dark:hover:bg-slate-100 hover:text-gray-900 dark:hover:text-slate-900 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 backdrop-blur-sm"
               >
                 <div className="flex items-center justify-center">
-                  <Download className="w-4 h-4 mr-2 transition-transform duration-300 group-hover:scale-110" />
-                  <span>Baixar Edital</span>
+                  <FileText className="w-4 h-4 mr-2 transition-transform duration-300 group-hover:scale-110" />
+                  <span>Ver Documentos</span>
                 </div>
                           {/* Efeito de brilho */}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 dark:via-slate-300/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
@@ -149,10 +205,10 @@ export default function VestibulinhoPage() {
             <Card className="text-center transition-all duration-300 hover:scale-105 hover:shadow-xl hover:border-primary/50 group">
               <CardHeader>
                 <Users className="w-12 h-12 text-primary mx-auto mb-4 transition-all duration-300 group-hover:scale-110 group-hover:text-primary/80" />
-                <CardTitle className="group-hover:text-primary transition-colors duration-200">40 Vagas</CardTitle>
+                <CardTitle className="group-hover:text-primary transition-colors duration-200">80 Vagas</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground">Disponíveis para 2025</p>
+                <p className="text-muted-foreground">Disponíveis para 2026</p>
               </CardContent>
             </Card>
             
@@ -172,7 +228,7 @@ export default function VestibulinhoPage() {
                 <CardTitle className="group-hover:text-primary transition-colors duration-200">Integral</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground">7h às 17h</p>
+                <p className="text-muted-foreground">7h10 às 14h e as 13h10 às 19h20</p>
               </CardContent>
             </Card>
             
@@ -476,51 +532,6 @@ export default function VestibulinhoPage() {
               ))}
             </Accordion>
           </div>
-        </div>
-      </section>
-
-      {/* CTA Final */}
-      <section className="py-16 bg-primary text-primary-foreground">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-6">
-            Pronto para se Inscrever?
-          </h2>
-          <p className="text-xl text-primary-foreground/90 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Não perca a oportunidade de fazer parte da próxima turma de desenvolvedores da Etec João Belarmino. 
-            Uma formação completa e gratuita que pode transformar sua carreira.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              size="lg" 
-              onClick={handleInscricao}
-              disabled={isSubmitting}
-              className="bg-accent text-accent-foreground hover:bg-accent/90 transition-all duration-200 hover:scale-105 hover:shadow-lg disabled:opacity-50"
-            >
-              {isSubmitting ? (
-                <>
-                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                  Redirecionando...
-                </>
-              ) : (
-                <>
-                  <ExternalLink className="w-4 h-4 mr-2" />
-                  Fazer Inscrição
-                </>
-              )}
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              onClick={handleDownloadEdital}
-              className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary transition-all duration-200 hover:scale-105 hover:shadow-lg"
-            >
-              <Download className="w-4 h-4 mr-2" />
-              Baixar Edital Completo
-            </Button>
-          </div>
-          <p className="text-sm text-primary-foreground/70 mt-6">
-            Inscrições abertas até 15 de Junho de 2024
-          </p>
         </div>
       </section>
     </div>

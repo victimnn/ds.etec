@@ -7,43 +7,45 @@ import { Button } from "@/components/ui/button"
 import { ExternalLink, Github, Play, Code, Smartphone, Monitor, Gamepad2, ArrowRight, Users, Award, Star, Calendar } from 'lucide-react'
 import Image from "next/image"
 import Link from "next/link"
+import { HeroButtons } from "@/components/ui/hero-buttons"
 
 export default function ProjetosPage() {
   const [categoriaAtiva, setCategoriaAtiva] = useState("Todos")
 
   const projetos = [
     {
-      titulo: "Sistema de Gestão Escolar",
-      descricao: "Aplicação web completa para gestão de notas, frequência e comunicação entre escola, alunos e pais.",
-      tecnologias: ["React", "Node.js", "PostgreSQL", "Express"],
-      imagem: "/school-management-system-interface.png",
-      alunos: ["João Silva", "Maria Santos", "Pedro Oliveira"],
-      ano: "2024",
+      titulo: "Sistema de Gestão de Transporte Escolar",
+      descricao: "Aplicação web completa para gestão de transporte escolar para empresas e passageiros",
+      tecnologias: ["React", "Node.js"],
+      imagem: "/bushere.png",
+      alunos: ["Victor Ramos", "Renan Andrade", "Sarah Porsch", "Marcelo Camillo", "Luiz Souza"],
+      ano: "2025",
       categoria: "Web",
       destaque: true,
-      premio: "1º Lugar - Feira de Ciências 2024"
     },
     {
-      titulo: "App de Delivery Local",
-      descricao: "Aplicativo móvel para delivery de restaurantes locais de Amparo com sistema de pagamento integrado.",
-      tecnologias: ["React Native", "Firebase", "Stripe API"],
-      imagem: "/food-delivery-app.png",
-      alunos: ["Ana Costa", "Carlos Lima"],
-      ano: "2024",
-      categoria: "Mobile",
-      destaque: false,
-      implementado: true
-    },
-    {
-      titulo: "E-commerce de Artesanato",
-      descricao: "Plataforma online para artesãos locais venderem seus produtos com sistema de pagamento e entrega.",
-      tecnologias: ["Next.js", "Prisma", "MySQL", "Tailwind CSS"],
-      imagem: "/handicraft-ecommerce.png",
-      alunos: ["Luiza Ferreira", "Roberto Souza", "Camila Rodrigues"],
-      ano: "2023",
+      titulo: "Site sobre conscientização sobre Capivaras",
+      descricao: "Site sobre conscientização sobre Capivara",
+      tecnologias: ["React", "Next.js"],
+      imagem: "/capivara.png",
+      alunos: ["Victor Ramos", "Samy Maiorini", "Giovani Francisco", "Atilio de Andrade"],
+      ano: "2025",
       categoria: "Web",
-      destaque: false,
-      implementado: true
+      implementado: true,
+      destaque: true,
+      demo: "https://capivara-app.vercel.app",
+      github: "https://github.com/victimnn/capivara-app"
+    },
+    {
+      titulo: "Mão Robótica",
+      descricao: "Mão Robótica para ensinar conceitos básicos de programação",
+      tecnologias: ["Arduino", "Python"],
+      imagem: "/educational-programming-game.png",
+      alunos: ["Vitor Cordeiro"],
+      ano: "2024",
+      categoria: "Game",
+      destaque: true,
+      premio: "Melhor Projeto Educacional",
     },
     {
       titulo: "Jogo Educativo de Programação",
@@ -54,7 +56,7 @@ export default function ProjetosPage() {
       ano: "2023",
       categoria: "Game",
       destaque: true,
-      premio: "Melhor Projeto Educacional"
+      premio: "Melhor Projeto Educacional",
     },
     {
       titulo: "Sistema de Controle de Estoque",
@@ -65,7 +67,7 @@ export default function ProjetosPage() {
       ano: "2023",
       categoria: "Desktop",
       destaque: false,
-      implementado: true
+      implementado: true,
     },
     {
       titulo: "App de Transporte Escolar",
@@ -76,7 +78,7 @@ export default function ProjetosPage() {
       ano: "2024",
       categoria: "Mobile",
       destaque: false,
-      implementado: false
+      implementado: false,
     },
     {
       titulo: "Plataforma de Cursos Online",
@@ -87,7 +89,7 @@ export default function ProjetosPage() {
       ano: "2024",
       categoria: "Web",
       destaque: true,
-      premio: "Destaque em Inovação"
+      premio: "Destaque em Inovação",
     },
     {
       titulo: "App de Gestão Financeira",
@@ -98,7 +100,7 @@ export default function ProjetosPage() {
       ano: "2023",
       categoria: "Mobile",
       destaque: false,
-      implementado: false
+      implementado: false,
     }
   ]
 
@@ -119,14 +121,14 @@ export default function ProjetosPage() {
       bg: "bg-primary/10"
     },
     {
-      titulo: "15",
+      titulo: "15+",
       descricao: "Tecnologias Utilizadas",
       icon: Award,
       cor: "text-accent",
       bg: "bg-accent/10"
     },
     {
-      titulo: "8",
+      titulo: "3+",
       descricao: "Projetos Implementados",
       icon: Star,
       cor: "text-green-600",
@@ -146,13 +148,15 @@ export default function ProjetosPage() {
     : projetos.filter(projeto => projeto.categoria === categoriaAtiva)
 
   const handleDemo = (projeto: any) => {
-    // Simular abertura do demo
-    window.open(`/demo/${projeto.titulo.toLowerCase().replace(/\s+/g, '-')}`, '_blank')
+    if (projeto.demo) {
+      window.open(projeto.demo, '_blank', 'noopener,noreferrer')
+    }
   }
 
   const handleCodigo = (projeto: any) => {
-    // Simular abertura do repositório
-    window.open(`https://github.com/etec-ds/${projeto.titulo.toLowerCase().replace(/\s+/g, '-')}`, '_blank')
+    if (projeto.github) {
+      window.open(projeto.github, '_blank', 'noopener,noreferrer')
+    }
   }
 
   return (
@@ -172,25 +176,8 @@ export default function ProjetosPage() {
               Conheça os projetos desenvolvidos pelos nossos estudantes durante o curso. 
               Aplicações reais que demonstram a qualidade da nossa formação técnica.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                size="lg" 
-                asChild
-                className="bg-accent text-accent-foreground hover:bg-accent/90 transition-all duration-200 hover:scale-105 hover:shadow-lg"
-              >
-                <Link href="/vestibulinho">
-                  <ArrowRight className="w-4 h-4 mr-2" />
-                  Faça Parte
-                </Link>
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline"
-                className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary transition-all duration-200 hover:scale-105 hover:shadow-lg"
-              >
-                <Code className="w-4 h-4 mr-2" />
-                Ver Código
-              </Button>
+            <div className="flex justify-center">
+              <HeroButtons />
             </div>
           </div>
         </div>
@@ -341,26 +328,34 @@ export default function ProjetosPage() {
                     </div>
                     
                     {/* Botões */}
-                    <div className="flex gap-2 pt-2">
-                      <Button 
-                        size="sm" 
-                        variant="outline" 
-                        onClick={() => handleDemo(projeto)}
-                        className="flex-1 transition-all duration-200 hover:scale-105 hover:bg-primary hover:text-primary-foreground"
-                      >
-                        <Play className="w-4 h-4 mr-1" />
-                        Demo
-                      </Button>
-                      <Button 
-                        size="sm" 
-                        variant="outline" 
-                        onClick={() => handleCodigo(projeto)}
-                        className="flex-1 transition-all duration-200 hover:scale-105 hover:bg-primary hover:text-primary-foreground"
-                      >
-                        <Github className="w-4 h-4 mr-1" />
-                        Código
-                      </Button>
-                    </div>
+                    {(projeto.demo || projeto.github) && (
+                      <div className={`flex gap-2 pt-2 ${projeto.demo && projeto.github ? '' : 'justify-center'}`}>
+                        {projeto.demo && (
+                          <Button 
+                            size="sm" 
+                            variant="outline" 
+                            onClick={() => handleDemo(projeto)}
+                            className={`transition-all duration-200 hover:scale-105 hover:bg-primary hover:text-primary-foreground ${projeto.demo && projeto.github ? 'flex-1' : ''}`}
+                            title="Ver Demo"
+                          >
+                            <Play className="w-4 h-4 mr-1" />
+                            Demo
+                          </Button>
+                        )}
+                        {projeto.github && (
+                          <Button 
+                            size="sm" 
+                            variant="outline" 
+                            onClick={() => handleCodigo(projeto)}
+                            className={`transition-all duration-200 hover:scale-105 hover:bg-primary hover:text-primary-foreground ${projeto.demo && projeto.github ? 'flex-1' : ''}`}
+                            title="Ver Código"
+                          >
+                            <Github className="w-4 h-4 mr-1" />
+                            Código
+                          </Button>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </CardContent>
               </Card>
@@ -381,63 +376,10 @@ export default function ProjetosPage() {
               em feiras de ciências, concursos e até mesmo implementados por empresas parceiras. 
               Nossa metodologia prática garante que você saia do curso com um portfólio sólido.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                size="lg" 
-                asChild
-                className="bg-primary hover:bg-primary/90 transition-all duration-200 hover:scale-105 hover:shadow-lg"
-              >
-                <Link href="/vestibulinho">
-                  <ArrowRight className="w-4 h-4 mr-2" />
-                  Inscreva-se no Curso
-                </Link>
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline"
-                className="transition-all duration-200 hover:scale-105 hover:shadow-lg"
-              >
-                <Code className="w-4 h-4 mr-2" />
-                Conheça a Matriz Curricular
-              </Button>
+            <div className="flex justify-center">
+              <HeroButtons />
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* CTA Final */}
-      <section className="py-16 bg-primary text-primary-foreground">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-6">
-            Pronto para Criar Projetos Incríveis?
-          </h2>
-          <p className="text-xl text-primary-foreground/90 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Junte-se aos nossos alunos e desenvolva projetos que fazem a diferença. 
-            Uma formação técnica que transforma ideias em soluções reais.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              size="lg" 
-              asChild
-              className="bg-accent text-accent-foreground hover:bg-accent/90 transition-all duration-200 hover:scale-105 hover:shadow-lg"
-            >
-              <Link href="/vestibulinho">
-                <ArrowRight className="w-4 h-4 mr-2" />
-                Inscreva-se no Vestibulinho
-              </Link>
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline"
-              className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary transition-all duration-200 hover:scale-105 hover:shadow-lg"
-            >
-              <Code className="w-4 h-4 mr-2" />
-              Ver Mais Projetos
-            </Button>
-          </div>
-          <p className="text-sm text-primary-foreground/70 mt-6">
-            Inscrições abertas para o processo seletivo 2024
-          </p>
         </div>
       </section>
     </div>

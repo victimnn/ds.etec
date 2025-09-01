@@ -7,6 +7,7 @@ import { BookOpen, Users, Award, Building, Clock, Monitor, Code, Database, Globe
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { HeroButtons } from "@/components/ui/hero-buttons"
 
 export default function SobrePage() {
   const matrizCurricular = [
@@ -14,41 +15,42 @@ export default function SobrePage() {
       ano: "1º Ano",
       disciplinas: [
         { nome: "TÉCNICAS DE PROGRAMAÇÃO E ALGORITMOS", descricao: "Fundamentos da programação, lógica e algoritmos", icon: Code },
-        { nome: "PROGRAMAÇÃO WEB I", descricao: "Desenvolvimento web com HTML, CSS e JavaScript", icon: Globe },
+        { nome: "PROGRAMAÇÃO WEB I", descricao: "Desenvolvimento web com HTML, CSS", icon: Globe },
         { nome: "FUNDAMENTOS DA INFORMÁTICA", descricao: "Conceitos básicos de computação e sistemas", icon: Monitor },
         { nome: "DESIGN DIGITAL", descricao: "Design de interfaces e experiência do usuário", icon: Award },
-        { nome: "BANCO DE DADOS I", descricao: "Modelagem e implementação de bancos de dados", icon: Database }
+        { nome: "BANCO DE DADOS I", descricao: "Introdução ao banco de dados", icon: Database }
       ]
     },
     {
       ano: "2º Ano",
       disciplinas: [
-        { nome: "PROGRAMAÇÃO WEB II", descricao: "Desenvolvimento web avançado e frameworks", icon: Globe },
+        { nome: "PROGRAMAÇÃO WEB II", descricao: "Desenvolvimento web avançado com PHP", icon: Globe },
         { nome: "PROGRAMAÇÃO DE APLICATIVOS MOBILE I", descricao: "Desenvolvimento de aplicativos móveis", icon: Smartphone },
-        { nome: "DESENVOLVIMENTO DE SISTEMAS", descricao: "Análise e desenvolvimento de sistemas", icon: Code },
-        { nome: "BANCO DE DADOS II", descricao: "Administração e otimização de bancos de dados", icon: Database }
+        { nome: "DESENVOLVIMENTO DE SISTEMAS", descricao: "Desenvolvimento de sistemas com programação orientada a objetos", icon: Code },
+        { nome: "BANCO DE DADOS II", descricao: "Administração e implementação de bancos de dados", icon: Database }
       ]
     },
     {
       ano: "3º Ano",
       disciplinas: [
-        { nome: "INTERNET, PROTOCOLOS E SEGURANÇA DE SISTEMAS DA INFORMAÇÃO", descricao: "Redes, protocolos e segurança da informação", icon: Shield },
         { nome: "TCC EM DESENVOLVIMENTO DE SISTEMAS", descricao: "Trabalho de Conclusão de Curso", icon: Award },
+        { nome: "INTERNET, PROTOCOLOS E SEGURANÇA DE SISTEMAS DA INFORMAÇÃO", descricao: "Redes, protocolos e segurança da informação", icon: Shield },
         { nome: "PROGRAMAÇÃO DE APLICATIVOS MOBILE II", descricao: "Desenvolvimento mobile avançado", icon: Smartphone },
-        { nome: "SISTEMAS EMBARCADOS", descricao: "Programação de sistemas embarcados", icon: Cpu },
+        { nome: "SISTEMAS EMBARCADOS", descricao: "Programação de sistemas embarcados com Arduino", icon: Cpu },
         { nome: "QUALIDADE E TESTE DE SOFTWARE", descricao: "Testes e garantia de qualidade", icon: TestTube },
-        { nome: "PROGRAMAÇÃO WEB III", descricao: "Desenvolvimento web profissional", icon: Globe }
+        { nome: "PROGRAMAÇÃO WEB III", descricao: "Desenvolvimento web avançado com frameworks modernos", icon: Globe }
       ]
     }
   ]
 
   const professores = [
-    { nome: "Prof. Carlos Silva", especialidade: "Desenvolvimento Web e Mobile", experiencia: "15 anos", area: "Programação" },
-    { nome: "Profa. Ana Santos", especialidade: "Banco de Dados e Sistemas", experiencia: "12 anos", area: "Banco de Dados" },
-    { nome: "Prof. Roberto Lima", especialidade: "Programação e Algoritmos", experiencia: "18 anos", area: "Algoritmos" },
-    { nome: "Profa. Maria Oliveira", especialidade: "Engenharia de Software", experiencia: "10 anos", area: "Engenharia" },
-    { nome: "Prof. João Costa", especialidade: "Sistemas Embarcados", experiencia: "8 anos", area: "Hardware" },
-    { nome: "Profa. Fernanda Lima", especialidade: "Segurança da Informação", experiencia: "14 anos", area: "Segurança" }
+    { nome: "Coord. Laine Zanin", especialidade: "Desenvolvimento Web e Banco de Dados", experiencia: "10 anos", area: "Programação" },
+    { nome: "Prof. Rubens Castaldelli", especialidade: "Banco de Dados e Sistemas", experiencia: "13 anos", area: "Banco de Dados" },
+    { nome: "Prof. Emerson Rodrigues", especialidade: "Algoritmos e Sistemas Embarcados", experiencia: "14 anos", area: "Algoritmos" },
+    { nome: "Prof. Giuliano Catteli", especialidade: "Programação e Segurança da Informação", experiencia: "17 anos", area: "Programação" },
+    { nome: "Profa. Fernando Bartholomeu", especialidade: "Desenvolvimento Web e Mobile", experiencia: "8 anos", area: "Programação" },
+    { nome: "Prof. Sergio", especialidade: "Redes e Sistemas", experiencia: "14 anos", area: "Redes" },
+    { nome: "Profa. Vânia", especialidade: "Algoritmos e Programação", experiencia: "12 anos", area: "Algoritmos" }
   ]
 
   const infraestrutura = [
@@ -57,40 +59,37 @@ export default function SobrePage() {
       descricao: "Laboratórios modernos e equipados",
       detalhes: [
         "20 computadores por laboratório",
-        "Configuração atualizada com processadores Intel i5/i7",
-        "8GB de RAM e SSD de 256GB",
+        "Configuração atualizada com processadores AMD Ryzen 5",
+        "8GB de RAM e SSDs",
         "Monitores LED de 21 polegadas",
-        "Software de desenvolvimento instalado",
+        "Softwares de desenvolvimento instalados",
         "Conexão de internet de alta velocidade"
       ],
       icon: Monitor,
       total: "120 computadores"
     },
     {
-      titulo: "Sala de Aula Multimídia",
-      descricao: "Ambiente para aulas teóricas",
+      titulo: "Sala Maker",
+      descricao: "Ambiente para projetos e pesquisas",
       detalhes: [
-        "Projetor de alta definição",
-        "Sistema de som integrado",
-        "Quadro interativo",
-        "Capacidade para 40 alunos",
-        "Ar condicionado"
+        "Televisão LED de 65 polegadas",
+        "Notebooks para projetos",
+        "Impressora 3D"
       ],
       icon: Building,
       total: "1 sala"
     },
     {
-      titulo: "Biblioteca Técnica",
-      descricao: "Acervo especializado em tecnologia",
+      titulo: "Biblioteca",
+      descricao: "Acervo especializado em tecnologia e literatura",
       detalhes: [
         "Livros técnicos atualizados",
         "Revistas especializadas",
-        "Acesso a bases de dados online",
         "Ambiente de estudo",
         "Computadores para pesquisa"
       ],
       icon: BookOpen,
-      total: "500+ títulos"
+      total: "100+ títulos"
     }
   ]
 
@@ -126,25 +125,8 @@ export default function SobrePage() {
               Conheça em detalhes o curso Técnico em Desenvolvimento de Sistemas da Etec João Belarmino. 
               Uma formação completa que integra ensino médio e capacitação profissional de qualidade.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                size="lg" 
-                asChild
-                className="bg-accent text-accent-foreground hover:bg-accent/90 transition-all duration-200 hover:scale-105 hover:shadow-lg"
-              >
-                <Link href="/vestibulinho">
-                  <ArrowRight className="w-4 h-4 mr-2" />
-                  Inscreva-se Agora
-                </Link>
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline"
-                className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary transition-all duration-200 hover:scale-105 hover:shadow-lg"
-              >
-                <BookOpen className="w-4 h-4 mr-2" />
-                Ver Matriz Curricular
-              </Button>
+            <div className="flex justify-center">
+              <HeroButtons />
             </div>
           </div>
         </div>
@@ -202,7 +184,7 @@ export default function SobrePage() {
               Horários de Aula
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Duas turmas por ano com horários flexíveis para atender diferentes necessidades
+              Duas turmas por ano com horários matutino e vespertino para atender diferentes necessidades
             </p>
           </div>
           
@@ -498,42 +480,6 @@ export default function SobrePage() {
               </CardContent>
             </Card>
           </div>
-        </div>
-      </section>
-
-      {/* CTA Final */}
-      <section className="py-16 bg-primary text-primary-foreground">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-6">
-            Pronto para Começar sua Jornada?
-          </h2>
-          <p className="text-xl text-primary-foreground/90 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Junte-se a nós e faça parte de uma das melhores formações técnicas em desenvolvimento de sistemas. 
-            Uma oportunidade única de aprender com profissionais experientes em infraestrutura moderna.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              size="lg" 
-              asChild
-              className="bg-accent text-accent-foreground hover:bg-accent/90 transition-all duration-200 hover:scale-105 hover:shadow-lg"
-            >
-              <Link href="/vestibulinho">
-                <ArrowRight className="w-4 h-4 mr-2" />
-                Inscreva-se no Vestibulinho
-              </Link>
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline"
-              className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary transition-all duration-200 hover:scale-105 hover:shadow-lg"
-            >
-              <BookOpen className="w-4 h-4 mr-2" />
-              Conheça o Curso
-            </Button>
-          </div>
-          <p className="text-sm text-primary-foreground/70 mt-6">
-            Inscrições abertas para o processo seletivo 2024
-          </p>
         </div>
       </section>
     </div>
