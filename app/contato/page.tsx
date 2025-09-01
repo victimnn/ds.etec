@@ -213,7 +213,7 @@ export default function ContatoPage() {
                 </p>
               </div>
 
-              <div className="space-y-4">z
+              <div className="space-y-4">
                 {/* Telefones */}
                 <Card className="transition-all duration-300 hover:scale-105 hover:shadow-xl hover:border-primary/50 group">
                   <CardHeader className="pb-3">
