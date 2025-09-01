@@ -45,12 +45,12 @@ export default function SobrePage() {
 
   const professores = [
     { nome: "Coord. Laine Zanin", especialidade: "Desenvolvimento Web e Banco de Dados", experiencia: "10 anos", area: "Programação" },
-    { nome: "Prof. Rubens Castaldelli", especialidade: "Banco de Dados e Sistemas", experiencia: "13 anos", area: "Banco de Dados" },
+    { nome: "Prof. Rubens Castaldelli", especialidade: "Banco de Dados e Algoritmos", experiencia: "13 anos", area: "Banco de Dados" },
     { nome: "Me. Emerson Rodrigues", especialidade: "Algoritmos e Sistemas Embarcados", experiencia: "14 anos", area: "Algoritmos" },
     { nome: "Prof. Giuliano Catteli", especialidade: "Programação e Segurança da Informação", experiencia: "17 anos", area: "Programação" },
     { nome: "Prof. Fernando Bartholomeu", especialidade: "Desenvolvimento Web e Mobile", experiencia: "8 anos", area: "Programação" },
-    { nome: "Prof. Sergio", especialidade: "Redes e Sistemas", experiencia: "14 anos", area: "Redes" },
-    { nome: "Profa. Vânia", especialidade: "Algoritmos e Programação", experiencia: "12 anos", area: "Algoritmos" }
+    { nome: "Prof. Sérgio Roberto", especialidade: "Redes e Sistemas", experiencia: "14 anos", area: "Redes" },
+    { nome: "Profa. Vânia Brunetto", especialidade: "Algoritmos e Programação", experiencia: "12 anos", area: "Algoritmos" }
   ]
 
   const infraestrutura = [
