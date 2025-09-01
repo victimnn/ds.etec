@@ -174,7 +174,7 @@ export default function ProjetosPage() {
             </h1>
             <p className="text-xl text-primary-foreground/90 leading-relaxed max-w-3xl mx-auto mb-8">
               Conheça os projetos desenvolvidos pelos nossos estudantes durante o curso. 
-              Aplicações reais que demonstram a qualidade da nossa formação técnica.
+              Aplicações reais que demonstram a qualidade da nossa formação técnica e profissionalizante.
             </p>
             <div className="flex justify-center">
               <HeroButtons />
