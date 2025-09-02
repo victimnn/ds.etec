@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
@@ -11,10 +11,16 @@ import { useTheme } from 'next-themes'
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const { theme } = useTheme()
   
-  // Define a logo baseada no tema
-  const logoSrc = theme === 'dark' ? '/LOGODSBRANCO.png' : '/LOGODS.png'
+  // Evita hidratação incorreta
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+  
+  // Define a logo baseada no tema, com fallback para evitar hidratação
+  const logoSrc = mounted && theme === 'dark' ? '/LOGODSBRANCO.png' : '/LOGODS.png'
 
   return (
     <header className="bg-background shadow-sm sticky top-0 z-50 border-b">
@@ -22,7 +28,7 @@ export function Header() {
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center space-x-3">
             <Image
-              src={logoSrc}
+              src={logoSrc || '/LOGODS.png'}
               alt={siteConfig.institution}
               width={40}
               height={40}
