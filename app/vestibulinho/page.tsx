@@ -344,9 +344,8 @@ export default function VestibulinhoPage() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground mb-6 leading-relaxed">
-                    Complete o formulário com suas informações pessoais e escolha o curso Técnico em Desenvolvimento de Sistemas
+                    Complete o formulário com suas informações pessoais e escolha o curso Técnico em Desenvolvimento de Sistemas na ETEC João Belarmino de Amparo
                   </p>
-                  <Badge variant="outline" className="text-sm">Documentos Necessários</Badge>
                 </CardContent>
               </Card>
               
@@ -365,77 +364,6 @@ export default function VestibulinhoPage() {
                 </CardContent>
               </Card>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Documentos Necessários */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
-              Documentos Necessários
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Para efetuar a matrícula após aprovação no processo seletivo
-            </p>
-          </div>
-          
-          <div className="max-w-4xl mx-auto">
-            <Card className="transition-all duration-300 hover:shadow-xl">
-              <CardContent className="p-8">
-                <div className="grid md:grid-cols-2 gap-8">
-                  <div>
-                    <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center">
-                      <FileText className="w-5 h-5 mr-2 text-primary" />
-                      Documentos Pessoais
-                    </h3>
-                    <ul className="space-y-3">
-                      <li className="flex items-start">
-                        <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                        <span className="text-muted-foreground">RG (original e cópia)</span>
-                      </li>
-                      <li className="flex items-start">
-                        <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                        <span className="text-muted-foreground">CPF (original e cópia)</span>
-                      </li>
-                      <li className="flex items-start">
-                        <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                        <span className="text-muted-foreground">Certidão de Nascimento (cópia)</span>
-                      </li>
-                      <li className="flex items-start">
-                        <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                        <span className="text-muted-foreground">Histórico Escolar do Ensino Fundamental</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center">
-                      <FileText className="w-5 h-5 mr-2 text-primary" />
-                      Documentos Complementares
-                    </h3>
-                    <ul className="space-y-3">
-                      <li className="flex items-start">
-                        <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                        <span className="text-muted-foreground">Comprovante de Residência</span>
-                      </li>
-                      <li className="flex items-start">
-                        <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                        <span className="text-muted-foreground">2 Fotos 3x4 recentes</span>
-                      </li>
-                      <li className="flex items-start">
-                        <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                        <span className="text-muted-foreground">Cartão de Vacinação (cópia)</span>
-                      </li>
-                      <li className="flex items-start">
-                        <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                        <span className="text-muted-foreground">Declaração de Quitação Eleitoral (se maior de 18 anos)</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </section>

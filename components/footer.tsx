@@ -242,7 +242,7 @@ export function Footer() {
             <div className="text-sm text-primary-foreground/70">
               <p>&copy; 2025 Etec João Belarmino de Amparo - Centro Paula Souza. Todos os direitos reservados.</p>
             </div>
-            <div className="flex items-center space-x-4 text-sm text-primary-foreground/70">
+            {/* <div className="flex items-center space-x-4 text-sm text-primary-foreground/70">
               <Link href="/sobre" className="hover:text-primary-foreground transition-colors duration-200">
                 Política de Privacidade
               </Link>
@@ -250,7 +250,7 @@ export function Footer() {
               <Link href="/contato" className="hover:text-primary-foreground transition-colors duration-200">
                 Termos de Uso
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

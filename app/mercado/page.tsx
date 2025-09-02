@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { Building, TrendingUp, Users, Star, Quote, Briefcase, DollarSign, Target, Award, ExternalLink, ArrowRight, Code } from 'lucide-react'
+import { Building, TrendingUp, Users, Star, Quote, Briefcase, DollarSign, Target, Award, ExternalLink, ArrowRight, Code, Globe } from 'lucide-react'
 import Image from "next/image"
 import Link from "next/link"
 import { HeroButtons } from "@/components/ui/hero-buttons"
@@ -16,15 +16,9 @@ export default function MercadoPage() {
 
   const empresas = [
     { 
-      nome: "Sistema RAM", 
+      nome: "RAM Sistemas", 
       tipo: "Software House", 
-      setor: "Tecnologia",
-      localizacao: "Amparo, SP"
-    },
-    { 
-      nome: "Shark It", 
-      tipo: "Consultoria", 
-      setor: "Tecnologia",
+      setor: "Sistemas para gestão pública/privada",
       localizacao: "Amparo, SP"
     },
     { 
@@ -38,6 +32,60 @@ export default function MercadoPage() {
       tipo: "Software House", 
       setor: "Tecnologia",
       localizacao: "Pedreira, SP"
+    },
+    { 
+      nome: "Motherson Group (SMR Automotive / Motherson Yachiyo)", 
+      tipo: "Multinacional de manufatura", 
+      setor: "Autopeças e componentes automotivos",
+      localizacao: "Jaguariúna e Limeira, SP"
+    },
+    { 
+      nome: "JRS Computação", 
+      tipo: "Varejo/serviços de informática", 
+      setor: "Assistência técnica, vendas de TI",
+      localizacao: "Amparo, SP"
+    },
+    { 
+      nome: "Camino", 
+      tipo: "Software House", 
+      setor: "Tecnologia",
+      localizacao: "Região de Campinas"
+    },
+    { 
+      nome: "Infoluck", 
+      tipo: "Serviços de TI", 
+      setor: "Suporte/consultoria e soluções de informática",
+      localizacao: "Campinas, SP"
+    },
+    { 
+      nome: "CASP", 
+      tipo: "Indústria", 
+      setor: "Equipamentos/estruturas (setor industrial/agro)",
+      localizacao: "Amparo, SP"
+    },
+    { 
+      nome: "Acelerar Produção Criativa e Audiovisual", 
+      tipo: "Produtora/estúdio", 
+      setor: "Audiovisual e economia criativa",
+      localizacao: "Serra Negra/Amparo, SP"
+    },
+    { 
+      nome: "Prime Solution", 
+      tipo: "Consultoria de software", 
+      setor: "Microsoft 365/SharePoint/Power Platform",
+      localizacao: "São Paulo, SP (atende Campinas)"
+    },
+    { 
+      nome: "RS Solution", 
+      tipo: "Desenvolvimento de software", 
+      setor: "TI/Software",
+      localizacao: "Região metropolitana de Campinas"
+    },
+    { 
+      nome: "Wise Software Sistemas", 
+      tipo: "Desenvolvimento de software", 
+      setor: "Fábrica de software / apps",
+      localizacao: "Região metropolitana de Campinas"
     }
   ]
 
@@ -83,21 +131,21 @@ export default function MercadoPage() {
       bg: "bg-green-100"
     },
     {
-      titulo: "3+",
+      titulo: "10+",
       descricao: "Empresas Parceiras",
       icon: Building,
       cor: "text-primary",
       bg: "bg-primary/10"
     },
     {
-      titulo: "5+",
+      titulo: "10+",
       descricao: "Empresas assistindo o TCC anualmente",
       icon: Users,
       cor: "text-primary",
       bg: "bg-primary/10"
     },
     {
-      titulo: "10+",
+      titulo: "15+",
       descricao: "Projetos desenvolvidos anualmente",
       icon: Code,
       cor: "text-accent",
@@ -174,25 +222,32 @@ export default function MercadoPage() {
               Organizações que oferecem oportunidades de estágio e emprego para nossos alunos
             </p>
           </div>
-          
+
+          {/* Grid simples de todas as empresas */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {empresas.map((empresa, index) => (
               <Card key={index} className="transition-all duration-300 hover:scale-105 hover:shadow-xl hover:border-primary/50 group">
-                <CardHeader>
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <CardTitle className="text-lg group-hover:text-primary transition-colors duration-200">
+                <CardHeader className="pb-3">
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      <CardTitle className="text-lg group-hover:text-primary transition-colors duration-200 line-clamp-2">
                         {empresa.nome}
                       </CardTitle>
-                      <CardDescription className="text-sm">
-                        {empresa.tipo} • {empresa.localizacao}
+                      <CardDescription className="text-sm mt-1">
+                        {empresa.localizacao}
                       </CardDescription>
                     </div>
-                    <Badge variant="secondary" className="transition-all duration-200 group-hover:scale-105">
+                    <Badge variant="secondary" className="ml-2 flex-shrink-0 transition-all duration-200 group-hover:scale-105">
                       {empresa.setor}
                     </Badge>
                   </div>
                 </CardHeader>
+                <CardContent className="pt-0">
+                  <div className="flex items-center text-xs text-muted-foreground">
+                    <Briefcase className="w-3 h-3 mr-1" />
+                    {empresa.tipo}
+                  </div>
+                </CardContent>
               </Card>
             ))}
           </div>

@@ -24,8 +24,8 @@ export default function ProjetosPage() {
       destaque: true,
     },
     {
-      titulo: "Site sobre conscientização sobre Capivaras",
-      descricao: "Site sobre conscientização sobre Capivara",
+      titulo: "Site sobre conscientização de Capivaras",
+      descricao: "Site sobre conscientização de Capivaras",
       tecnologias: ["React", "Next.js"],
       imagem: "/capivara.png",
       alunos: ["Victor Ramos", "Samy Maiorini", "Giovani Francisco", "Atilio de Andrade"],
@@ -40,12 +40,14 @@ export default function ProjetosPage() {
       titulo: "Mão Robótica",
       descricao: "Mão Robótica para ensinar conceitos básicos de programação",
       tecnologias: ["Arduino", "Python"],
-      imagem: "/educational-programming-game.png",
+      imagem: "/maoRobotica.png",
       alunos: ["Vitor Cordeiro"],
       ano: "2024",
       categoria: "Game",
       destaque: true,
       premio: "Melhor Projeto Educacional",
+      demo: "https://www.youtube.com/watch?v=Ac7zUeninqw",
+      github: "https://github.com/VitorCordS/Mechanic-Hand-Tracking"
     },
     {
       titulo: "Jogo Educativo de Programação",

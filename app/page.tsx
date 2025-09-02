@@ -76,8 +76,8 @@ export default function HomePage() {
       categoria: "Web",
     },
     {
-      titulo: "Site sobre conscientização sobre Capivaras",
-      descricao: "Site sobre conscientização sobre Capivara",
+      titulo: "Site de conscientização sobre Capivaras",
+      descricao: "Site de conscientização sobre Capivaras",
       imagem: "/capivara.png",
       tecnologia: "React + Next.js",
       categoria: "Web",
@@ -88,10 +88,16 @@ export default function HomePage() {
     {
       titulo: "Mão Robótica",
       descricao: "Mão Robótica para ensinar conceitos básicos de programação",
-      imagem: "/educational-programming-game.png",
       tecnologia: "Arduino + Python",
+      imagem: "/maoRobotica.png",
+      alunos: ["Vitor Cordeiro"],
+      ano: "2024",
       categoria: "Game",
-    }
+      destaque: true,
+      premio: "Melhor Projeto Educacional",
+      demo: "https://www.youtube.com/watch?v=Ac7zUeninqw",
+      github: "https://github.com/VitorCordS/Mechanic-Hand-Tracking"
+    },
   ]
 
   const horarios = [
@@ -117,7 +123,7 @@ export default function HomePage() {
         <div className="relative container mx-auto px-4 py-20 lg:py-32">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <Badge className="bg-secondary text-secondary-foreground hover:bg-secondary/80">
+              <Badge className="bg-secondary text-secondary-foreground transition-all duration-300 hover:bg-secondary/80">
                 Curso Técnico Integrado ao Ensino Médio
               </Badge>
               <h1 className="text-4xl lg:text-6xl font-bold leading-tight">
@@ -449,7 +455,12 @@ export default function HomePage() {
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {[1, 2, 3, 4].map((i) => (
+            {[
+              { src: "/instaUm.png", alt: "Terceiro DS 2025" },
+              { src: "/instaDois.png", alt: "Aluna com caneca do terceiro DS 2025" },
+              { src: "/instaTres.png", alt: "Alunos na CI&T" },
+              { src: "/instaQuatro.png", alt: "Post do Instagram" }
+            ].map((post, i) => (
               <Link 
                 key={i} 
                 href="https://instagram.com/ds.etec" 
@@ -458,8 +469,8 @@ export default function HomePage() {
                 className="aspect-square relative rounded-lg overflow-hidden group block"
               >
                 <Image
-                  src="/instagram-post.png"
-                  alt={`Post do Instagram ${i}`}
+                  src={post.src}
+                  alt={post.alt}
                   width={300}
                   height={300}
                   className="w-full h-full object-cover transition-all duration-300 group-hover:scale-110 group-hover:brightness-110"

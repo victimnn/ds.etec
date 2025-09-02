@@ -44,13 +44,13 @@ export default function SobrePage() {
   ]
 
   const professores = [
-    { nome: "Coord. Laine Zanin", especialidade: "Desenvolvimento Web e Banco de Dados", experiencia: "10 anos", area: "Programação" },
-    { nome: "Prof. Rubens Castaldelli", especialidade: "Banco de Dados e Algoritmos", experiencia: "13 anos", area: "Banco de Dados" },
-    { nome: "Me. Emerson Rodrigues", especialidade: "Algoritmos e Sistemas Embarcados", experiencia: "14 anos", area: "Algoritmos" },
-    { nome: "Prof. Giuliano Catteli", especialidade: "Programação e Segurança da Informação", experiencia: "17 anos", area: "Programação" },
-    { nome: "Prof. Fernando Bartholomeu", especialidade: "Desenvolvimento Web e Mobile", experiencia: "8 anos", area: "Programação" },
-    { nome: "Prof. Sérgio Roberto", especialidade: "Redes e Sistemas", experiencia: "14 anos", area: "Redes" },
-    { nome: "Profa. Vânia Brunetto", especialidade: "Algoritmos e Programação", experiencia: "12 anos", area: "Algoritmos" }
+    { nome: "Coord. Laine Zanin", especialidade: "Desenvolvimento Web e Banco de Dados", experiencia: "10 anos", area: "Programação", orientadorTCC: false },
+    { nome: "Prof. Rubens Castaldelli", especialidade: "Banco de Dados e Algoritmos", experiencia: "13 anos", area: "Banco de Dados", orientadorTCC: true },
+    { nome: "Dr. Emerson Rodrigo", especialidade: "Algoritmos e Sistemas Embarcados", experiencia: "25 anos", area: "Algoritmos", orientadorTCC: true },
+    { nome: "Prof. Giuliano Catteli", especialidade: "Programação e Segurança da Informação", experiencia: "17 anos", area: "Programação", orientadorTCC: false },
+    { nome: "Prof. Fernando Bartholomeu", especialidade: "Desenvolvimento Web e Mobile", experiencia: "8 anos", area: "Programação", orientadorTCC: false },
+    { nome: "Prof. Sérgio Roberto", especialidade: "Redes e Sistemas", experiencia: "14 anos", area: "Redes", orientadorTCC: false },
+    { nome: "Profa. Vânia Brunetto", especialidade: "Algoritmos e Programação", experiencia: "12 anos", area: "Algoritmos", orientadorTCC: false }
   ]
 
   const infraestrutura = [
@@ -342,31 +342,38 @@ export default function SobrePage() {
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {professores.map((professor, index) => (
-              <Card key={index} className="text-center transition-all duration-300 hover:scale-105 hover:shadow-xl hover:border-primary/50 group">
-                <CardHeader>
-                  <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:scale-110 group-hover:bg-primary/20">
-                    <Users className="w-10 h-10 text-primary transition-all duration-300 group-hover:scale-110" />
-                  </div>
-                  <CardTitle className="text-lg group-hover:text-primary transition-colors duration-200">
-                    {professor.nome}
-                  </CardTitle>
-                  <CardDescription className="text-sm">
-                    {professor.especialidade}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-2">
-                    <Badge variant="secondary" className="text-xs">
-                      {professor.experiencia} de experiência
-                    </Badge>
-                    <Badge variant="outline" className="text-xs">
-                      {professor.area}
-                    </Badge>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                         {professores.map((professor, index) => (
+               <Card key={index} className="text-center transition-all duration-300 hover:scale-105 hover:shadow-xl hover:border-primary/50 group relative">
+                 {professor.orientadorTCC && (
+                   <div className="absolute top-3 right-3">
+                     <Badge variant="default" className="text-xs bg-purple-400 transition-all duration-300 hover:bg-purple-500">
+                       Orientador TCC
+                     </Badge>
+                   </div>
+                 )}
+                 <CardHeader>
+                   <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:scale-110 group-hover:bg-primary/20">
+                     <Users className="w-10 h-10 text-primary transition-all duration-300 group-hover:scale-110" />
+                   </div>
+                   <CardTitle className="text-lg group-hover:text-primary transition-colors duration-200">
+                     {professor.nome}
+                   </CardTitle>
+                   <CardDescription className="text-sm">
+                     {professor.especialidade}
+                   </CardDescription>
+                 </CardHeader>
+                 <CardContent>
+                   <div className="flex flex-wrap gap-2 justify-center">
+                     <Badge variant="secondary" className="text-xs">
+                       {professor.experiencia} de experiência
+                     </Badge>
+                     <Badge variant="outline" className="text-xs">
+                       {professor.area}
+                     </Badge>
+                   </div>
+                 </CardContent>
+               </Card>
+             ))}
           </div>
         </div>
       </section>
