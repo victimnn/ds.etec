@@ -48,7 +48,7 @@ export default function SobrePage() {
     { nome: "Prof. Rubens Castaldelli", especialidade: "Banco de Dados e Algoritmos", experiencia: "13 anos", area: "Banco de Dados", orientadorTCC: true },
     { nome: "Dr. Emerson Rodrigo", especialidade: "Algoritmos e Sistemas Embarcados", experiencia: "25 anos", area: "Algoritmos", orientadorTCC: true },
     { nome: "Prof. Giuliano Catteli", especialidade: "Programação e Segurança da Informação", experiencia: "17 anos", area: "Programação", orientadorTCC: false },
-    { nome: "Prof. Fernando Bartholomeu", especialidade: "Desenvolvimento Web e Mobile", experiencia: "8 anos", area: "Programação", orientadorTCC: false },
+    { nome: "Prof. Fernando Bartholomeu", especialidade: "Desenvolvimento Web e Mobile", experiencia: "12 anos", area: "Programação", orientadorTCC: false },
     { nome: "Prof. Sérgio Roberto", especialidade: "Redes e Sistemas", experiencia: "14 anos", area: "Redes", orientadorTCC: false },
     { nome: "Profa. Vânia Brunetto", especialidade: "Algoritmos e Programação", experiencia: "12 anos", area: "Algoritmos", orientadorTCC: false }
   ]
