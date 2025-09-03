@@ -45,9 +45,9 @@ export default function SobrePage() {
 
   const professores = [
     { nome: "Coord. Laine Zanin", especialidade: "Desenvolvimento Web e Banco de Dados", experiencia: "10 anos", area: "Programação", orientadorTCC: false },
-    { nome: "Prof. Rubens Castaldelli", especialidade: "Banco de Dados e Algoritmos", experiencia: "13 anos", area: "Banco de Dados", orientadorTCC: true },
+    { nome: "Prof. Rubens Castaldelli", especialidade: "Banco de Dados e Algoritmos", experiencia: "35+ anos", area: "Banco de Dados", orientadorTCC: true },
     { nome: "Dr. Emerson Rodrigo", especialidade: "Algoritmos e Sistemas Embarcados", experiencia: "25 anos", area: "Algoritmos", orientadorTCC: true },
-    { nome: "Prof. Giuliano Catteli", especialidade: "Programação e Segurança da Informação", experiencia: "42 anos", area: "Programação", orientadorTCC: false },
+    { nome: "Prof. Giuliano Catteli", especialidade: "Programação e Segurança da Informação", experiencia: "30+ anos", area: "Programação", orientadorTCC: false },
     { nome: "Prof. Fernando Bartholomeu", especialidade: "Desenvolvimento Web e Mobile", experiencia: "12 anos", area: "Programação", orientadorTCC: false },
     { nome: "Prof. Sérgio Roberto", especialidade: "Redes e Sistemas", experiencia: "14 anos", area: "Redes", orientadorTCC: false },
     { nome: "Profa. Vânia Brunetto", especialidade: "Algoritmos e Programação", experiencia: "12 anos", area: "Algoritmos", orientadorTCC: false }
