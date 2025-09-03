@@ -48,6 +48,18 @@ export default function ProjetosPage() {
       premio: "Melhor Projeto Educacional",
       demo: "https://www.youtube.com/watch?v=Ac7zUeninqw",
       github: "https://github.com/VitorCordS/Mechanic-Hand-Tracking"
+    },
+    {
+      titulo: "Disable Youtube Comments",
+      descricao: "Projeto para desabilitar comentários no Youtube",
+      tecnologias: ["JavaScript", "HTML", "CSS"],
+      imagem: "/disableComents.png",
+      alunos: ["Fernando Bartholomeu"],
+      ano: "2020",
+      categoria: "Web",
+      destaque: false,
+      demo: "https://chrome.google.com/webstore/detail/disable-youtube-comments/iogfdkjhecolapobdolaollphpmjojck",
+      github: "https://github.com/FerStation/disable-youtube-comments"
     }
   ]
 
