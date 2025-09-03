@@ -58,6 +58,7 @@ export default function ProjetosPage() {
       ano: "2020",
       categoria: "Web",
       destaque: false,
+      implementado: true,
       demo: "https://chrome.google.com/webstore/detail/disable-youtube-comments/iogfdkjhecolapobdolaollphpmjojck",
       github: "https://github.com/FerStation/disable-youtube-comments"
     }
