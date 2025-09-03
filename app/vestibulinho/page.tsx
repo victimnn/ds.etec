@@ -175,7 +175,7 @@ export default function VestibulinhoPage() {
                 size="lg" 
                 variant="outline" 
                 onClick={handleDownloadEdital}
-                className="group relative overflow-hidden border-2 border-white/40 dark:border-slate-200/40 text-white dark:text-white hover:bg-white dark:hover:bg-slate-100 hover:text-gray-900 dark:hover:text-slate-900 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 backdrop-blur-sm cursor-pointer"
+                className="group relative overflow-hidden border-2 border-white/40 dark:border-slate-200/40 text-black dark:text-white hover:bg-white dark:hover:bg-slate-100 hover:text-gray-900 dark:hover:text-slate-900 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 backdrop-blur-sm cursor-pointer"
               >
                 <div className="flex items-center justify-center">
                   <FileText className="w-4 h-4 mr-2 transition-transform duration-300 group-hover:scale-110" />
