@@ -136,16 +136,16 @@ export default function ContatoPage() {
                           Assunto *
                         </Label>
                         <Select onValueChange={(value) => handleInputChange('assunto', value)} required>
-                          <SelectTrigger className="transition-all duration-200 focus:ring-2 focus:ring-primary/20">
+                          <SelectTrigger className="transition-all duration-200 focus:ring-2 focus:ring-primary/20 cursor-pointer">
                             <SelectValue placeholder="Selecione o assunto" />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="vestibulinho">Vestibulinho</SelectItem>
-                            <SelectItem value="curso">Informações sobre o Curso</SelectItem>
-                            <SelectItem value="matricula">Matrícula</SelectItem>
-                            <SelectItem value="infraestrutura">Infraestrutura</SelectItem>
-                            <SelectItem value="estagio">Estágios</SelectItem>
-                            <SelectItem value="outros">Outros</SelectItem>
+                            <SelectItem className="cursor-pointer" value="vestibulinho">Vestibulinho</SelectItem>
+                            <SelectItem className="cursor-pointer" value="curso">Informações sobre o Curso</SelectItem>
+                            <SelectItem className="cursor-pointer" value="matricula">Matrícula</SelectItem>
+                            <SelectItem className="cursor-pointer" value="infraestrutura">Infraestrutura</SelectItem>
+                            <SelectItem className="cursor-pointer" value="estagio">Estágios</SelectItem>
+                            <SelectItem className="cursor-pointer" value="outros">Outros</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>
@@ -183,7 +183,7 @@ export default function ContatoPage() {
                     <Button 
                       type="submit" 
                       disabled={isSubmitting}
-                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-200 hover:scale-105 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-200 hover:scale-105 hover:shadow-lg cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {isSubmitting ? (
                         <>
@@ -411,7 +411,7 @@ export default function ContatoPage() {
               
               <Accordion type="single" collapsible className="space-y-3">
                 <AccordionItem value="item-1" className="bg-background rounded-lg border shadow-sm">
-                  <AccordionTrigger className="px-4 py-3 hover:no-underline text-sm">
+                  <AccordionTrigger className="px-4 py-3 hover:no-underline text-sm cursor-pointer">
                     <span className="text-left font-semibold">Qual é o horário das aulas?</span>
                   </AccordionTrigger>
                   <AccordionContent className="px-4 pb-3">
@@ -423,7 +423,7 @@ export default function ContatoPage() {
                 </AccordionItem>
 
                 <AccordionItem value="item-2" className="bg-background rounded-lg border shadow-sm">
-                  <AccordionTrigger className="px-4 py-3 hover:no-underline text-sm">
+                  <AccordionTrigger className="px-4 py-3 hover:no-underline text-sm cursor-pointer">
                     <span className="text-left font-semibold">O material didático é fornecido pela escola?</span>
                   </AccordionTrigger>
                   <AccordionContent className="px-4 pb-3">
@@ -435,7 +435,7 @@ export default function ContatoPage() {
                 </AccordionItem>
 
                 <AccordionItem value="item-3" className="bg-background rounded-lg border shadow-sm">
-                  <AccordionTrigger className="px-4 py-3 hover:no-underline text-sm">
+                  <AccordionTrigger className="px-4 py-3 hover:no-underline text-sm cursor-pointer">
                     <span className="text-left font-semibold">Como funcionam os estágios?</span>
                   </AccordionTrigger>
                   <AccordionContent className="px-4 pb-3">
@@ -447,7 +447,7 @@ export default function ContatoPage() {
                 </AccordionItem>
 
                 <AccordionItem value="item-4" className="bg-background rounded-lg border shadow-sm">
-                  <AccordionTrigger className="px-4 py-3 hover:no-underline text-sm">
+                  <AccordionTrigger className="px-4 py-3 hover:no-underline text-sm cursor-pointer">
                     <span className="text-left font-semibold">Quais linguagens de programação são ensinadas?</span>
                   </AccordionTrigger>
                   <AccordionContent className="px-4 pb-3">
@@ -459,7 +459,7 @@ export default function ContatoPage() {
                 </AccordionItem>
 
                 <AccordionItem value="item-5" className="bg-background rounded-lg border shadow-sm">
-                  <AccordionTrigger className="px-4 py-3 hover:no-underline text-sm">
+                  <AccordionTrigger className="px-4 py-3 hover:no-underline text-sm cursor-pointer">
                     <span className="text-left font-semibold">Há laboratórios de informática disponíveis?</span>
                   </AccordionTrigger>
                   <AccordionContent className="px-4 pb-3">
@@ -471,7 +471,7 @@ export default function ContatoPage() {
                 </AccordionItem>
 
                 <AccordionItem value="item-6" className="bg-background rounded-lg border shadow-sm">
-                  <AccordionTrigger className="px-4 py-3 hover:no-underline text-sm">
+                  <AccordionTrigger className="px-4 py-3 hover:no-underline text-sm cursor-pointer">
                     <span className="text-left font-semibold">O diploma é reconhecido pelo MEC?</span>
                   </AccordionTrigger>
                   <AccordionContent className="px-4 pb-3">

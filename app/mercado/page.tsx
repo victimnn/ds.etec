@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -160,7 +160,7 @@ export default function MercadoPage() {
         <div className="absolute inset-0 bg-black/20" />
         <div className="relative container mx-auto px-4 py-20 lg:py-32">
           <div className="text-center max-w-4xl mx-auto">
-            <Badge className="bg-secondary text-secondary-foreground hover:bg-secondary/80 mb-6">
+            <Badge className="bg-secondary text-secondary-foreground hover:bg-secondary/80 mb-6 w-fit">
               Oportunidades de Carreira
             </Badge>
             <h1 className="text-4xl lg:text-6xl font-bold leading-tight mb-6">
@@ -179,7 +179,7 @@ export default function MercadoPage() {
 
       {/* Estatísticas */}
       <section className="py-16 bg-muted">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
               Nossos Números
@@ -189,7 +189,7 @@ export default function MercadoPage() {
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {estatisticas.map((stat, index) => (
               <Card key={index} className="text-center transition-all duration-300 hover:scale-105 hover:shadow-xl hover:border-primary/50 group">
                 <CardHeader>
@@ -213,7 +213,7 @@ export default function MercadoPage() {
 
       {/* Empresas Parceiras */}
       <section className="py-16 bg-muted">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
               Empresas Parceiras
@@ -224,30 +224,30 @@ export default function MercadoPage() {
           </div>
 
           {/* Grid simples de todas as empresas */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 auto-rows-fr">
             {empresas.map((empresa, index) => (
-              <Card key={index} className="transition-all duration-300 hover:scale-105 hover:shadow-xl hover:border-primary/50 group">
-                <CardHeader className="pb-3">
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <CardTitle className="text-lg group-hover:text-primary transition-colors duration-200 line-clamp-2">
-                        {empresa.nome}
-                      </CardTitle>
-                      <CardDescription className="text-sm mt-1">
-                        {empresa.localizacao}
-                      </CardDescription>
+                              <Card key={index} className="transition-all duration-300 hover:scale-105 hover:shadow-xl hover:border-primary/50 group min-h-[160px] flex flex-col">
+                  <CardHeader className="pb-3 flex-shrink-0">
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
+                      <div className="flex-1 min-w-0">
+                        <CardTitle className="text-lg group-hover:text-primary transition-colors duration-200 line-clamp-2">
+                          {empresa.nome}
+                        </CardTitle>
+                        <CardDescription className="text-sm mt-1">
+                          {empresa.localizacao}
+                        </CardDescription>
+                      </div>
+                      <Badge variant="secondary" className="self-start sm:self-auto w-fit max-w-[200px] sm:max-w-[250px] text-xs sm:text-sm transition-all duration-200 group-hover:scale-105 break-words">
+                        <span className="line-clamp-2 leading-tight">{empresa.setor}</span>
+                      </Badge>
                     </div>
-                    <Badge variant="secondary" className="ml-2 flex-shrink-0 transition-all duration-200 group-hover:scale-105">
-                      {empresa.setor}
-                    </Badge>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-0">
-                  <div className="flex items-center text-xs text-muted-foreground">
-                    <Briefcase className="w-3 h-3 mr-1" />
-                    {empresa.tipo}
-                  </div>
-                </CardContent>
+                  </CardHeader>
+                                  <CardContent className="pt-0 flex-1 flex items-end">
+                    <div className="flex items-center text-xs text-muted-foreground">
+                      <Briefcase className="w-3 h-3 mr-1" />
+                      {empresa.tipo}
+                    </div>
+                  </CardContent>
               </Card>
             ))}
           </div>
@@ -256,7 +256,7 @@ export default function MercadoPage() {
 
       {/* Histórias de Sucesso */}
       <section className="py-16">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
               Histórias de Sucesso
@@ -266,7 +266,7 @@ export default function MercadoPage() {
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 auto-rows-fr">
             {depoimentos.map((depoimento, index) => (
               <Card key={index} className="h-full transition-all duration-300 hover:scale-105 hover:shadow-xl hover:border-primary/50 group">
                 <CardHeader>
@@ -285,7 +285,7 @@ export default function MercadoPage() {
                       <CardDescription className="text-sm">
                         {depoimento.cargo} - {depoimento.empresa}
                       </CardDescription>
-                      <div className="flex items-center space-x-2 mt-1">
+                      <div className="flex flex-wrap items-center gap-2 mt-1">
                         <Badge variant="outline" className="text-xs">
                           {depoimento.ano}
                         </Badge>
@@ -312,7 +312,7 @@ export default function MercadoPage() {
 
       {/* Dicas de Carreira */}
       <section className="py-16 bg-muted">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
               Dicas para o Sucesso
@@ -325,7 +325,7 @@ export default function MercadoPage() {
           <div className="max-w-4xl mx-auto">
             <Accordion type="single" collapsible className="space-y-4">
               <AccordionItem value="item-1" className="bg-background rounded-lg border shadow-sm">
-                <AccordionTrigger className="px-6 py-4 hover:no-underline">
+                <AccordionTrigger className="px-6 py-4 hover:no-underline cursor-pointer">
                   <span className="text-left font-semibold flex items-center">
                     <Code className="w-5 h-5 mr-3 text-primary" />
                     Durante o Curso
@@ -358,7 +358,7 @@ export default function MercadoPage() {
               </AccordionItem>
 
               <AccordionItem value="item-2" className="bg-background rounded-lg border shadow-sm">
-                <AccordionTrigger className="px-6 py-4 hover:no-underline">
+                <AccordionTrigger className="px-6 py-4 hover:no-underline cursor-pointer">
                   <span className="text-left font-semibold flex items-center">
                     <Award className="w-5 h-5 mr-3 text-primary" />
                     Após a Formação
@@ -391,7 +391,7 @@ export default function MercadoPage() {
               </AccordionItem>
 
               <AccordionItem value="item-3" className="bg-background rounded-lg border shadow-sm">
-                <AccordionTrigger className="px-6 py-4 hover:no-underline">
+                <AccordionTrigger className="px-6 py-4 hover:no-underline cursor-pointer">
                   <span className="text-left font-semibold flex items-center">
                     <Target className="w-5 h-5 mr-3 text-primary" />
                     Tendências do Mercado

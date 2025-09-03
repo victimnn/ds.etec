@@ -182,7 +182,7 @@ export default function ProjetosPage() {
                   key={categoria.id}
                   variant={categoriaAtiva === categoria.id ? "default" : "outline"}
                   onClick={() => setCategoriaAtiva(categoria.id)}
-                  className="flex items-center space-x-2 transition-all duration-200 hover:scale-105 hover:shadow-lg"
+                  className="flex items-center space-x-2 transition-all duration-200 hover:scale-105 hover:shadow-lg cursor-pointer"
                 >
                   <IconComponent className="w-4 h-4" />
                   <span>{categoria.nome}</span>
@@ -282,7 +282,7 @@ export default function ProjetosPage() {
                             size="sm" 
                             variant="outline" 
                             onClick={() => handleDemo(projeto)}
-                            className={`transition-all duration-200 hover:scale-105 hover:bg-primary hover:text-primary-foreground ${projeto.demo && projeto.github ? 'flex-1' : ''}`}
+                            className={`cursor-pointer transition-all duration-200 hover:scale-105 hover:bg-primary hover:text-primary-foreground ${projeto.demo && projeto.github ? 'flex-1' : ''}`}
                             title="Ver Demo"
                           >
                             <Play className="w-4 h-4 mr-1" />
@@ -294,7 +294,7 @@ export default function ProjetosPage() {
                             size="sm" 
                             variant="outline" 
                             onClick={() => handleCodigo(projeto)}
-                            className={`transition-all duration-200 hover:scale-105 hover:bg-primary hover:text-primary-foreground ${projeto.demo && projeto.github ? 'flex-1' : ''}`}
+                            className={`cursor-pointer transition-all duration-200 hover:scale-105 hover:bg-primary hover:text-primary-foreground ${projeto.demo && projeto.github ? 'flex-1' : ''}`}
                             title="Ver Código"
                           >
                             <Github className="w-4 h-4 mr-1" />

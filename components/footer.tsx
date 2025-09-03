@@ -57,17 +57,29 @@ export function Footer() {
     {
       titulo: "Endereço",
       icon: MapPin,
-      endereco: "Rua Sete de Setembro, 299 - Centro\nAmparo - SP, 13900-372"
+      endereco: "Rua Sete de Setembro, 299 - Centro\nAmparo - SP, 13900-372",
+      mapsUrl: "https://maps.google.com/?q=Rua+Sete+de+Setembro,+299+-+Centro,+Amparo+-+SP,+13900-372"
     }
   ]
 
   const redesSociais = [
     { 
-      nome: "Instagram", 
+      nome: "Instagram do Curso", 
       href: "https://instagram.com/ds.etec", 
       icon: Instagram,
-      cor: "from-purple-500 to-pink-500",
-      hover: "from-purple-600 to-pink-600"
+      className: "bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
+    },
+    { 
+      nome: "YouTube da Etec", 
+      href: "https://www.youtube.com/c/ETECJo%C3%A3oBelarminoOFICIAL", 
+      icon: Youtube,
+      className: "bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800"
+    },
+    { 
+      nome: "Instagram da Etec", 
+      href: "https://instagram.com/etecjboficial", 
+      icon: Instagram,
+      className: "bg-gradient-to-r from-pink-500 to-purple-700 hover:from-pink-700 hover:to-purple-800"
     }
   ]
 
@@ -188,8 +200,21 @@ export function Footer() {
                             ))}
                           </div>
                         ) : (
-                          <div className="text-xs text-primary-foreground/60 whitespace-pre-line">
-                            {contato.endereco}
+                          <div className="space-y-2">
+                            <div className="text-xs text-primary-foreground/60 whitespace-pre-line">
+                              {contato.endereco}
+                            </div>
+                            {contato.mapsUrl && (
+                              <a 
+                                href={contato.mapsUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center text-xs text-primary-foreground/80 hover:text-primary-foreground transition-colors duration-200 hover:underline"
+                              >
+                                <ExternalLink className="w-3 h-3 mr-1" />
+                                Ver no Google Maps
+                              </a>
+                            )}
                           </div>
                         )}
                       </div>
@@ -208,7 +233,7 @@ export function Footer() {
                     key={index}
                     href={rede.href} 
                     target="_blank"
-                    className={`bg-gradient-to-r ${rede.cor} hover:${rede.hover} p-3 rounded-lg transition-all duration-200 hover:scale-110 hover:shadow-lg group`}
+                    className={`${rede.className} p-3 rounded-lg transition-all duration-200 hover:scale-110 hover:shadow-lg group`}
                     title={rede.nome}
                   >
                     <rede.icon className="w-5 h-5 text-white" />

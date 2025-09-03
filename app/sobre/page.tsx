@@ -238,7 +238,7 @@ export default function SobrePage() {
             <Accordion type="single" collapsible className="space-y-4">
               {matrizCurricular.map((ano, index) => (
                 <AccordionItem key={index} value={`ano-${index}`} className="bg-background rounded-lg border shadow-sm">
-                  <AccordionTrigger className="px-6 py-4 hover:no-underline">
+                  <AccordionTrigger className="px-6 py-4 hover:no-underline cursor-pointer">
                     <span className="text-left font-semibold text-lg flex items-center">
                       <BookOpen className="w-5 h-5 mr-3 text-primary" />
                       {ano.ano} - {ano.disciplinas.length} disciplinas técnicas

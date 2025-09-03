@@ -138,7 +138,7 @@ export default function VestibulinhoPage() {
         <div className="absolute inset-0 bg-black/20" />
         <div className="relative container mx-auto px-4 py-20 lg:py-32">
           <div className="text-center max-w-4xl mx-auto">
-            <Badge className="bg-secondary text-secondary-foreground hover:bg-secondary/80 mb-6">
+            <Badge className="bg-secondary text-secondary-foreground hover:bg-secondary/80 mb-6 w-fit">
               Processo Seletivo 2026
             </Badge>
             <h1 className="text-4xl lg:text-6xl font-bold leading-tight mb-6">
@@ -153,7 +153,7 @@ export default function VestibulinhoPage() {
                 size="lg" 
                 onClick={handleInscricao}
                 disabled={isSubmitting}
-                className="group relative overflow-hidden bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 dark:from-yellow-500 dark:to-yellow-600 dark:hover:from-yellow-400 dark:hover:to-yellow-500 text-gray-900 dark:text-gray-900 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-0 disabled:opacity-50"
+                className="group relative overflow-hidden bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 dark:from-yellow-500 dark:to-yellow-600 dark:hover:from-yellow-400 dark:hover:to-yellow-500 text-gray-900 dark:text-gray-900 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-0 disabled:opacity-50 cursor-pointer"
               >
                 {isSubmitting ? (
                   <>
@@ -175,7 +175,7 @@ export default function VestibulinhoPage() {
                 size="lg" 
                 variant="outline" 
                 onClick={handleDownloadEdital}
-                className="group relative overflow-hidden border-2 border-white/40 dark:border-slate-200/40 text-black dark:text-black hover:bg-white dark:hover:bg-slate-100 hover:text-gray-900 dark:hover:text-slate-900 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 backdrop-blur-sm"
+                className="group relative overflow-hidden border-2 border-white/40 dark:border-slate-200/40 text-white dark:text-white hover:bg-white dark:hover:bg-slate-100 hover:text-gray-900 dark:hover:text-slate-900 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 backdrop-blur-sm cursor-pointer"
               >
                 <div className="flex items-center justify-center">
                   <FileText className="w-4 h-4 mr-2 transition-transform duration-300 group-hover:scale-110" />
@@ -191,7 +191,7 @@ export default function VestibulinhoPage() {
 
       {/* Informações Gerais */}
       <section className="py-16 bg-muted">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
               Informações do Curso
@@ -201,7 +201,7 @@ export default function VestibulinhoPage() {
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             <Card className="text-center transition-all duration-300 hover:scale-105 hover:shadow-xl hover:border-primary/50 group">
               <CardHeader>
                 <Users className="w-12 h-12 text-primary mx-auto mb-4 transition-all duration-300 group-hover:scale-110 group-hover:text-primary/80" />
@@ -247,7 +247,7 @@ export default function VestibulinhoPage() {
 
       {/* Cronograma */}
       <section className="py-16">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
               Cronograma do Processo Seletivo
@@ -259,8 +259,8 @@ export default function VestibulinhoPage() {
           
           <div className="max-w-4xl mx-auto">
             {cronograma.map((item, index) => (
-              <div key={index} className="flex items-center mb-6 p-6 bg-background rounded-lg border shadow-sm transition-all duration-200 hover:shadow-lg hover:border-primary/50 group">
-                <div className="flex-shrink-0 mr-6">
+              <div key={index} className="flex flex-col sm:flex-row items-start sm:items-center mb-6 p-4 sm:p-6 bg-background rounded-lg border shadow-sm transition-all duration-200 hover:shadow-lg hover:border-primary/50 group">
+                <div className="flex-shrink-0 mb-4 sm:mb-0 sm:mr-6">
                   {item.status === 'concluido' ? (
                     <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center transition-all duration-200 group-hover:scale-110">
                       <CheckCircle className="w-6 h-6 text-green-600" />
@@ -275,17 +275,17 @@ export default function VestibulinhoPage() {
                     </div>
                   )}
                 </div>
-                <div className="flex-grow">
-                  <div className="flex items-center justify-between">
+                <div className="flex-grow min-w-0">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                     <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors duration-200">{item.evento}</h3>
-                    <div className="flex items-center space-x-3">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
                       <span className="text-muted-foreground font-medium">{item.data}</span>
                       <Badge 
                         variant={
                           item.status === 'concluido' ? 'default' : 
                           item.status === 'proximo' ? 'destructive' : 'secondary'
                         }
-                        className="transition-all duration-200 group-hover:scale-105"
+                        className="w-fit transition-all duration-200 group-hover:scale-105"
                       >
                         {item.status === 'concluido' ? 'Concluído' : 
                          item.status === 'proximo' ? 'Próximo' : 'Pendente'}
@@ -301,7 +301,7 @@ export default function VestibulinhoPage() {
 
       {/* Como se Inscrever */}
       <section className="py-16 bg-muted">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
               Como se Inscrever
@@ -312,7 +312,7 @@ export default function VestibulinhoPage() {
           </div>
           
           <div className="max-w-5xl mx-auto">
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
               <Card className="text-center transition-all duration-300 hover:scale-105 hover:shadow-xl hover:border-primary/50 group">
                 <CardHeader>
                   <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:scale-110 group-hover:bg-primary/20">
@@ -327,7 +327,7 @@ export default function VestibulinhoPage() {
                   <Button 
                     onClick={handleInscricao}
                     disabled={isSubmitting}
-                    className="w-full bg-primary hover:bg-primary/90 transition-all duration-200 hover:scale-105 hover:shadow-lg disabled:opacity-50"
+                    className="w-full bg-primary hover:bg-primary/90 transition-all duration-200 hover:scale-105 hover:shadow-lg disabled:opacity-50 cursor-pointer"
                   >
                     <ExternalLink className="w-4 h-4 mr-2" />
                     Ir para o Site
@@ -360,7 +360,7 @@ export default function VestibulinhoPage() {
                   <p className="text-muted-foreground mb-6 leading-relaxed">
                     Imprima o comprovante de inscrição e aguarde as informações sobre local e horário da prova
                   </p>
-                  <Badge variant="secondary" className="text-sm">Inscrição Gratuita</Badge>
+                  <Badge variant="secondary" className="text-sm w-fit">Inscrição Gratuita</Badge>
                 </CardContent>
               </Card>
             </div>
@@ -370,7 +370,7 @@ export default function VestibulinhoPage() {
 
       {/* Diferenciais do Curso */}
       <section className="py-16 bg-muted">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
               Por que Escolher Nosso Curso?
@@ -380,7 +380,7 @@ export default function VestibulinhoPage() {
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             <Card className="text-center transition-all duration-300 hover:scale-105 hover:shadow-xl hover:border-primary/50 group">
               <CardHeader>
                 <GraduationCap className="w-12 h-12 text-primary mx-auto mb-4 transition-all duration-300 group-hover:scale-110 group-hover:text-primary/80" />
@@ -434,7 +434,7 @@ export default function VestibulinhoPage() {
 
       {/* FAQ */}
       <section className="py-16">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
               Perguntas Frequentes
@@ -448,7 +448,7 @@ export default function VestibulinhoPage() {
             <Accordion type="single" collapsible className="space-y-4">
               {faqs.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`} className="bg-background rounded-lg border shadow-sm">
-                  <AccordionTrigger className="px-6 py-4 hover:no-underline">
+                  <AccordionTrigger className="px-6 py-4 hover:no-underline cursor-pointer">
                     <span className="text-left font-semibold">{faq.pergunta}</span>
                   </AccordionTrigger>
                   <AccordionContent className="px-6 pb-4">
