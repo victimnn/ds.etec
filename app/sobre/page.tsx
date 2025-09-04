@@ -44,7 +44,7 @@ export default function SobrePage() {
   ]
 
   const professores = [
-    { nome: "Coord. Laine Zanin", especialidade: "Desenvolvimento Web e Banco de Dados", experiencia: "11 anos", area: "Programação", orientadorTCC: false },
+    { nome: "Profa. Laine Zanin", especialidade: "Desenvolvimento Web e Banco de Dados", experiencia: "18 anos", area: "Programação", orientadorTCC: false, coordenador: true },
     { nome: "Prof. Rubens Castaldelli", especialidade: "Banco de Dados e Algoritmos", experiencia: "40+ anos", area: "Banco de Dados", orientadorTCC: true },
     { nome: "Dr. Emerson Rodrigo", especialidade: "Algoritmos e Sistemas Embarcados", experiencia: "25 anos", area: "Algoritmos", orientadorTCC: true },
     { nome: "Prof. Giuliano Catteli", especialidade: "Programação e Segurança da Informação", experiencia: "40+ anos", area: "Programação", orientadorTCC: false },
@@ -351,6 +351,15 @@ export default function SobrePage() {
                      </Badge>
                    </div>
                  )}
+                 
+                {professor.coordenador && (
+                   <div className="absolute top-3 left-3">
+                     <Badge variant="default" className="text-xs bg-yellow-500 transition-all duration-300 hover:bg-orange-400">
+                       Coordenador
+                     </Badge>
+                   </div>
+                 )}
+
                  <CardHeader>
                    <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:scale-110 group-hover:bg-primary/20">
                      <Users className="w-10 h-10 text-primary transition-all duration-300 group-hover:scale-110" />

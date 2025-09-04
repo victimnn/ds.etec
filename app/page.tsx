@@ -69,14 +69,18 @@ export default function HomePage() {
 
   const projetosDestaque = [
     {
-      titulo: "Sistema de Gestão de Transporte Escolar",
-      descricao: "Aplicação web completa para gestão de transporte escolar para empresas e passageiros",
-      imagem: "/bushere.png",
-      tecnologia: "React + Node.js",
+      titulo: "Disable Youtube Comments",
+      descricao: "Projeto para desabilitar comentários no Youtube",
+      tecnologia: "JavaScript + HTML + CSS",
+      imagem: "/disableComents.png",
+      alunos: ["Fernando Bartholomeu"],
       categoria: "Web",
+      implementado: true,
+      demo: "https://chrome.google.com/webstore/detail/disable-youtube-comments/iogfdkjhecolapobdolaollphpmjojck",
+      github: "https://github.com/FerStation/disable-youtube-comments"
     },
     {
-      titulo: "Site de conscientização sobre Capivaras",
+      titulo: "Capivaras.com",
       descricao: "Site de conscientização sobre Capivaras",
       imagem: "/capivara.png",
       tecnologia: "React + Next.js",
@@ -90,11 +94,7 @@ export default function HomePage() {
       descricao: "Mão Robótica para ensinar conceitos básicos de programação",
       tecnologia: "Arduino + Python",
       imagem: "/maoRobotica.png",
-      alunos: ["Vitor Cordeiro"],
-      ano: "2024",
       categoria: "Game",
-      destaque: true,
-      premio: "Melhor Projeto Educacional",
       demo: "https://www.youtube.com/watch?v=Ac7zUeninqw",
       github: "https://github.com/VitorCordS/Mechanic-Hand-Tracking"
     },

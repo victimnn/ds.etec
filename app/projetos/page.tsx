@@ -24,7 +24,7 @@ export default function ProjetosPage() {
       destaque: true,
     },
     {
-      titulo: "Site sobre conscientização de Capivaras",
+      titulo: "Capivaras.com",
       descricao: "Site sobre conscientização de Capivaras",
       tecnologias: ["React", "Next.js"],
       imagem: "/capivara.png",
