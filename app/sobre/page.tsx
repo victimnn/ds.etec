@@ -165,7 +165,7 @@ export default function SobrePage() {
             
             <div>
               <Image
-                src="/computer-classroom-students.png"
+                src="/escola/computer-classroom-students.png"
                 alt="Sala de aula de informática"
                 width={500}
                 height={400}

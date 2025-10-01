@@ -72,7 +72,7 @@ export default function HomePage() {
       titulo: "Disable Youtube Comments",
       descricao: "Projeto para desabilitar comentários no Youtube",
       tecnologia: "JavaScript + HTML + CSS",
-      imagem: "/disableComents.png",
+      imagem: "/projetos/disableComents.png",
       alunos: ["Fernando Bartholomeu"],
       categoria: "Web",
       implementado: true,
@@ -82,7 +82,7 @@ export default function HomePage() {
     {
       titulo: "Capivaras.com",
       descricao: "Site de conscientização sobre Capivaras",
-      imagem: "/capivara.png",
+      imagem: "/projetos/capivara.png",
       tecnologia: "React + Next.js",
       categoria: "Web",
       implementado: true,
@@ -93,7 +93,7 @@ export default function HomePage() {
       titulo: "Mão Robótica",
       descricao: "Mão Robótica para ensinar conceitos básicos de programação",
       tecnologia: "Arduino + Python",
-      imagem: "/maoRobotica.png",
+      imagem: "/projetos/maoRobotica.png",
       categoria: "Game",
       demo: "https://www.youtube.com/watch?v=Ac7zUeninqw",
       github: "https://github.com/VitorCordS/Mechanic-Hand-Tracking"
@@ -140,7 +140,7 @@ export default function HomePage() {
             </div>
             <div className="relative">
               <Image
-                src="/students-coding.png"
+                src="/escola/students-coding.png"
                 alt="Alunos programando no laboratório"
                 width={600}
                 height={500}
@@ -330,7 +330,7 @@ export default function HomePage() {
             
             <div>
               <Image
-                src="/modern-computer-lab.png"
+                src="/escola/modern-computer-lab.png"
                 alt="Laboratório de informática moderno"
                 width={500}
                 height={400}
@@ -456,10 +456,10 @@ export default function HomePage() {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { src: "/instaUm.png", alt: "Terceiro DS 2025" },
-              { src: "/instaDois.png", alt: "Aluna com caneca do terceiro DS 2025" },
-              { src: "/instaTres.png", alt: "Alunos na CI&T" },
-              { src: "/instaQuatro.png", alt: "Post do Instagram" }
+              { src: "/insta/instaUm.png", alt: "Terceiro DS 2025" },
+              { src: "/insta/instaDois.png", alt: "Aluna com caneca do terceiro DS 2025" },
+              { src: "/insta/instaTres.png", alt: "Alunos na CI&T" },
+              { src: "/insta/instaQuatro.png", alt: "Post do Instagram" }
             ].map((post, i) => (
               <Link 
                 key={i} 
