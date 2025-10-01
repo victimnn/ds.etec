@@ -16,76 +16,132 @@ export default function MercadoPage() {
 
   const empresas = [
     { 
-      nome: "RAM Sistemas", 
-      tipo: "Software House", 
-      setor: "Sistemas para gestão pública/privada",
-      localizacao: "Amparo, SP"
+      nome: "Acerola Produção Criativa e Audiovisual", 
+      tipo: "Produtora/estúdio", 
+      setor: "Audiovisual e economia criativa",
+      localizacao: "Amparo, SP",
+      logo: "/empresas/acerola.png",
+      website: "https://www.acerolaaudiovisual.com.br/"
     },
     { 
       nome: "Assist Soluções", 
       tipo: "Software House", 
       setor: "Tecnologia",
-      localizacao: "Região de Campinas"
+      localizacao: "Jaguariúna, SP",
+      logo: "/empresas/assist.png",
+      website: "https://assistsolucoes.com.br"
     },
     { 
-      nome: "Build Solutions ", 
+      nome: "Build Solutions", 
       tipo: "Software House", 
       setor: "Tecnologia",
-      localizacao: "Pedreira, SP"
+      localizacao: "Pedreira, SP",
+      logo: "/empresas/build.png",
+      website: "https://buildsolutions.com.br"
     },
+    // { 
+    //   nome: "Camino", 
+    //   tipo: "Software House", 
+    //   setor: "Tecnologia",
+    //   localizacao: "Amparo, SP",
+    //   logo: "/empresas/camino.png",
+    //   website: "https://camino.com.br"
+    // },
     { 
-      nome: "Motherson Group (SMR Automotive / Motherson Yachiyo)", 
-      tipo: "Multinacional de manufatura", 
-      setor: "Autopeças e componentes automotivos",
-      localizacao: "Jaguariúna e Limeira, SP"
+      nome: "CASP", 
+      tipo: "Indústria", 
+      setor: "Equipamentos/estruturas (setor industrial/agro)",
+      localizacao: "Amparo, SP",
+      logo: "/empresas/casp.png",
+      website: "https://casp.com.br"
     },
-    { 
-      nome: "JRS Computação", 
-      tipo: "Varejo/serviços de informática", 
-      setor: "Assistência técnica, vendas de TI",
-      localizacao: "Amparo, SP"
-    },
-    { 
-      nome: "Camino", 
-      tipo: "Software House", 
-      setor: "Tecnologia",
-      localizacao: "Região de Campinas"
+    {
+      nome: "InFive",
+      tipo: "Software House",
+      setor: "Automação",
+      localizacao: "Amparo, Campinas, SP - Belo Horizonte, MG",
+      logo: "/empresas/infive.png",
+      website: "https://infive.com.br"
     },
     { 
       nome: "Infoluck", 
       tipo: "Serviços de TI", 
       setor: "Suporte/consultoria e soluções de informática",
-      localizacao: "Campinas, SP"
+      localizacao: "Amparo, SP",
+      logo: "/empresas/infoluck.png",
+      website: "https://infoluck.com.br"
     },
     { 
-      nome: "CASP", 
-      tipo: "Indústria", 
-      setor: "Equipamentos/estruturas (setor industrial/agro)",
-      localizacao: "Amparo, SP"
+      nome: "JRS Computação", 
+      tipo: "Varejo/serviços de informática", 
+      setor: "Assistência técnica, vendas de TI",
+      localizacao: "Jaguariúna, SP",
+      logo: "/empresas/jrs.png",
+      website: "https://jrscomputacao.com.br"
     },
     { 
-      nome: "Acelerar Produção Criativa e Audiovisual", 
-      tipo: "Produtora/estúdio", 
-      setor: "Audiovisual e economia criativa",
-      localizacao: "Serra Negra/Amparo, SP"
+      nome: "Motherson Group", 
+      tipo: "Multinacional de manufatura", 
+      setor: "Autopeças e componentes automotivos",
+      localizacao: "Jaguariúna e Limeira, SP",
+      logo: "/empresas/motherson.png",
+      website: "https://motherson.com"
     },
     { 
       nome: "Prime Solution", 
       tipo: "Consultoria de software", 
       setor: "Microsoft 365/SharePoint/Power Platform",
-      localizacao: "São Paulo, SP (atende Campinas)"
+      localizacao: "Pedreira, SP",
+      logo: "/empresas/primesolution.webp",
+      website: "https://www.p1s.com.br"
     },
     { 
-      nome: "RS Solution", 
+      nome: "RS Solutions", 
       tipo: "Desenvolvimento de software", 
       setor: "TI/Software",
-      localizacao: "Região metropolitana de Campinas"
+      localizacao: "Pedreira, Campinas, São Paulo, SP",
+      logo: "/empresas/rs.png",
+      website: "https://rssolutions.com.br"
+    },
+    {
+      nome: "Salus Brasil",
+      tipo: "Indústria",
+      setor: "Fabricação de Móveis",
+      localizacao: "Amparo, SP",
+      logo: "/empresas/salus.png",
+      website: "https://salusbrasil.com.br/"
+    },
+    { 
+      nome: "Sistema RAM", 
+      tipo: "Software House", 
+      setor: "Sistemas para gestão pública/privada",
+      localizacao: "Amparo, SP",
+      logo: "/empresas/ram.webp",
+      website: "https://sistemaram.com.br"
+    },
+    {
+      nome: "Tagimf",
+      tipo: "Infraestrutura TI",
+      setor: "TI/Financeiro",
+      localizacao: "São Paulo, SP",
+      logo: "/empresas/tag.png",
+      website: "https://www.taginfraestrutura.com.br/"
     },
     { 
       nome: "Wise Software Sistemas", 
       tipo: "Desenvolvimento de software", 
-      setor: "Fábrica de software / apps",
-      localizacao: "Região metropolitana de Campinas"
+      setor: "Tecnologia para varejo",
+      localizacao: "Serra Negra, SP",
+      logo: "/empresas/wise.png",
+      website: "https://www.instagram.com/wisesoftsistemas/"
+    },
+    {
+      nome: "YGS Softwares",
+      tipo: "Software House",
+      setor: "TI/Software",
+      localizacao: "Jaguariúna, SP",
+      logo: "/empresas/ygs.png",
+      website: "https://ygs.com.br/"
     }
   ]
 
@@ -224,30 +280,49 @@ export default function MercadoPage() {
           </div>
 
           {/* Grid simples de todas as empresas */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 auto-rows-fr">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
             {empresas.map((empresa, index) => (
-                              <Card key={index} className="transition-all duration-300 hover:scale-105 hover:shadow-xl hover:border-primary/50 group min-h-[160px] flex flex-col">
-                  <CardHeader className="pb-3 flex-shrink-0">
-                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
-                      <div className="flex-1 min-w-0">
-                        <CardTitle className="text-lg group-hover:text-primary transition-colors duration-200 line-clamp-2">
-                          {empresa.nome}
-                        </CardTitle>
-                        <CardDescription className="text-sm mt-1">
-                          {empresa.localizacao}
-                        </CardDescription>
+              <Card key={index} className="transition-all duration-300 hover:scale-105 hover:shadow-xl hover:border-primary/50 group min-h-[220px] flex flex-col cursor-pointer" onClick={() => window.open(empresa.website, '_blank')}>
+                <CardHeader className="pb-4 flex-shrink-0">
+                  <div className="flex flex-col items-center text-center mb-4">
+                    <div className="w-20 h-20 bg-muted rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:bg-primary/10 group-hover:scale-110">
+                      <Image
+                        src={empresa.logo}
+                        alt={`Logo ${empresa.nome}`}
+                        width={64}
+                        height={64}
+                        className="object-contain max-w-full max-h-full transition-all duration-300"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none'
+                          const fallback = e.currentTarget.nextElementSibling as HTMLElement
+                          if (fallback) {
+                            fallback.style.display = 'flex'
+                          }
+                        }}
+                      />
+                      <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center" style={{display: 'none'}}>
+                        <Building className="w-6 h-6 text-primary" />
                       </div>
-                      <Badge variant="secondary" className="self-start sm:self-auto w-fit max-w-[200px] sm:max-w-[250px] text-xs sm:text-sm transition-all duration-200 group-hover:scale-105 break-words">
-                        <span className="line-clamp-2 leading-tight">{empresa.setor}</span>
-                      </Badge>
                     </div>
-                  </CardHeader>
-                                  <CardContent className="pt-0 flex-1 flex items-end">
-                    <div className="flex items-center text-xs text-muted-foreground">
-                      <Briefcase className="w-3 h-3 mr-1" />
+                    <CardTitle className="text-lg group-hover:text-primary transition-colors duration-200 line-clamp-2 flex items-center justify-center gap-2 mb-2">
+                      {empresa.nome}
+                      <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors duration-200 flex-shrink-0" />
+                    </CardTitle>
+                    <CardDescription className="text-sm text-muted-foreground mb-3">
+                      {empresa.localizacao}
+                    </CardDescription>
+                    <Badge variant="secondary" className="w-fit text-xs transition-all duration-200 group-hover:scale-105 mb-0">
                       {empresa.tipo}
+                    </Badge>
+                  </div>
+                </CardHeader>
+                <CardContent className="pt-1 flex-1 flex items-end justify-center">
+                  <div className="text-center">
+                    <div className="text-xs text-muted-foreground bg-muted/50 rounded-lg px-3 py-2">
+                      {empresa.setor}
                     </div>
-                  </CardContent>
+                  </div>
+                </CardContent>
               </Card>
             ))}
           </div>
