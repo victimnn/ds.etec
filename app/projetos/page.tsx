@@ -14,7 +14,7 @@ export default function ProjetosPage() {
 
   const projetos = [
     {
-      titulo: "Sistema de Gestão de Transporte Escolar",
+      titulo: "BusHere! - Web",
       descricao: "Aplicação web completa para gestão de transporte escolar para empresas e passageiros",
       tecnologias: ["React", "Node.js"],
       imagem: "/projetos/bushere.png",
