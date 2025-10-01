@@ -26,7 +26,7 @@ export default function MercadoPage() {
     { 
       nome: "Assist Soluções", 
       tipo: "Software House", 
-      setor: "Tecnologia",
+      setor: "TI/Software",
       localizacao: "Jaguariúna, SP",
       logo: "/empresas/assist.png",
       website: "https://assistsolucoes.com.br"
@@ -34,7 +34,7 @@ export default function MercadoPage() {
     { 
       nome: "Build Solutions", 
       tipo: "Software House", 
-      setor: "Tecnologia",
+      setor: "TI/Software",
       localizacao: "Pedreira, SP",
       logo: "/empresas/build.png",
       website: "https://buildsolutions.com.br"
@@ -89,8 +89,8 @@ export default function MercadoPage() {
     },
     { 
       nome: "Prime Solution", 
-      tipo: "Consultoria de software", 
-      setor: "Microsoft 365/SharePoint/Power Platform",
+      tipo: "Software House", 
+      setor: "TI/Software",
       localizacao: "Pedreira, SP",
       logo: "/empresas/primesolution.webp",
       website: "https://www.p1s.com.br"
@@ -129,7 +129,7 @@ export default function MercadoPage() {
     },
     { 
       nome: "Wise Software Sistemas", 
-      tipo: "Desenvolvimento de software", 
+      tipo: "Software House", 
       setor: "Tecnologia para varejo",
       localizacao: "Serra Negra, SP",
       logo: "/empresas/wise.png",
