@@ -14,43 +14,44 @@ export default function SobrePage() {
     {
       ano: "1º Ano",
       disciplinas: [
-        { nome: "TÉCNICAS DE PROGRAMAÇÃO E ALGORITMOS", descricao: "Fundamentos da programação, lógica e algoritmos", icon: Code },
+        { nome: "BANCO DE DADOS I", descricao: "Introdução ao banco de dados", icon: Database },
+        { nome: "CONDUTA PROFISSIONAL E RELACOES DE TRABALHO", descricao: "Conhecimento sobre conduta profissional e relações de trabalho", icon: Award },
+        { nome: "PROGRAMAÇÃO E ALGORITMOS", descricao: "Fundamentos da programação, lógica e algoritmos", icon: Code },
+        { nome: "PROJETOS DE TECNOLOGIA DE INFORMAÇÃO E COMUNICAÇÃO ", descricao: "Conceitos básicos de computação e sistemas", icon: Monitor },
         { nome: "PROGRAMAÇÃO WEB I", descricao: "Desenvolvimento web com HTML, CSS", icon: Globe },
-        { nome: "FUNDAMENTOS DA INFORMÁTICA", descricao: "Conceitos básicos de computação e sistemas", icon: Monitor },
-        { nome: "DESIGN DIGITAL", descricao: "Design de interfaces e experiência do usuário", icon: Award },
-        { nome: "BANCO DE DADOS I", descricao: "Introdução ao banco de dados", icon: Database }
+        { nome: "SISTEMAS EMBARCADOS E IoT", descricao: "Programação de sistemas embarcados com Arduino", icon: Cpu },
       ]
     },
     {
       ano: "2º Ano",
       disciplinas: [
-        { nome: "PROGRAMAÇÃO WEB II", descricao: "Desenvolvimento web avançado com PHP", icon: Globe },
+        { nome: "ANALISE E PROJETO DE SISTEMAS", descricao: "Conceitos de análise e projeto de sistemas, metodologias de desenvolvimento.", icon: Monitor },
+        { nome: "BANCO DE DADOS II", descricao: "Administração e implementação de bancos de dados", icon: Database },
+        { nome: "DESENVOLVIMENTO DE SISTEMAS I", descricao: "Desenvolvimento de sistemas com programação orientada a objetos", icon: Code },
         { nome: "PROGRAMAÇÃO DE APLICATIVOS MOBILE I", descricao: "Desenvolvimento de aplicativos móveis", icon: Smartphone },
-        { nome: "DESENVOLVIMENTO DE SISTEMAS", descricao: "Desenvolvimento de sistemas com programação orientada a objetos", icon: Code },
-        { nome: "BANCO DE DADOS II", descricao: "Administração e implementação de bancos de dados", icon: Database }
+        { nome: "PROGRAMAÇÃO WEB II", descricao: "Desenvolvimento web avançado.", icon: Globe },
       ]
     },
     {
       ano: "3º Ano",
       disciplinas: [
-        { nome: "TCC EM DESENVOLVIMENTO DE SISTEMAS", descricao: "Trabalho de Conclusão de Curso", icon: Award },
-        { nome: "INTERNET, PROTOCOLOS E SEGURANÇA DE SISTEMAS DA INFORMAÇÃO", descricao: "Redes, protocolos e segurança da informação", icon: Shield },
+        { nome: "COMPUTAÇÃO EM NUVEM", descricao: "Conceitos de computação em nuvem, serviços de cloud computing.", icon: Shield },
+        { nome: "DESENVOLVIMENTO DE SISTEMAS II", descricao: "Desenvolvimento de sistemas com programação orientada a objetos", icon: Code },
         { nome: "PROGRAMAÇÃO DE APLICATIVOS MOBILE II", descricao: "Desenvolvimento mobile avançado", icon: Smartphone },
-        { nome: "SISTEMAS EMBARCADOS", descricao: "Programação de sistemas embarcados com Arduino", icon: Cpu },
-        { nome: "QUALIDADE E TESTE DE SOFTWARE", descricao: "Testes e garantia de qualidade", icon: TestTube },
-        { nome: "PROGRAMAÇÃO WEB III", descricao: "Desenvolvimento web avançado com frameworks modernos", icon: Globe }
+        { nome: "PROGRAMAÇÃO WEB III", descricao: "Desenvolvimento web avançado com frameworks modernos", icon: Globe },
+        { nome: "TCC EM DESENVOLVIMENTO DE SISTEMAS", descricao: "Trabalho de Conclusão de Curso", icon: Award },
       ]
     }
   ]
 
   const professores = [
     { nome: "Profa. Laine Zanin", especialidade: "Desenvolvimento Web e Banco de Dados", experiencia: "18 anos", area: "Programação", orientadorTCC: false, coordenador: true },
-    { nome: "Prof. Rubens Castaldelli", especialidade: "Banco de Dados e Algoritmos", experiencia: "40+ anos", area: "Banco de Dados", orientadorTCC: true },
     { nome: "Dr. Emerson Rodrigo", especialidade: "Algoritmos e Sistemas Embarcados", experiencia: "25 anos", area: "Algoritmos", orientadorTCC: true },
-    { nome: "Prof. Giuliano Catteli", especialidade: "Programação e Segurança da Informação", experiencia: "40+ anos", area: "Programação", orientadorTCC: false },
     { nome: "Prof. Fernando Bartholomeu", especialidade: "Desenvolvimento Web e Mobile", experiencia: "12 anos", area: "Programação", orientadorTCC: false },
+    { nome: "Prof. Giuliano Catteli", especialidade: "Programação e Segurança da Informação", experiencia: "40+ anos", area: "Programação", orientadorTCC: false },
+    { nome: "Prof. Rubens Castaldelli", especialidade: "Banco de Dados e Algoritmos", experiencia: "40+ anos", area: "Banco de Dados", orientadorTCC: true },
     { nome: "Prof. Sérgio Roberto", especialidade: "Redes e Sistemas", experiencia: "38 anos", area: "Redes", orientadorTCC: false },
-    { nome: "Profa. Vânia Brunetto", especialidade: "Algoritmos e Programação", experiencia: "12 anos", area: "Algoritmos", orientadorTCC: false }
+    { nome: "Profa. Vânia Brunetto", especialidade: "Algoritmos e Programação", experiencia: "30+ anos", area: "Algoritmos", orientadorTCC: false }
   ]
 
   const infraestrutura = [
