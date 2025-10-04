@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { Instagram, Mail, Phone, MapPin, ExternalLink, Clock, Users, Award, ArrowRight, Facebook, Youtube, Linkedin } from 'lucide-react'
+import { Instagram, Mail, Phone, MapPin, ExternalLink, Clock, Users, Award, ArrowRight, Facebook, Youtube, Linkedin, Github } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { ContactButtons } from '@/components/ui/hero-buttons'
@@ -256,6 +256,36 @@ export function Footer() {
               </p>
             </div>
             <ContactButtons variant="compact" />
+          </div>
+        </div>
+      </div>
+
+
+      {/* Desenvolvedor */}
+      <div className="border-t bg-primary-foreground/5 border-t border-primary-foreground/10">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex items-center gap-4 flex-wrap">
+            <div className="text-sm text-primary-foreground">
+              Desenvolvido por: <span className="font-bold">Victor Gabriel Prado Ramos</span>
+            </div>
+            <Link 
+              href="https://github.com/victimnn" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors"
+            >
+              <Github className="h-4 w-4" />
+              GitHub
+            </Link>
+            <Link 
+              href="https://linkedin.com/in/victor-ramos" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors"
+            >
+              <Linkedin className="h-4 w-4" />
+              LinkedIn
+            </Link>
           </div>
         </div>
       </div>
