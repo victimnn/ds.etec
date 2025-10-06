@@ -1,10 +1,9 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { Header } from '@/components/header'
-import { Footer } from '@/components/footer'
 import { ThemeProvider } from '@/components/theme-provider'
 import { FaviconSwitcher } from '@/components/favicon-switcher'
+import { LayoutWrapper } from '@/components/layout-wrapper'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -37,9 +36,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <FaviconSwitcher />
-          <Header />
-          <main>{children}</main>
-          <Footer />
+          <LayoutWrapper>{children}</LayoutWrapper>
         </ThemeProvider>
       </body>
     </html>

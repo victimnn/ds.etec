@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
-import { Menu, X } from 'lucide-react'
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
+import { Menu } from 'lucide-react'
 import { navigationItems, siteConfig } from '@/constants/navigation'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { useTheme } from 'next-themes'
@@ -110,40 +111,66 @@ export function Header() {
           </div>
 
           {/* Mobile menu button */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="lg:hidden"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </Button>
-        </div>
-
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-border">
-            <nav className="flex flex-col space-y-4">
-              {navigationItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="text-muted-foreground hover:text-primary font-medium transition-all duration-200 hover:scale-105 relative group"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.name}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-200 group-hover:w-full"></span>
-                </Link>
-              ))}
-              <div className="flex items-center space-x-2">
-                <ThemeToggle />
-                <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground w-fit transition-all duration-200 hover:scale-105 hover:shadow-lg">
-                  <Link href="/vestibulinho">Inscreva-se</Link>
-                </Button>
+          <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
+            <SheetTrigger asChild className="lg:hidden">
+              <Button variant="ghost" size="icon">
+                <Menu className="h-6 w-6" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[280px] sm:w-[350px] p-0">
+              <SheetHeader className="sr-only">
+                <SheetTitle>Menu de Navegação - {siteConfig.name}</SheetTitle>
+              </SheetHeader>
+              <div className="flex flex-col h-full">
+                {/* Header */}
+                <div className="px-6 pt-6 pb-4 border-b">
+                  <div className="flex items-center space-x-3">
+                    <Image
+                      src={logoSrc || '/LOGODS.png'}
+                      alt={siteConfig.institution}
+                      width={36}
+                      height={36}
+                      className="rounded"
+                    />
+                    <div className="flex-1 min-w-0">
+                      <div className="text-sm font-bold truncate">{siteConfig.name}</div>
+                      <div className="text-xs text-muted-foreground truncate">{siteConfig.institution}</div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Navigation Links */}
+                <nav className="flex-1 overflow-y-auto px-6 py-6">
+                  <div className="flex flex-col space-y-1">
+                    {navigationItems.map((item) => (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        className="px-3 py-3 text-base font-medium text-foreground hover:text-primary hover:bg-accent rounded-lg transition-all duration-200"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </div>
+                </nav>
+                
+                {/* Footer */}
+                <div className="px-6 py-6 border-t space-y-4 bg-muted/30">
+                  <div className="flex items-center justify-between px-3 py-2">
+                    <span className="text-sm font-medium text-muted-foreground">Alternar Tema</span>
+                    <ThemeToggle />
+                  </div>
+                  <Button asChild className="w-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm">
+                    <Link href="/vestibulinho" onClick={() => setIsMenuOpen(false)}>
+                      Inscreva-se Agora
+                    </Link>
+                  </Button>
+                </div>
               </div>
-            </nav>
-          </div>
-        )}
+            </SheetContent>
+          </Sheet>
+        </div>
       </div>
     </header>
   )
