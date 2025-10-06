@@ -120,7 +120,7 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-primary via-primary/90 to-primary/80 text-primary-foreground">
         <div className="absolute inset-0 bg-black/20" />
-        <div className="relative container mx-auto px-4 py-20 lg:py-32">
+        <div className="relative container mx-auto px-4 pt-20 lg:pt-32 pb-12 lg:pb-16">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <Badge className="bg-secondary text-secondary-foreground transition-all duration-300 hover:bg-secondary/80">
@@ -147,6 +147,20 @@ export default function HomePage() {
                 className="rounded-lg shadow-2xl transition-all duration-300 hover:scale-105"
               />
             </div>
+          </div>
+          
+          {/* Botão Centralizado */}
+          <div className="flex justify-center mt-12">
+            <Link href="/personal">
+              <Button 
+                variant="outline" 
+                size="lg"
+                className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary transition-all duration-200 hover:scale-105 hover:shadow-lg cursor-pointer"
+              >
+                <Users className="w-5 h-5 mr-2" />
+                Conheça o Dev por Trás do Site
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

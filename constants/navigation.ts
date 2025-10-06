@@ -7,7 +7,6 @@ export const navigationItems: NavigationItem[] = [
   { name: 'Vestibulinho', href: '/vestibulinho' },
   { name: 'Mercado de Trabalho', href: '/mercado' },
   { name: 'Contato', href: '/contato' },
-  { name: 'Personal', href: '/personal' },
 ]
 
 export const siteConfig = {

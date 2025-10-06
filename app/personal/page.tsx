@@ -1,30 +1,63 @@
 "use client"
 
+import { useState, useEffect } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Mail, Linkedin, Github, Code, Briefcase, GraduationCap, User, Award, Star, ExternalLink, Play, BookOpen, Target, TrendingUp } from 'lucide-react'
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
+import { Mail, Linkedin, Github, Code, Briefcase, GraduationCap, User, Award, Star, ExternalLink, Play, BookOpen, Target, TrendingUp, Menu, Home } from 'lucide-react'
 import Image from "next/image"
 import Link from "next/link"
-import { HeroButtons } from "@/components/ui/hero-buttons"
 
 export default function PersonalPage() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('inicio')
+
+  // Smooth scroll para as seções
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+      setIsMenuOpen(false)
+    }
+  }
+
+  // Detecta a seção ativa durante o scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['inicio', 'sobre', 'habilidades', 'experiencia', 'projetos', 'certificacoes', 'contato']
+      
+      for (const section of sections) {
+        const element = document.getElementById(section)
+        if (element) {
+          const rect = element.getBoundingClientRect()
+          if (rect.top <= 100 && rect.bottom >= 100) {
+            setActiveSection(section)
+            break
+          }
+        }
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
   // Dados pessoais - você pode personalizar aqui
   const dadosPessoais = {
-    nome: "Seu Nome Completo",
+    nome: "Victor Ramos",
     cargo: "Desenvolvedor Full Stack",
-    foto: "/placeholder-user.jpg",
-    email: "seuemail@example.com",
-    linkedin: "https://linkedin.com/in/seu-perfil",
-    github: "https://github.com/seu-usuario",
-    bio: "Desenvolvedor apaixonado por tecnologia, formado em Desenvolvimento de Sistemas pela Etec João Belarmino. Especializado em criar soluções web modernas e eficientes utilizando as melhores práticas do mercado.",
-    localizacao: "Amparo, SP",
-    idade: "18 anos"
+    foto: "/victor.jpg",
+    email: "victor.ramosp19@gmail.com",
+    linkedin: "https://linkedin.com/in/victor-ramos",
+    github: "https://github.com/victimnn",
+    bio: "Apaixonado por tecnologia, formado em Desenvolvimento de Sistemas pela Etec João Belarmino. Especializado em criar soluções web modernas e eficientes utilizando as melhores práticas do mercado.",
+    localizacao: "Jaguariúna, SP",
+    idade: "17 anos"
   }
 
   const sobre = {
-    resumo: "Sou um profissional dedicado e apaixonado por tecnologia, com foco em desenvolvimento de software. Formado pela Etec João Belarmino, onde adquiri sólida formação técnica em programação, banco de dados e desenvolvimento web/mobile. Busco constantemente aprender novas tecnologias e aplicar boas práticas no desenvolvimento de soluções.",
-    objetivo: "Atuar como desenvolvedor em uma empresa inovadora que valorize criatividade, aprendizado contínuo e trabalho em equipe, contribuindo com minhas habilidades técnicas e dedicação para criar produtos de qualidade."
+    resumo: "Atuo como líder e desenvolvedor do projeto BusHere! e outras aplicações web como este site, com foco em criar soluções escaláveis, seguras e de fácil manutenção. Tenho interesse em áreas como cloud computing, integração de sistemas, automação e inteligência artificial, visando unir prática acadêmica e profissional para entregar resultados de impacto",
+    objetivo: "Atuar como desenvolvedor em uma empresa inovadora que valorize criatividade, aprendizado contínuo e trabalho em equipe, contribuindo com minhas habilidades técnicas e dedicação para criar soluções de qualidade."
   }
 
   const habilidades = [
@@ -37,21 +70,21 @@ export default function PersonalPage() {
     },
     { 
       categoria: "Back-End", 
-      items: ["Node.js", "Python", "PHP", "APIs REST", "Express"],
+      items: ["Node.js", "Python", "C#", "APIs REST", "Express"],
       icon: Briefcase,
       cor: "text-green-600",
       bg: "bg-green-100"
     },
     { 
       categoria: "Database", 
-      items: ["MySQL", "PostgreSQL", "MongoDB", "Firebase"],
+      items: ["MySQL", "SQL Server"],
       icon: BookOpen,
       cor: "text-purple-600",
       bg: "bg-purple-100"
     },
     { 
       categoria: "Ferramentas", 
-      items: ["Git", "GitHub", "VS Code", "Figma", "Docker"],
+      items: ["Git", "GitHub", "Cursor", "Figma", "Docker", "Vercel", "ClickUp"],
       icon: Award,
       cor: "text-orange-600",
       bg: "bg-orange-100"
@@ -60,19 +93,19 @@ export default function PersonalPage() {
 
   const experiencia = [
     {
-      empresa: "Empresa Exemplo Tech",
-      cargo: "Desenvolvedor Junior",
-      periodo: "2024 - Presente",
+      empresa: "BusHere!",
+      cargo: "Líder e Desenvolvedor",
+      periodo: "2025",
       descricao: "Desenvolvimento de aplicações web utilizando React e Node.js. Participação em projetos de modernização de sistemas legados e implementação de novas funcionalidades.",
-      tecnologias: ["React", "Node.js", "TypeScript", "PostgreSQL"],
-      tipo: "Estágio"
+      tecnologias: ["JavaScript", "React", "Node.js", "Bootstrap", "Express", "MySQL"],
+      tipo: "TCC"
     },
     {
-      empresa: "Projeto Freelance",
+      empresa: "Projetos Freelancer",
       cargo: "Desenvolvedor Web",
-      periodo: "2023 - 2024",
-      descricao: "Desenvolvimento de sites institucionais e e-commerce para pequenas empresas da região. Foco em design responsivo e performance.",
-      tecnologias: ["HTML", "CSS", "JavaScript", "PHP"],
+      periodo: "2024 - Presente",
+      descricao: "Desenvolvimento de sites para instituições da região. Foco em design responsivo e performance.",
+      tecnologias: ["HTML", "JavaScript", "React", "Next.js", "TailwindCSS"],
       tipo: "Freelance"
     }
   ]
@@ -81,9 +114,9 @@ export default function PersonalPage() {
     {
       instituicao: "Etec João Belarmino",
       curso: "Técnico em Desenvolvimento de Sistemas Integrado ao Ensino Médio",
-      periodo: "2022 - 2024",
+      periodo: "2023 - 2025",
       descricao: "Formação técnica completa em desenvolvimento de software, incluindo programação, banco de dados, desenvolvimento web e mobile.",
-      destaque: true
+      destaque: false
     }
   ]
 
@@ -94,7 +127,7 @@ export default function PersonalPage() {
       imagem: "/projetos/bushere.png",
       tecnologias: ["React", "Node.js", "MySQL"],
       categoria: "Web",
-      destaque: true,
+      destaque: false,
       github: "https://github.com/seu-usuario/projeto",
       demo: "#"
     },
@@ -118,78 +151,212 @@ export default function PersonalPage() {
     }
   ]
 
-  const certificacoes = [
-    { nome: "Desenvolvimento Web Completo", instituicao: "Etec", ano: "2024" },
-    { nome: "JavaScript Avançado", instituicao: "Online", ano: "2023" },
-    { nome: "React Fundamentals", instituicao: "Online", ano: "2023" }
+
+  const menuItems = [
+    { id: 'inicio', label: 'Início' },
+    { id: 'sobre', label: 'Sobre' },
+    { id: 'habilidades', label: 'Habilidades' },
+    { id: 'experiencia', label: 'Experiência' },
+    { id: 'projetos', label: 'Projetos' },
+    { id: 'contato', label: 'Contato' },
   ]
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section - Portfolio Header */}
-      <section className="relative bg-gradient-to-br from-primary via-primary/90 to-primary/80 text-primary-foreground">
-        <div className="absolute inset-0 bg-black/20" />
-        <div className="relative container mx-auto px-4 py-20 lg:py-32">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              {/* Foto e Info Básica */}
-              <div className="text-center lg:text-left">
-                <Badge className="bg-secondary text-secondary-foreground hover:bg-secondary/80 mb-6">
-                  Portfólio Profissional
-                </Badge>
-                <h1 className="text-4xl lg:text-6xl font-bold leading-tight mb-4">
-                  {dadosPessoais.nome}
-                </h1>
-                <p className="text-2xl lg:text-3xl text-primary-foreground/90 mb-6">
-                  {dadosPessoais.cargo}
-                </p>
-                <p className="text-lg text-primary-foreground/80 mb-8 leading-relaxed">
-                  {dadosPessoais.bio}
-                </p>
-                
-                {/* Botões de Contato */}
-                <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
-                  <Button 
-                    variant="secondary" 
-                    size="lg"
-                    className="cursor-pointer transition-all duration-200 hover:scale-105"
-                    onClick={() => window.location.href = `mailto:${dadosPessoais.email}`}
-                  >
-                    <Mail className="w-5 h-5 mr-2" />
-                    Enviar Email
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    size="lg"
-                    className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary cursor-pointer transition-all duration-200 hover:scale-105"
-                    onClick={() => window.open(dadosPessoais.linkedin, '_blank')}
-                  >
-                    <Linkedin className="w-5 h-5 mr-2" />
-                    LinkedIn
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    size="lg"
-                    className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary cursor-pointer transition-all duration-200 hover:scale-105"
-                    onClick={() => window.open(dadosPessoais.github, '_blank')}
-                  >
-                    <Github className="w-5 h-5 mr-2" />
-                    GitHub
-                  </Button>
-                </div>
-              </div>
+      {/* Navegação Fixa */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm shadow-sm border-b">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo/Nome */}
+            <button
+              onClick={() => scrollToSection('inicio')}
+              className="text-xl font-bold text-primary hover:text-primary/80 transition-colors cursor-pointer"
+            >
+              VictorRamos.DEV
+            </button>
 
-              {/* Foto de Perfil */}
-              <div className="flex justify-center lg:justify-end">
-                <div className="relative">
+            {/* Desktop Menu */}
+            <div className="hidden md:flex items-center space-x-6">
+              {menuItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`text-sm font-medium transition-colors cursor-pointer relative group ${
+                    activeSection === item.id ? 'text-primary' : 'text-muted-foreground hover:text-primary'
+                  }`}
+                >
+                  {item.label}
+                  <span className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-200 ${
+                    activeSection === item.id ? 'w-full' : 'w-0 group-hover:w-full'
+                  }`}></span>
+                </button>
+              ))}
+              <Link href="/" className="ml-4">
+                <Button variant="outline" size="sm" className="cursor-pointer">
+                  <Home className="w-4 h-4 mr-2" />
+                  Voltar ao Site
+                </Button>
+              </Link>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
+              <SheetTrigger asChild className="md:hidden">
+                <Button variant="ghost" size="icon">
+                  <Menu className="h-6 w-6" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[85vw] max-w-[350px] p-0">
+                <SheetHeader className="sr-only">
+                  <SheetTitle>Menu de Navegação - Victor Ramos</SheetTitle>
+                </SheetHeader>
+                <div className="flex flex-col h-full">
+                  {/* Header */}
+                  <div className="px-4 sm:px-6 pt-6 pb-4 border-b">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                        <User className="w-5 h-5 text-primary" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-sm font-bold truncate">VictorRamos.DEV</div>
+                        <div className="text-xs text-muted-foreground truncate">Portfólio Profissional</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Navigation Links */}
+                  <nav className="flex-1 overflow-y-auto px-4 sm:px-6 py-4">
+                    <div className="flex flex-col space-y-1">
+                      {menuItems.map((item) => (
+                        <button
+                          key={item.id}
+                          onClick={() => scrollToSection(item.id)}
+                          className={`px-3 py-2.5 text-sm sm:text-base font-medium rounded-lg transition-all duration-200 text-left ${
+                            activeSection === item.id 
+                              ? 'text-primary bg-primary/10' 
+                              : 'text-foreground hover:text-primary hover:bg-accent'
+                          }`}
+                        >
+                          {item.label}
+                        </button>
+                      ))}
+                    </div>
+                  </nav>
+                  
+                  {/* Footer */}
+                  <div className="px-4 sm:px-6 py-4 border-t bg-muted/30">
+                    <div className="space-y-3">
+                      <Link href="/" onClick={() => setIsMenuOpen(false)}>
+                        <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground mb-5">
+                          <Home className="w-4 h-4 mr-2" />
+                          Voltar ao Site
+                        </Button>
+                      </Link>
+                      <div className="flex justify-center gap-6">
+                        <button
+                          onClick={() => {
+                            window.open(dadosPessoais.github, '_blank')
+                            setIsMenuOpen(false)
+                          }}
+                          className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
+                          aria-label="GitHub"
+                        >
+                          <Github className="w-5 h-5" />
+                        </button>
+                        <button
+                          onClick={() => {
+                            window.open(dadosPessoais.linkedin, '_blank')
+                            setIsMenuOpen(false)
+                          }}
+                          className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
+                          aria-label="LinkedIn"
+                        >
+                          <Linkedin className="w-5 h-5" />
+                        </button>
+                        <button
+                          onClick={() => {
+                            window.location.href = `mailto:${dadosPessoais.email}`
+                            setIsMenuOpen(false)
+                          }}
+                          className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
+                          aria-label="Email"
+                        >
+                          <Mail className="w-5 h-5" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section - Portfolio Header */}
+      <section id="inicio" className="relative bg-gradient-to-br from-primary via-primary/90 to-primary/80 text-primary-foreground pt-16">
+        <div className="absolute inset-0 bg-black/20" />
+        <div className="relative container mx-auto px-4 py-12 sm:py-16 lg:py-28">
+          <div className="max-w-6xl mx-auto">
+            <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+              {/* Foto de Perfil - Mobile First */}
+              <div className="flex justify-center lg:justify-end lg:order-2">
+                <div className="relative w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80">
                   <div className="absolute inset-0 bg-gradient-to-br from-secondary to-accent rounded-full blur-2xl opacity-30"></div>
                   <Image
                     src={dadosPessoais.foto}
                     alt={dadosPessoais.nome}
                     width={400}
                     height={400}
-                    className="relative rounded-full border-8 border-primary-foreground/20 shadow-2xl transition-all duration-300 hover:scale-105"
+                    className="relative w-full h-full rounded-full border-4 sm:border-8 border-primary-foreground/20 shadow-2xl object-cover"
                   />
+                </div>
+              </div>
+
+              {/* Info Básica */}
+              <div className="text-center lg:text-left lg:order-1">
+                <Badge className="bg-secondary text-secondary-foreground hover:bg-secondary/80 mb-4 sm:mb-6 inline-block">
+                  Portfólio Profissional
+                </Badge>
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-3 sm:mb-4">
+                  {dadosPessoais.nome}
+                </h1>
+                <p className="text-xl sm:text-2xl lg:text-3xl text-primary-foreground/90 mb-4 sm:mb-6">
+                  {dadosPessoais.cargo}
+                </p>
+                <p className="text-base sm:text-lg text-primary-foreground/80 mb-6 sm:mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                  {dadosPessoais.bio}
+                </p>
+                
+                {/* Botões de Contato */}
+                <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start">
+                  <Button 
+                    variant="secondary" 
+                    size="lg"
+                    className="cursor-pointer transition-all duration-200 hover:scale-105 w-full sm:w-auto"
+                    onClick={() => window.location.href = `mailto:${dadosPessoais.email}`}
+                  >
+                    <Mail className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                    Enviar Email
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    size="lg"
+                    className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary cursor-pointer transition-all duration-200 hover:scale-105 w-full sm:w-auto"
+                    onClick={() => window.open(dadosPessoais.linkedin, '_blank')}
+                  >
+                    <Linkedin className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                    LinkedIn
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    size="lg"
+                    className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary cursor-pointer transition-all duration-200 hover:scale-105 w-full sm:w-auto"
+                    onClick={() => window.open(dadosPessoais.github, '_blank')}
+                  >
+                    <Github className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                    GitHub
+                  </Button>
                 </div>
               </div>
             </div>
@@ -198,18 +365,18 @@ export default function PersonalPage() {
       </section>
 
       {/* Seção Sobre Mim */}
-      <section className="py-16 bg-muted">
+      <section id="sobre" className="py-12 sm:py-16 bg-muted">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-3 sm:mb-4">
               Sobre Mim
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
               Conheça mais sobre minha trajetória e objetivos profissionais
             </p>
           </div>
 
-          <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-8">
+          <div className="max-w-6xl mx-auto grid gap-6 sm:gap-8 lg:grid-cols-2">
             <Card className="transition-all duration-300 hover:scale-105 hover:shadow-xl hover:border-primary/50 group">
               <CardHeader>
                 <div className="flex items-center space-x-3 mb-2">
@@ -260,18 +427,18 @@ export default function PersonalPage() {
       </section>
 
       {/* Seção Habilidades */}
-      <section className="py-16">
+      <section id="habilidades" className="py-12 sm:py-16">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-3 sm:mb-4">
               Habilidades Técnicas
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
               Tecnologias e ferramentas que domino
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-6xl mx-auto">
             {habilidades.map((skill, index) => {
               const IconComponent = skill.icon
               return (
@@ -301,18 +468,18 @@ export default function PersonalPage() {
       </section>
 
       {/* Seção Mercado de Trabalho / Experiência */}
-      <section className="py-16 bg-muted">
+      <section id="experiencia" className="py-12 sm:py-16 bg-muted">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-3 sm:mb-4">
               Experiência Profissional
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
               Minha trajetória no mercado de trabalho
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto space-y-6">
+          <div className="max-w-4xl mx-auto space-y-4 sm:space-y-6">
             {experiencia.map((exp, index) => (
               <Card key={index} className="transition-all duration-300 hover:scale-105 hover:shadow-xl hover:border-primary/50 group">
                 <CardHeader>
@@ -390,18 +557,18 @@ export default function PersonalPage() {
       </section>
 
       {/* Seção Projetos */}
-      <section className="py-16">
+      <section id="projetos" className="py-12 sm:py-16">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-3 sm:mb-4">
               Meus Projetos
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
               Alguns dos trabalhos que desenvolvi
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-6xl mx-auto">
             {projetos.map((projeto, index) => (
               <Card key={index} className="overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl hover:border-primary/50 group">
                 <div className="relative">
@@ -483,7 +650,7 @@ export default function PersonalPage() {
       </section>
 
       {/* Seção Certificações */}
-      <section className="py-16 bg-muted">
+      {/* <section id="certificacoes" className="py-16 bg-muted">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
@@ -515,42 +682,76 @@ export default function PersonalPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Call to Action Final */}
-      <section className="py-16">
+      <section id="contato" className="py-12 sm:py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-6">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-4 sm:mb-6">
               Vamos Trabalhar Juntos?
             </h2>
-            <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+            <p className="text-base sm:text-lg lg:text-xl text-muted-foreground mb-6 sm:mb-8 leading-relaxed px-4">
               Estou sempre aberto a novos desafios e oportunidades. 
               Se você está procurando um desenvolvedor dedicado e apaixonado por tecnologia, 
               entre em contato!
             </p>
-            <div className="flex flex-wrap gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center max-w-md mx-auto sm:max-w-none">
               <Button 
                 size="lg"
-                className="cursor-pointer transition-all duration-200 hover:scale-105"
+                className="cursor-pointer transition-all duration-200 hover:scale-105 w-full sm:w-auto"
                 onClick={() => window.location.href = `mailto:${dadosPessoais.email}`}
               >
-                <Mail className="w-5 h-5 mr-2" />
+                <Mail className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                 Entre em Contato
               </Button>
               <Button 
                 size="lg"
                 variant="outline"
-                className="cursor-pointer transition-all duration-200 hover:scale-105"
+                className="cursor-pointer transition-all duration-200 hover:scale-105 w-full sm:w-auto"
                 onClick={() => window.open(dadosPessoais.github, '_blank')}
               >
-                <Github className="w-5 h-5 mr-2" />
+                <Github className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                 Ver Repositórios
               </Button>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Footer Simples */}
+      <footer className="bg-muted border-t py-6 sm:py-8">
+        <div className="container mx-auto px-4">
+          <div className="text-center">
+            <p className="text-muted-foreground text-xs sm:text-sm">
+              © {new Date().getFullYear()} {dadosPessoais.nome}. Todos os direitos reservados.
+            </p>
+            <div className="flex justify-center gap-4 sm:gap-6 mt-3 sm:mt-4">
+              <button
+                onClick={() => window.open(dadosPessoais.github, '_blank')}
+                className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
+                aria-label="GitHub"
+              >
+                <Github className="w-5 h-5" />
+              </button>
+              <button
+                onClick={() => window.open(dadosPessoais.linkedin, '_blank')}
+                className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="w-5 h-5" />
+              </button>
+              <button
+                onClick={() => window.location.href = `mailto:${dadosPessoais.email}`}
+                className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
+                aria-label="Email"
+              >
+                <Mail className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }
