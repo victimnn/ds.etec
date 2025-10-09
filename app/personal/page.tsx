@@ -48,7 +48,7 @@ export default function PersonalPage() {
     cargo: "Desenvolvedor Full Stack",
     foto: "/victor.jpg",
     email: "victor.ramosp19@gmail.com",
-    linkedin: "https://linkedin.com/in/victor-ramos",
+    linkedin: "https://www.linkedin.com/in/victor-pramos19/",
     github: "https://github.com/victimnn",
     bio: "Apaixonado por tecnologia, formado em Desenvolvimento de Sistemas pela Etec João Belarmino. Especializado em criar soluções web modernas e eficientes utilizando as melhores práticas do mercado.",
     localizacao: "Jaguariúna, SP",

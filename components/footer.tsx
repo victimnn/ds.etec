@@ -278,7 +278,7 @@ export function Footer() {
               GitHub
             </Link>
             <Link 
-              href="https://linkedin.com/in/victor-ramos" 
+              href="https://www.linkedin.com/in/victor-pramos19/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors"
