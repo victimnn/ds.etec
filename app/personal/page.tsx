@@ -122,32 +122,31 @@ export default function PersonalPage() {
 
   const projetos = [
     {
-      titulo: "Sistema de Gestão Escolar",
-      descricao: "Aplicação web completa para gestão de alunos, professores e notas. Desenvolvido como TCC.",
+      titulo: "BusHere!",
+      descricao: "Plataforma de gestão integrada de logística sobre rotas, pontos, passageiros e veículos.",
       imagem: "/projetos/bushere.png",
-      tecnologias: ["React", "Node.js", "MySQL"],
-      categoria: "Web",
+      tecnologias: ["React", "Node.js", "MySQL", "Express", "Bootstrap", "Git"],
+      categoria: "Web & Mobile",
       destaque: false,
-      github: "https://github.com/seu-usuario/projeto",
-      demo: "#"
     },
     {
-      titulo: "App de Delivery",
-      descricao: "Aplicativo mobile para pedidos de delivery com interface intuitiva e sistema de rastreamento em tempo real.",
-      imagem: "/projetos/capivara.png",
-      tecnologias: ["React Native", "Firebase"],
-      categoria: "Mobile",
-      destaque: false,
-      github: "#"
-    },
-    {
-      titulo: "Portfolio Pessoal",
-      descricao: "Site portfolio responsivo desenvolvido com Next.js e animações modernas.",
-      imagem: "/projetos/disableComents.png",
-      tecnologias: ["Next.js", "TailwindCSS", "TypeScript"],
+      titulo: "Site Oficial DS.Etec",
+      descricao: "Site Institucional do Curso de Desenvolvimento de Sistemas da Etec João Belarmino.",
+      imagem: "/projetos/dsetec.png",
+      tecnologias: ["TypeScript", "React", "Next.js", "TailwindCSS", "Vercel"],
       categoria: "Web",
       destaque: false,
-      demo: "#"
+      github: "https://github.com/victimnn/ds.etec",
+      demo: "https://dsetecjb.com.br"
+    },
+    {
+      titulo: "Hortec Inteligente",
+      descricao: "Site de monitoramento automático de hortas com arduino.",
+      imagem: "/projetos/hortec.png",
+      tecnologias: ["JavaScript", "Arduino", "C", "CSS", "HTML"],
+      categoria: "Web & Arduino",
+      destaque: false,
+      github: "https://github.com/victimnn/UmidadeWeb"
     }
   ]
 
