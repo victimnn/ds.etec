@@ -32,7 +32,8 @@ ds.etec/
 │   ├── projetos/          # Página de projetos
 │   ├── vestibulinho/      # Página do vestibulinho
 │   ├── mercado/           # Página do mercado de trabalho
-│   └── contato/           # Página de contato
+│   ├── contato/           # Página de contato
+│   └── personal/          # Página de Portfólio
 ├── components/            # Componentes React
 │   ├── ui/               # Componentes shadcn/ui
 │   ├── header.tsx        # Cabeçalho do site
