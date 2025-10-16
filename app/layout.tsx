@@ -4,6 +4,7 @@ import './globals.css'
 import { ThemeProvider } from '@/components/theme-provider'
 import { FaviconSwitcher } from '@/components/favicon-switcher'
 import { LayoutWrapper } from '@/components/layout-wrapper'
+import { SpeedInsights } from "@vercel/speed-insights/react"
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -38,6 +39,7 @@ export default function RootLayout({
           <FaviconSwitcher />
           <LayoutWrapper>{children}</LayoutWrapper>
         </ThemeProvider>
+        <SpeedInsights />
       </body>
     </html>
   )
