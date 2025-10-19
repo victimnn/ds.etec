@@ -13,7 +13,7 @@ export const siteConfig = {
   name: 'Desenvolvimento de Sistemas',
   institution: 'Etec João Belarmino',
   description: 'Curso Técnico em Desenvolvimento de Sistemas integrado ao Ensino Médio',
-  url: 'https://dsetec.vercel.app',
+  url: 'https://dsetecjb.com.br',
   ogImage: '/LOGODS.png',
   links: {
     instagram: 'https://www.instagram.com/ds.etec',

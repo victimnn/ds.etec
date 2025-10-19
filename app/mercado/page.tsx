@@ -330,7 +330,7 @@ export default function MercadoPage() {
       </section>
 
       {/* Histórias de Sucesso */}
-      <section className="py-16">
+      {/*<section className="py-16">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
@@ -383,7 +383,7 @@ export default function MercadoPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section>*/}
 
       {/* Dicas de Carreira */}
       <section className="py-16 bg-muted">
