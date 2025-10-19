@@ -121,7 +121,7 @@ export default function MercadoPage() {
     },
     {
       nome: "Tagimf",
-      tipo: "Infraestrutura TI",
+      tipo: "Infraestrutura do mercado financeiro",
       setor: "TI/Financeiro",
       localizacao: "São Paulo, SP",
       logo: "/empresas/tag.png",
