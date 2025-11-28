@@ -25,15 +25,23 @@ export default function MercadoPage() {
     },
     { 
       nome: "Assist Soluções", 
-      tipo: "Software House", 
+      tipo: "Desenvolvimento de software", 
       setor: "TI/Software",
       localizacao: "Jaguariúna, SP",
       logo: "/empresas/assist.png",
       website: "https://assistsolucoes.com.br"
     },
     { 
+      nome: "Avantpro", 
+      tipo: "Desenvolvimento de software", 
+      setor: "TI/Software",
+      localizacao: "Amparo, Campinas, SP",
+      logo: "/empresas/avantpro.png",
+      website: "https://avantpro.com.br"
+    },
+    { 
       nome: "Build Solutions", 
-      tipo: "Software House", 
+      tipo: "Desenvolvimento de software", 
       setor: "TI/Software",
       localizacao: "Pedreira, SP",
       logo: "/empresas/build.png",
@@ -49,15 +57,31 @@ export default function MercadoPage() {
     // },
     { 
       nome: "CASP", 
-      tipo: "Indústria", 
-      setor: "Equipamentos/estruturas (setor industrial/agro)",
+      tipo: "Equipamentos/estruturas (setor industrial/agro)", 
+      setor: "Indústria",
       localizacao: "Amparo, SP",
       logo: "/empresas/casp.png",
       website: "https://casp.com.br"
     },
+    { 
+      nome: "Fernandez", 
+      tipo: "Indústria de Papel", 
+      setor: "Indústria",
+      localizacao: "Amparo, SP",
+      logo: "/empresas/fernandez.png",
+      website: "https://fernandezpapel.com.br"
+    },
+    { 
+      nome: "HTM", 
+      tipo: "Indústria Eletrônica", 
+      setor: "Indústria",
+      localizacao: "Amparo, SP",
+      logo: "/empresas/htm.png",
+      website: "https://htmeletronica.com.br"
+    },
     {
       nome: "InFive",
-      tipo: "Software House",
+      tipo: "Desenvolvimento de software",
       setor: "Automação",
       localizacao: "Amparo, Campinas, SP - Belo Horizonte, MG",
       logo: "/empresas/infive.png",
@@ -80,6 +104,14 @@ export default function MercadoPage() {
       website: "https://jrscomputacao.com.br"
     },
     { 
+      nome: "Matera", 
+      tipo: "Multinacional de Serviços em TI e Finanças", 
+      setor: "TI/Software",
+      localizacao: "Campinas, SP",
+      logo: "/empresas/matera.png",
+      website: "https://matera.com"
+    },
+    { 
       nome: "Motherson Group", 
       tipo: "Multinacional de manufatura", 
       setor: "Autopeças e componentes automotivos",
@@ -89,11 +121,19 @@ export default function MercadoPage() {
     },
     { 
       nome: "Prime Solution", 
-      tipo: "Software House", 
+      tipo: "Desenvolvimento de software", 
       setor: "TI/Software",
       localizacao: "Pedreira, SP",
       logo: "/empresas/primesolution.webp",
       website: "https://www.p1s.com.br"
+    },
+    { 
+      nome: "Perfix", 
+      tipo: "Consultoria", 
+      setor: "Gestão empresarial e tecnologia",
+      localizacao: "Amparo, SP",
+      logo: "/empresas/perfix.png",
+      website: "https://perfixconsultoria.com.br"
     },
     { 
       nome: "RS Solutions", 
@@ -113,7 +153,7 @@ export default function MercadoPage() {
     },
     { 
       nome: "Sistema RAM", 
-      tipo: "Software House", 
+      tipo: "Desenvolvimento de software", 
       setor: "Sistemas para gestão pública/privada",
       localizacao: "Amparo, SP",
       logo: "/empresas/ram.webp",
@@ -129,7 +169,7 @@ export default function MercadoPage() {
     },
     { 
       nome: "Wise Software Sistemas", 
-      tipo: "Software House", 
+      tipo: "Desenvolvimento de software", 
       setor: "Tecnologia para varejo",
       localizacao: "Serra Negra, SP",
       logo: "/empresas/wise.png",
@@ -137,7 +177,7 @@ export default function MercadoPage() {
     },
     {
       nome: "YGS Softwares",
-      tipo: "Software House",
+      tipo: "Desenvolvimento de software",
       setor: "TI/Software",
       localizacao: "Jaguariúna, SP",
       logo: "/empresas/ygs.png",
