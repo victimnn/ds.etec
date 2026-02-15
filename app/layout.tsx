@@ -1,26 +1,8 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import './globals.css'
-import { ThemeProvider } from '@/components/theme-provider'
-import { FaviconSwitcher } from '@/components/favicon-switcher'
-import { LayoutWrapper } from '@/components/layout-wrapper'
-import { SpeedInsights } from "@vercel/speed-insights/react"
-import { Analytics } from "@vercel/analytics/react"
-
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Desenvolvimento de Sistemas - Etec João Belarmino',
-  description: 'Curso Técnico em Desenvolvimento de Sistemas integrado ao Ensino Médio na Etec João Belarmino de Amparo',
-  keywords: 'curso técnico, desenvolvimento de sistemas, etec, amparo, programação, ensino médio, ds, ds.etec, dsetec, etecjoaobelarmino, etec jb, etec jb ofcial, etec joão belarmino',
-  icons: {
-    icon: [
-      { url: '/LOGODS.png', media: '(prefers-color-scheme: light)' },
-      { url: '/LOGODSBRANCO.png', media: '(prefers-color-scheme: dark)' }
-    ],
-    shortcut: '/LOGODS.png',
-    apple: '/LOGODS.png',
-  }
+  title: 'DS Etec',
+  description: 'Portal de Desenvolvimento de Sistemas - Etec João Belarmino',
 }
 
 export default function RootLayout({
@@ -30,19 +12,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
-      <body className={inter.className} suppressHydrationWarning={true}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <FaviconSwitcher />
-          <LayoutWrapper>{children}</LayoutWrapper>
-        </ThemeProvider>
-        <SpeedInsights />
-        <Analytics />
-      </body>
+      <body suppressHydrationWarning>{children}</body>
     </html>
   )
 }
+
