@@ -310,6 +310,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(projects)
   } catch (error) {
+    console.error('GET /api/admin/projetos error:', error)
     return NextResponse.json(
       { error: 'Erro ao buscar projetos.' },
       { status: 500 }

@@ -274,6 +274,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(students)
   } catch (error) {
+    console.error('GET /api/admin/alunos error:', error)
     return NextResponse.json(
       { error: 'Erro ao buscar alunos.' },
       { status: 500 }

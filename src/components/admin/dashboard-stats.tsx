@@ -6,9 +6,8 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-  CardDescription,
 } from '@/src/components/ui/card'
-import { Users, GraduationCap, Trophy, Layout, Loader2 } from 'lucide-react'
+import { Users, GraduationCap, Trophy, Layout } from 'lucide-react'
 import { cn } from '@/src/lib/utils'
 
 type Stats = {

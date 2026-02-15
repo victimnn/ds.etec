@@ -16,7 +16,6 @@ import {
   Code,
   Users,
   Award,
-  ExternalLink,
   Instagram,
   ArrowRight,
   Clock,
@@ -24,7 +23,6 @@ import {
   BookOpen,
   Target,
   Star,
-  CheckCircle,
   Play,
   Github,
 } from 'lucide-react'
@@ -39,7 +37,7 @@ const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true },
-  transition: { duration: 0.6, ease: 'easeOut' },
+  transition: { duration: 0.6, ease: 'easeOut' as const },
 }
 
 const staggerContainer = {
@@ -183,10 +181,7 @@ export function MainHomeClient() {
                 integra ensino médio e capacitação profissional de alta
                 qualidade.
               </p>
-              <HeroButtons
-                primaryText="Inscreva-se Agora"
-                secondaryText="Conheça o Curso"
-              />
+              <HeroButtons/>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}

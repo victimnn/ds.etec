@@ -3,11 +3,15 @@ import type { Advisor, TCCProject, TeamMember } from '@/src/lib/types'
 import { DataSourceError } from '@/src/lib/data/errors'
 import { getSupabasePublicConfig } from '@/src/lib/data/supabase-config'
 import {
+  rawAlunoSchema,
+  rawProfessorSchema,
+  rawTccDeepSchema,
   rawTccDeepListSchema,
-  type RawAlunoSchema,
-  type RawProfessorSchema,
-  type RawTccDeepSchema,
 } from '@/src/lib/schemas/tcc'
+
+type RawAlunoSchema = z.infer<typeof rawAlunoSchema>
+type RawProfessorSchema = z.infer<typeof rawProfessorSchema>
+type RawTccDeepSchema = z.infer<typeof rawTccDeepSchema>
 
 const FALLBACK_PROJECTS: TCCProject[] = []
 

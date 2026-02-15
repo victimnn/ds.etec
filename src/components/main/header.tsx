@@ -5,14 +5,6 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import {
   Menu,
-  Globe,
-  ShieldCheck,
-  Home,
-  BookOpen,
-  GraduationCap,
-  Briefcase,
-  Mail,
-  Info,
   ArrowRight,
   LayoutGrid,
 } from 'lucide-react'
@@ -27,7 +19,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/src/components/ui/sheet'
-import { navigationItems, siteConfig } from '@/src/constants/navigation'
+import { navigationItems } from '@/src/constants/navigation'
 import { cn } from '@/src/lib/utils'
 
 export function Header() {
@@ -163,7 +155,7 @@ export function Header() {
             >
               <Link href="https://tcc.dsetecjb.com.br">
                 <LayoutGrid className="h-4 w-4 transition-transform group-hover:rotate-12" />
-                Hub de TCC's
+                Hub de TCC&apos;s
               </Link>
             </Button>
 
@@ -189,8 +181,12 @@ export function Header() {
                 <div className="flex flex-col h-full">
                   <div className="p-8 border-b border-border/10 bg-muted/20">
                     <div className="flex items-center gap-4">
-                      <div className="p-3 bg-primary/10 rounded-2xl">
-                        <ShieldCheck className="h-8 w-8 text-primary" />
+                      <div className="p-2.5 bg-background/80 rounded-2xl border border-border/20 shadow-sm">
+                        <img
+                          src="/logo-ds.png"
+                          alt="DS Logo"
+                          className={cn('h-9 w-auto object-contain', logoClass)}
+                        />
                       </div>
                       <div>
                         <div className="text-xl font-black tracking-tighter">
@@ -249,14 +245,14 @@ export function Header() {
                       </span>
                       <ThemeToggle />
                     </div>
-                    <Button
+                    {/* <Button
                       asChild
                       size="lg"
                       className="w-full h-14 rounded-2xl font-bold shadow-glow"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       <Link href="/vestibulinho">Inscreva-se Agora</Link>
-                    </Button>
+                    </Button> */}
                   </div>
                 </div>
               </SheetContent>

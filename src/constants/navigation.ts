@@ -6,7 +6,7 @@ export const navigationItems: NavigationItem[] = [
   { name: 'Inicio', href: '/' },
   { name: 'Sobre o Curso', href: '/sobre' },
   { name: 'Projetos', href: '/projetos' },
-  { name: 'Vestibulinho', href: '/vestibulinho' },
+  // { name: 'Vestibulinho', href: '/vestibulinho' },
   { name: 'Mercado de Trabalho', href: '/mercado' },
   { name: 'Contato', href: '/contato' },
 ]

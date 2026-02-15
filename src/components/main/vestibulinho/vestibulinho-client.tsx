@@ -1,16 +1,9 @@
 'use client'
 
 import * as React from 'react'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
-import { motion, AnimatePresence } from 'framer-motion'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/src/components/ui/card'
+import { motion } from 'framer-motion'
 import { Button } from '@/src/components/ui/button'
 import { Badge } from '@/src/components/ui/badge'
 import {
@@ -24,17 +17,11 @@ import {
   Clock,
   Users,
   FileText,
-  AlertCircle,
   CheckCircle,
   ExternalLink,
   Download,
   ArrowRight,
-  GraduationCap,
-  BookOpen,
-  Target,
   Award,
-  Sparkles,
-  Search,
   HelpCircle,
 } from 'lucide-react'
 import { cn } from '@/src/lib/utils'
@@ -43,7 +30,7 @@ const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true },
-  transition: { duration: 0.6, ease: 'easeOut' },
+  transition: { duration: 0.6, ease: 'easeOut' as const },
 }
 
 const staggerContainer = {
@@ -57,7 +44,6 @@ const staggerContainer = {
 }
 
 export function VestibulinhoClient() {
-  const [isSubmitting, setIsSubmitting] = useState(false)
   const [currentDate] = useState(new Date())
 
   const parseData = (dataStr: string) => {

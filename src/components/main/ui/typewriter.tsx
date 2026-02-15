@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 interface TypewriterProps {
   words: string[]
@@ -66,7 +66,7 @@ export function Typewriter({
         transition={{
           duration: 0.8,
           repeat: Infinity,
-          ease: 'linear',
+          ease: 'linear' as const,
           times: [0, 0.5, 1],
         }}
         className="inline-block w-[3px] h-[0.9em] bg-white ml-1 align-middle"

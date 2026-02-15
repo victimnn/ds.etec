@@ -12,8 +12,6 @@ import {
   MoreHorizontal,
   Mail,
   Phone,
-  MapPin,
-  GraduationCap,
   ExternalLink,
   Loader2,
   Trash2,
@@ -42,8 +40,6 @@ import {
   Card,
   CardContent,
   CardHeader,
-  CardTitle,
-  CardDescription,
 } from '@/src/components/ui/card'
 
 export default function AlunosListPage() {

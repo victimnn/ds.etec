@@ -25,7 +25,6 @@ import { Alert, AlertDescription, AlertTitle } from '@/src/components/ui/alert'
 import { Button } from '@/src/components/ui/button'
 import { Input } from '@/src/components/ui/input'
 import { Textarea } from '@/src/components/ui/textarea'
-import { cn } from '@/src/lib/utils'
 
 type OptionItem = { id: number; nome: string | null }
 
@@ -44,14 +43,12 @@ type SubmitState = {
 
 export function BaseCadastros() {
   const [options, setOptions] = useState<OptionsResponse | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
   const [isSubmitting, setIsSubmitting] = useState<string | null>(null)
   const [state, setState] = useState<SubmitState | null>(null)
 
   async function loadOptions({
     silentError = false,
   }: { silentError?: boolean } = {}) {
-    setIsLoading(true)
     try {
       const response = await fetch('/api/admin/options', { cache: 'no-store' })
       if (!response.ok) {
@@ -65,13 +62,11 @@ export function BaseCadastros() {
           message: 'Nao foi possivel carregar opcoes do banco.',
         })
       }
-    } finally {
-      setIsLoading(false)
     }
   }
 
   useEffect(() => {
-    void loadOptions()
+    loadOptions()
   }, [])
 
   async function submitForm(
@@ -302,7 +297,7 @@ export function BaseCadastros() {
               vírgulas. Elas aparecerão como tags nos perfis.
             </p>
             <div className="p-3 bg-accent/50 rounded-lg text-xs font-mono">
-              "Mestre em Computação, 10 anos de Etec, Especialista React"
+              &quot;Mestre em Computação, 10 anos de Etec, Especialista React&quot;
             </div>
           </CardContent>
         </Card>

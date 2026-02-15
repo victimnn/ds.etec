@@ -23,7 +23,6 @@ import {
   ImageIcon,
   Calendar,
   CheckCircle2,
-  ExternalLink,
   Share2,
   Info,
   Layers,

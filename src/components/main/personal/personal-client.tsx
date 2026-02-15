@@ -2,42 +2,20 @@
 
 import * as React from 'react'
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import {
   Card,
-  CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from '@/src/components/ui/card'
 import { Badge } from '@/src/components/ui/badge'
 import { Button } from '@/src/components/ui/button'
 import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@/src/components/ui/sheet'
-import {
-  Mail,
   Linkedin,
   Github,
   Code,
   Briefcase,
-  GraduationCap,
-  User,
   Award,
-  Star,
-  ExternalLink,
-  Play,
-  BookOpen,
-  Target,
-  TrendingUp,
-  Menu,
-  Home,
-  Sparkles,
-  MapPin,
 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -47,7 +25,7 @@ const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true },
-  transition: { duration: 0.6, ease: 'easeOut' },
+  transition: { duration: 0.6, ease: 'easeOut' as const },
 }
 
 const staggerContainer = {
@@ -61,14 +39,12 @@ const staggerContainer = {
 }
 
 export function PersonalClient() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('inicio')
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
-      setIsMenuOpen(false)
     }
   }
 
@@ -272,7 +248,7 @@ export function PersonalClient() {
               Um pouco sobre mim
             </h2>
             <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed italic">
-              "{dadosPessoais.bio}"
+              &quot;{dadosPessoais.bio}&quot;
             </p>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
               <div className="space-y-1">

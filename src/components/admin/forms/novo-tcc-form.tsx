@@ -7,7 +7,6 @@ import {
   CheckCircle2,
   Loader2,
   Info,
-  Link as LinkIcon,
   ChevronRight,
   ChevronLeft,
   Layout,
@@ -89,9 +88,10 @@ export function NovoTccForm() {
     )
     let isStepValid = true
 
-    inputs.forEach((input: any) => {
-      if (!input.checkValidity()) {
-        input.reportValidity()
+    inputs.forEach(input => {
+      const el = input as HTMLInputElement
+      if (!el.checkValidity()) {
+        el.reportValidity()
         isStepValid = false
       }
     })
@@ -158,8 +158,11 @@ export function NovoTccForm() {
 
       const data = (await response.json()) as CreateProjectResponse
 
-      if (!response.ok || data.success === false) {
-        throw new Error(data.error || 'Erro interno no servidor ao salvar.')
+      if (!response.ok || !data.success) {
+        const message = data.success
+          ? 'Falha ao salvar no Supabase.'
+          : data.error
+        throw new Error(message)
       }
 
       setSubmitResult({ success: true, data: data.data })
@@ -167,10 +170,12 @@ export function NovoTccForm() {
       setSelectedMembers([])
       setCurrentStep(1)
       window.scrollTo({ top: 0, behavior: 'smooth' })
-    } catch (err: any) {
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : 'Falha na comunicação com o banco.'
       setSubmitResult({
         success: false,
-        error: err.message || 'Falha na comunicação com o banco.',
+        error: message,
       })
     } finally {
       setIsSubmitting(false)

@@ -1,6 +1,5 @@
 import { Card, CardContent } from '@/src/components/ui/card'
-import { Badge } from '@/src/components/ui/badge'
-import { Calendar, Users, Code, BookOpen, CheckCircle } from 'lucide-react'
+import { Calendar, Users, Code, BookOpen } from 'lucide-react'
 import type { TCCProject } from '@/lib/types'
 
 interface ProjectInfoProps {

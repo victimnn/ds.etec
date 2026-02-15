@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'DS Etec',
+  title: 'DS Etec João Belarmino',
   description: 'Portal de Desenvolvimento de Sistemas - Etec João Belarmino',
 }
 

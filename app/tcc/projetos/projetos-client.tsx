@@ -1,8 +1,7 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Card, CardContent } from '@/src/components/ui/card'
+import { motion, AnimatePresence, type Variants } from 'framer-motion'
 import { Button } from '@/src/components/ui/button'
 import { Input } from '@/src/components/ui/input'
 import {
@@ -30,7 +29,7 @@ interface ProjetosClientProps {
   projects: TCCProject[]
 }
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -40,12 +39,12 @@ const containerVariants = {
   },
 }
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' },
+    transition: { duration: 0.5, ease: [0, 0, 0.2, 1] },
   },
 }
 
@@ -63,7 +62,13 @@ export function ProjetosClient({ projects }: ProjetosClientProps) {
   }, [projects])
 
   const uniquePeriods = useMemo(() => {
-    const periods = [...new Set(projects.map(p => p.period))].filter(Boolean)
+    const periods = [
+      ...new Set(
+        projects
+          .map(p => p.period)
+          .filter((period): period is string => Boolean(period))
+      ),
+    ]
     return periods.sort()
   }, [projects])
 
@@ -269,8 +274,7 @@ export function ProjetosClient({ projects }: ProjetosClientProps) {
           {filteredProjects.length > 0 ? (
             <motion.div
               key={
-                viewMode +
-                (searchTerm || categoryFilter || yearFilter || periodFilter)
+                `${viewMode}-${searchTerm}-${categoryFilter}-${yearFilter}-${periodFilter}`
               }
               initial="hidden"
               animate="visible"

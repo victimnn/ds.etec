@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useTheme } from 'next-themes'
 import {
   ArrowLeft,
   BookOpen,
@@ -35,9 +36,12 @@ export function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [hoveredPath, setHoveredPath] = useState<string | null>(null)
+  const [mounted, setMounted] = useState(false)
+  const { theme } = useTheme()
   const pathname = usePathname()
 
   useEffect(() => {
+    setMounted(true)
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20)
     }
@@ -51,6 +55,9 @@ export function Navigation() {
     }
     return pathname.startsWith(href)
   }
+
+  const logoClass =
+    mounted && theme === 'dark' ? 'brightness-0 invert' : 'logo-primary'
 
   return (
     <header
@@ -76,12 +83,15 @@ export function Navigation() {
               <img
                 src="/logo-ds.png"
                 alt="TCC DS Logo"
-                className="relative h-9 md:h-11 w-auto object-contain logo-primary transition-transform duration-500 group-hover:scale-110"
+                className={cn(
+                  'relative h-9 md:h-11 w-auto object-contain transition-transform duration-500 group-hover:scale-110',
+                  logoClass
+                )}
               />
             </div>
             <div className="flex flex-col">
               <span className="text-sm md:text-lg font-bold tracking-tight text-foreground leading-none">
-                Hub<span className="text-primary">TCC's</span>
+                Hub<span className="text-primary">TCC&apos;s</span>
               </span>
               <span
                 className={cn(

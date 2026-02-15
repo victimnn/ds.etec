@@ -71,7 +71,8 @@ export function NovoAlunoForm() {
         if (!response.ok)
           throw new Error(data.error || 'Erro desconhecido na API')
         setOptions(data as OptionsResponse)
-      } catch (err: any) {
+      } catch (error) {
+        console.error('Failed to load options:', error)
         setOptionsError(
           'Não foi possível carregar as listas de Habilidades/Funções. Recarregue a página.'
         )
@@ -141,9 +142,10 @@ export function NovoAlunoForm() {
       }
     }
 
-    inputs.forEach((input: any) => {
-      if (!input.checkValidity()) {
-        input.reportValidity()
+    inputs.forEach(input => {
+      const el = input as HTMLInputElement
+      if (!el.checkValidity()) {
+        el.reportValidity()
         isStepValid = false
       }
     })
@@ -213,8 +215,11 @@ export function NovoAlunoForm() {
 
       const data = (await response.json()) as CreateAlunoResponse
 
-      if (!response.ok || data.success === false) {
-        throw new Error(data.error || 'Falha ao salvar no Supabase.')
+      if (!response.ok || !data.success) {
+        const message = data.success
+          ? 'Falha ao salvar no Supabase.'
+          : data.error
+        throw new Error(message)
       }
 
       setSubmitResult({ success: true, data: data.data })
@@ -225,10 +230,12 @@ export function NovoAlunoForm() {
       setSelectedHabilidades([])
       setCurrentStep(1)
       window.scrollTo({ top: 0, behavior: 'smooth' })
-    } catch (err: any) {
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : 'Erro de conexão.'
       setSubmitResult({
         success: false,
-        error: err.message || 'Erro de conexão.',
+        error: message,
       })
     } finally {
       setIsSubmitting(false)

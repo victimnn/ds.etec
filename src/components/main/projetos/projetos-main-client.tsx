@@ -13,20 +13,15 @@ import {
 import { Badge } from '@/src/components/ui/badge'
 import { Button } from '@/src/components/ui/button'
 import {
-  ExternalLink,
   Github,
   Play,
   Code,
   Smartphone,
   Monitor,
-  Gamepad2,
-  ArrowRight,
   Users,
   Award,
   Star,
   Calendar,
-  Search,
-  Filter,
 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -38,7 +33,7 @@ const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true },
-  transition: { duration: 0.6, ease: 'easeOut' },
+  transition: { duration: 0.6, ease: 'easeOut' as const },
 }
 
 const staggerContainer = {
@@ -265,7 +260,7 @@ export function ProjetosMainClient() {
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             <AnimatePresence mode="popLayout">
-              {projetosFiltrados.map((projeto, index) => (
+              {projetosFiltrados.map(projeto => (
                 <motion.div
                   key={projeto.titulo}
                   layout

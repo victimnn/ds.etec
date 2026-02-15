@@ -37,7 +37,7 @@ const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true },
-  transition: { duration: 0.6, ease: 'easeOut' },
+  transition: { duration: 0.6, ease: 'easeOut' as const },
 }
 
 const staggerContainer = {
@@ -70,7 +70,7 @@ export function HomeClient({
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
+            transition={{ duration: 0.8, ease: 'easeOut' as const }}
             className="flex items-center justify-center gap-4 sm:gap-8 mb-12"
           >
             <div className="glass p-4 rounded-xl shadow-glow hover-lift">
@@ -102,7 +102,7 @@ export function HomeClient({
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">
-              <span className="text-primary">Hub de TCC's</span>
+              <span className="text-primary">Hub de TCC&apos;s</span>
               <span className="block text-foreground mt-2 font-extrabold">
                 Desenvolvimento de Sistemas
               </span>
@@ -154,7 +154,7 @@ export function HomeClient({
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
+            transition={{ duration: 0.8, ease: 'easeOut' as const }}
             className="max-w-4xl mx-auto"
           >
             <AdvisorPopup advisor={coordinator}>
@@ -189,7 +189,7 @@ export function HomeClient({
                         ))}
                       </div>
                       <p className="text-muted-foreground leading-relaxed italic">
-                        "{coordinator.about}"
+                        &quot;{coordinator.about}&quot;
                       </p>
                     </div>
                   </div>

@@ -5,13 +5,10 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import {
   LayoutDashboard,
-  Users,
   FolderPlus,
   UserPlus,
   GraduationCap,
   LogOut,
-  User,
-  Layout,
   ShieldCheck,
   ChevronRight,
 } from 'lucide-react'

@@ -17,22 +17,15 @@ import {
   AccordionTrigger,
 } from '@/src/components/ui/accordion'
 import {
-  BookOpen,
-  Users,
   Award,
-  Building,
   Monitor,
   Code,
   Database,
   Globe,
   Smartphone,
-  Shield,
   Cpu,
   TestTube,
   ArrowRight,
-  Info,
-  School,
-  GraduationCap,
   BookMarked,
   Rocket,
   Target,
@@ -40,6 +33,7 @@ import {
   CheckCircle2,
   MessageSquare,
   Laptop,
+  Users,
 } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from '@/src/components/ui/button'
@@ -50,7 +44,7 @@ const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true },
-  transition: { duration: 0.6, ease: 'easeOut' },
+  transition: { duration: 0.6, ease: 'easeOut' as const },
 }
 
 export default function SobrePage() {
@@ -132,7 +126,7 @@ export default function SobrePage() {
         },
         {
           nome: 'Documentação Técnica',
-          description:
+          descricao:
             'Elaboração de manual do sistema e documentação oficial.',
           icon: BookMarked,
         },

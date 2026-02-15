@@ -4,7 +4,6 @@ import * as React from 'react'
 import { motion } from 'framer-motion'
 import {
   Card,
-  CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
@@ -18,10 +17,7 @@ import {
 } from '@/src/components/ui/accordion'
 import {
   BookOpen,
-  Users,
   Award,
-  Building,
-  Clock,
   Monitor,
   Code,
   Database,
@@ -30,21 +26,16 @@ import {
   Shield,
   Cpu,
   TestTube,
-  ArrowRight,
-  Sparkles,
   GraduationCap,
 } from 'lucide-react'
 import Image from 'next/image'
-import Link from 'next/link'
-import { Button } from '@/src/components/ui/button'
 import { HeroButtons } from '@/src/components/ui/hero-buttons'
-import { cn } from '@/src/lib/utils'
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true },
-  transition: { duration: 0.6, ease: 'easeOut' },
+  transition: { duration: 0.6, ease: 'easeOut' as const },
 }
 
 const staggerContainer = {
@@ -63,31 +54,31 @@ export function SobreClient() {
       ano: '1º Ano',
       disciplinas: [
         { nome: 'BANCO DE DADOS I', icon: Database },
-        { nome: 'CONDUTA PROFISSIONAL', icon: Award },
+        { nome: 'CONDUTA PROFISSIONAL E RELACOES DE TRABALHO', icon: Award },
         { nome: 'PROGRAMAÇÃO E ALGORITMOS', icon: Code },
-        { nome: 'TIC PROJETOS', icon: Monitor },
+        { nome: 'PROJETOS DE TECNOLOGIA DE INFORMAÇÃO E COMUNICAÇÃO', icon: Monitor },
         { nome: 'PROGRAMAÇÃO WEB I', icon: Globe },
-        { nome: 'EMBARCADOS E IoT', icon: Cpu },
+        { nome: 'SISTEMAS EMBARCADOS E IoT', icon: Cpu },
       ],
     },
     {
       ano: '2º Ano',
       disciplinas: [
-        { nome: 'ANALISE E PROJETO', icon: Monitor },
+        { nome: 'ANALISE E PROJETO DE SISTEMAS', icon: Monitor },
         { nome: 'BANCO DE DADOS II', icon: Database },
-        { nome: 'DESENVOLVIMENTO I', icon: Code },
-        { nome: 'APP MOBILE I', icon: Smartphone },
+        { nome: 'DESENVOLVIMENTO DE SISTEMAS I', icon: Code },
+        { nome: 'PROGRAMAÇÃO DE APLICATIVOS MOBILE I', icon: Smartphone },
         { nome: 'PROGRAMAÇÃO WEB II', icon: Globe },
       ],
     },
     {
       ano: '3º Ano',
       disciplinas: [
-        { nome: 'NUVEM (CLOUD)', icon: Shield },
-        { nome: 'DESENVOLVIMENTO II', icon: Code },
-        { nome: 'APP MOBILE II', icon: Smartphone },
+        { nome: 'COMPUTAÇÃO EM NUVEM', icon: Shield },
+        { nome: 'DESENVOLVIMENTO DE SISTEMAS II', icon: Code },
+        { nome: 'PROGRAMAÇÃO DE APLICATIVOS MOBILE II', icon: Smartphone },
         { nome: 'PROGRAMAÇÃO WEB III', icon: Globe },
-        { nome: 'TCC', icon: Award },
+        { nome: 'TCC EM DESENVOLVIMENTO DE SISTEMAS', icon: Award },
       ],
     },
   ]

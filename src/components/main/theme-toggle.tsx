@@ -47,7 +47,7 @@ export function ThemeToggle() {
             initial={{ y: 20, opacity: 0, rotate: 45 }}
             animate={{ y: 0, opacity: 1, rotate: 0 }}
             exit={{ y: -20, opacity: 0, rotate: -45 }}
-            transition={{ duration: 0.2, ease: 'easeInOut' }}
+            transition={{ duration: 0.2, ease: 'easeInOut' as const }}
             className="flex items-center justify-center"
           >
             <Moon className="h-[1.2rem] w-[1.2rem] text-primary" />
@@ -58,7 +58,7 @@ export function ThemeToggle() {
             initial={{ y: 20, opacity: 0, rotate: 45 }}
             animate={{ y: 0, opacity: 1, rotate: 0 }}
             exit={{ y: -20, opacity: 0, rotate: -45 }}
-            transition={{ duration: 0.2, ease: 'easeInOut' }}
+            transition={{ duration: 0.2, ease: 'easeInOut' as const }}
             className="flex items-center justify-center"
           >
             <Sun className="h-[1.2rem] w-[1.2rem] text-primary" />

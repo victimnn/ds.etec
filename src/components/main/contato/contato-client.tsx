@@ -8,8 +8,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/src/components/ui/card'
-import { Badge } from '@/src/components/ui/badge'
-import { Button } from '@/src/components/ui/button'
 import {
   Accordion,
   AccordionContent,
@@ -18,23 +16,19 @@ import {
 } from '@/src/components/ui/accordion'
 import {
   Clock,
-  Instagram,
   Mail,
-  MapPin,
   Phone,
   MessageCircle,
   Send,
-  Sparkles,
 } from 'lucide-react'
 import { HeroButtons } from '@/src/components/ui/hero-buttons'
 import { institutionContact } from '@/src/constants/institution'
-import { cn } from '@/src/lib/utils'
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true },
-  transition: { duration: 0.6, ease: 'easeOut' },
+  transition: { duration: 0.6, ease: 'easeOut' as const },
 }
 
 const staggerContainer = {

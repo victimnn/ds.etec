@@ -8,7 +8,7 @@ export function FaviconSwitcher() {
 
   useEffect(() => {
     // Função para mudar o favicon
-    const changeFavicon = (theme: string | undefined) => {
+    const changeFavicon = () => {
       const favicon = document.querySelector(
         'link[rel="icon"]'
       ) as HTMLLinkElement
@@ -27,7 +27,7 @@ export function FaviconSwitcher() {
     }
 
     // Muda o favicon quando o tema muda
-    changeFavicon(theme)
+    changeFavicon()
   }, [theme])
 
   // Não renderiza nada visualmente

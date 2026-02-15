@@ -1,16 +1,12 @@
 'use client'
 
 import * as React from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
 } from '@/src/components/ui/card'
 import { Badge } from '@/src/components/ui/badge'
-import { Button } from '@/src/components/ui/button'
 import {
   Accordion,
   AccordionContent,
@@ -20,22 +16,12 @@ import {
 import {
   Building,
   TrendingUp,
-  Users,
   Star,
-  Quote,
-  Briefcase,
-  DollarSign,
-  Target,
-  Award,
-  ExternalLink,
-  ArrowRight,
-  Code,
   Globe,
   Sparkles,
   Rocket,
 } from 'lucide-react'
 import Image from 'next/image'
-import Link from 'next/link'
 import { HeroButtons } from '@/src/components/ui/hero-buttons'
 import { Counter } from '@/src/components/tcc/ui/counter'
 import { cn } from '@/src/lib/utils'
@@ -44,7 +30,7 @@ const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true },
-  transition: { duration: 0.6, ease: 'easeOut' },
+  transition: { duration: 0.6, ease: 'easeOut' as const },
 }
 
 const staggerContainer = {
@@ -404,42 +390,7 @@ export function MercadoClient() {
               </div>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="max-w-xl mx-auto w-full"
-            >
-              <Accordion type="single" collapsible className="space-y-4">
-                {[
-                  {
-                    q: 'Quais tecnologias aprender?',
-                    a: 'Focamos em React, Node.js, Cloud Computing e Inteligência Artificial para garantir sua empregabilidade.',
-                  },
-                  {
-                    q: 'Como conseguir estágio?',
-                    a: 'Através de nossas parcerias exclusivas e do desenvolvimento de um portfólio sólido desde o primeiro semestre.',
-                  },
-                  {
-                    q: 'Média salarial da área?',
-                    a: 'O mercado de TI oferece os salários mais altos do país, com iniciantes ganhando acima da média nacional.',
-                  },
-                ].map((item, i) => (
-                  <AccordionItem
-                    key={i}
-                    value={`item-${i}`}
-                    className="bg-background rounded-2xl border px-8 shadow-sm"
-                  >
-                    <AccordionTrigger className="font-bold text-left py-6 hover:no-underline">
-                      {item.q}
-                    </AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground pb-6 leading-relaxed text-pretty">
-                      {item.a}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </motion.div>
+            
           </div>
         </div>
       </section>

@@ -15,7 +15,6 @@ import {
   ArrowRight,
   History,
   Star,
-  Layout,
 } from 'lucide-react'
 import { DashboardStats } from '@/src/components/admin/dashboard-stats'
 

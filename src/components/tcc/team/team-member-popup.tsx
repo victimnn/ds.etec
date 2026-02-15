@@ -10,7 +10,6 @@ import {
 } from '@/src/components/ui/dialog'
 import { Button } from '@/src/components/ui/button'
 import { Badge } from '@/src/components/ui/badge'
-import { Separator } from '@/src/components/ui/separator'
 import {
   Linkedin,
   Mail,
@@ -23,8 +22,8 @@ import {
   Globe,
   GraduationCap,
 } from 'lucide-react'
+import Image from 'next/image'
 import type { TeamMember } from '@/lib/types'
-import { cn } from '@/src/lib/utils'
 
 interface TeamMemberPopupProps {
   member: TeamMember
@@ -52,9 +51,11 @@ export function TeamMemberPopup({ member, children }: TeamMemberPopupProps) {
             {/* Avatar */}
             <div className="relative group shrink-0 mx-auto md:mx-0">
               <div className="w-36 h-36 rounded-2xl overflow-hidden border-4 border-background shadow-2xl bg-muted">
-                <img
+                <Image
                   src={member.photo || '/placeholder.svg'}
                   alt={member.name}
+                  width={144}
+                  height={144}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
               </div>
