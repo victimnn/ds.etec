@@ -4,4 +4,3 @@ export const developerProfile = {
   linkedin: 'https://www.linkedin.com/in/victor-pramos19/',
   portfolioPath: '/personal',
 }
-

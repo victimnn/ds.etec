@@ -5,7 +5,7 @@ import { TCC_SITE_URL, withBaseUrl } from '@/src/lib/site-urls'
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = TCC_SITE_URL
   const tccProjects = await getTccProjects()
-  
+
   // Páginas estáticas
   const staticPages = [
     {
@@ -23,7 +23,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ]
 
   // Páginas dinâmicas dos projetos
-  const projectPages = tccProjects.map((project) => ({
+  const projectPages = tccProjects.map(project => ({
     url: withBaseUrl(baseUrl, `/projetos/${project.id}`),
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,

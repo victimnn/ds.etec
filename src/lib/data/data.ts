@@ -48,10 +48,17 @@ async function supabaseDeepSelect<T>(
 }
 
 function mapRawMember(raw: RawAlunoSchema): TeamMember {
-  const skills = raw.aluno_habilidade?.map(h => h.habilidade.nome || '').filter(Boolean) || []
-  const expertise = raw.aluno_especializacao?.map(e => e.especializacao.nome || '').filter(Boolean).join(', ') || 'Desenvolvimento de Sistemas'
+  const skills =
+    raw.aluno_habilidade?.map(h => h.habilidade.nome || '').filter(Boolean) ||
+    []
+  const expertise =
+    raw.aluno_especializacao
+      ?.map(e => e.especializacao.nome || '')
+      .filter(Boolean)
+      .join(', ') || 'Desenvolvimento de Sistemas'
   const role = raw.aluno_funcao?.[0]?.funcao.nome || 'Integrante'
-  const achievements = raw.conquista?.map(c => c.nome || '').filter(Boolean) || []
+  const achievements =
+    raw.conquista?.map(c => c.nome || '').filter(Boolean) || []
 
   return {
     id: raw.id,
@@ -100,16 +107,23 @@ function mapRawAdvisor(raw: RawProfessorSchema | null | undefined): Advisor {
 
 export async function getTccProjects(): Promise<TCCProject[]> {
   try {
-    const query = 'tcc?select=*,categoria(nome),professor(*,conquista(nome)),aluno_tcc(aluno(*,aluno_funcao(funcao(nome)),aluno_especializacao(especializacao(nome)),aluno_habilidade(habilidade(nome)),conquista(nome)))&order=ano.desc,id.desc'
+    const query =
+      'tcc?select=*,categoria(nome),professor(*,conquista(nome)),aluno_tcc(aluno(*,aluno_funcao(funcao(nome)),aluno_especializacao(especializacao(nome)),aluno_habilidade(habilidade(nome)),conquista(nome)))&order=ano.desc,id.desc'
     const rawProjects = await supabaseDeepSelect(query, rawTccDeepListSchema)
 
     return rawProjects.map((row: RawTccDeepSchema) => {
       const categoryName = row.categoria?.nome || 'Geral'
-      const members = row.aluno_tcc?.map(at => at.aluno ? mapRawMember(at.aluno) : null).filter((m): m is TeamMember => m !== null) || []
-      const technologies = Array.from(new Set(members.flatMap(m => m.skills || [])))
-      
+      const members =
+        row.aluno_tcc
+          ?.map(at => (at.aluno ? mapRawMember(at.aluno) : null))
+          .filter((m): m is TeamMember => m !== null) || []
+      const technologies = Array.from(
+        new Set(members.flatMap(m => m.skills || []))
+      )
+
       // Tenta pegar o turno do primeiro aluno que tiver essa informação
-      const period = row.aluno_tcc?.find(at => at.aluno?.turno)?.aluno?.turno || undefined
+      const period =
+        row.aluno_tcc?.find(at => at.aluno?.turno)?.aluno?.turno || undefined
 
       return {
         id: row.id,
@@ -138,9 +152,11 @@ export async function getTccProjects(): Promise<TCCProject[]> {
   }
 }
 
-export async function getProjectById(id: number): Promise<TCCProject | undefined> {
+export async function getProjectById(
+  id: number
+): Promise<TCCProject | undefined> {
   const projects = await getTccProjects()
-  return projects.find((p) => p.id === id)
+  return projects.find(p => p.id === id)
 }
 
 export const tccProjects: TCCProject[] = []

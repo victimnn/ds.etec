@@ -8,7 +8,7 @@ interface CounterProps {
   suffix?: string
 }
 
-export function Counter({ end, duration = 2000, suffix = "" }: CounterProps) {
+export function Counter({ end, duration = 2000, suffix = '' }: CounterProps) {
   const [count, setCount] = useState(0)
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export function Counter({ end, duration = 2000, suffix = "" }: CounterProps) {
       if (!startTime) startTime = timestamp
       const progress = Math.min((timestamp - startTime) / duration, 1)
       setCount(Math.floor(progress * endValue))
-      
+
       if (progress < 1) {
         window.requestAnimationFrame(step)
       }
@@ -30,7 +30,8 @@ export function Counter({ end, duration = 2000, suffix = "" }: CounterProps) {
 
   return (
     <span>
-      {count}{suffix}
+      {count}
+      {suffix}
     </span>
   )
 }

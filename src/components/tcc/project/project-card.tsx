@@ -1,9 +1,9 @@
-import { Card, CardContent } from "@/src/components/ui/card"
-import { Badge } from "@/src/components/ui/badge"
-import { Button } from "@/src/components/ui/button"
-import Link from "next/link"
-import { Users, Calendar, ExternalLink } from "lucide-react"
-import type { TCCProject } from "@/lib/types"
+import { Card, CardContent } from '@/src/components/ui/card'
+import { Badge } from '@/src/components/ui/badge'
+import { Button } from '@/src/components/ui/button'
+import Link from 'next/link'
+import { Users, Calendar, ExternalLink } from 'lucide-react'
+import type { TCCProject } from '@/lib/types'
 
 interface ProjectCardProps {
   project: TCCProject
@@ -11,23 +11,33 @@ interface ProjectCardProps {
   inCarousel?: boolean
 }
 
-export function ProjectCard({ project, variant = 'default', inCarousel = false }: ProjectCardProps) {
+export function ProjectCard({
+  project,
+  variant = 'default',
+  inCarousel = false,
+}: ProjectCardProps) {
   const hoverClass = inCarousel ? 'hover-lift-carousel' : 'hover-lift'
-  
+
   const renderCompact = () => (
     <Card className={`group ${hoverClass} shadow-glow glass overflow-hidden`}>
       <CardContent className="p-0">
         <div className="aspect-video bg-white overflow-hidden relative flex items-center justify-center">
           <img
-            src={project.image || "/placeholder.svg"}
+            src={project.image || '/placeholder.svg'}
             alt={`Screenshot do projeto ${project.title}`}
             className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-300"
-            style={{ transform: `scale(${project.imageZoom ? project.imageZoom / 100 : 1})` }}
+            style={{
+              transform: `scale(${project.imageZoom ? project.imageZoom / 100 : 1})`,
+            }}
           />
           <div className="absolute top-3 right-3">
             <div className="flex gap-1">
               {project.category.map((cat, index) => (
-                <Badge key={index} variant="secondary" className="text-xs glass">
+                <Badge
+                  key={index}
+                  variant="secondary"
+                  className="text-xs glass"
+                >
                   {cat}
                 </Badge>
               ))}
@@ -44,10 +54,15 @@ export function ProjectCard({ project, variant = 'default', inCarousel = false }
           <h3 className="text-lg font-semibold mb-3 group-hover:text-primary transition-colors line-clamp-2">
             {project.title}
           </h3>
-          <p className="text-muted-foreground text-sm mb-4 line-clamp-2">{project.description}</p>
+          <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
+            {project.description}
+          </p>
           <div className="flex items-center gap-2 mb-4 text-sm text-muted-foreground">
             <Users className="h-4 w-4" />
-            <span>{project.members.length} integrante{project.members.length !== 1 ? 's' : ''}</span>
+            <span>
+              {project.members.length} integrante
+              {project.members.length !== 1 ? 's' : ''}
+            </span>
           </div>
           <Button asChild size="sm" className="w-full shadow-glow">
             <Link href={`/projetos/${project.id}`}>
@@ -64,15 +79,21 @@ export function ProjectCard({ project, variant = 'default', inCarousel = false }
       <CardContent className="p-0">
         <div className="aspect-video bg-white overflow-hidden relative flex items-center justify-center">
           <img
-            src={project.image || "/placeholder.svg"}
+            src={project.image || '/placeholder.svg'}
             alt={`Screenshot do projeto ${project.title}`}
             className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-300"
-            style={{ transform: `scale(${project.imageZoom ? project.imageZoom / 100 : 1})` }}
+            style={{
+              transform: `scale(${project.imageZoom ? project.imageZoom / 100 : 1})`,
+            }}
           />
           <div className="absolute top-4 right-4">
             <div className="flex gap-1">
               {project.category.map((cat, index) => (
-                <Badge key={index} variant="secondary" className="text-xs glass">
+                <Badge
+                  key={index}
+                  variant="secondary"
+                  className="text-xs glass"
+                >
                   {cat}
                 </Badge>
               ))}
@@ -89,13 +110,18 @@ export function ProjectCard({ project, variant = 'default', inCarousel = false }
           <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
             {project.title}
           </h3>
-          <p className="text-muted-foreground text-sm mb-4 line-clamp-3">{project.description}</p>
+          <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
+            {project.description}
+          </p>
           <div className="flex items-center gap-2 mb-4 text-sm text-muted-foreground">
             <Users className="h-4 w-4" />
-            <span>{project.members.length} integrante{project.members.length !== 1 ? 's' : ''}</span>
+            <span>
+              {project.members.length} integrante
+              {project.members.length !== 1 ? 's' : ''}
+            </span>
           </div>
           <div className="flex flex-wrap gap-2 mb-5">
-            {project.technologies.slice(0, 3).map((tech) => (
+            {project.technologies.slice(0, 3).map(tech => (
               <Badge key={tech} variant="outline" className="text-xs glass">
                 {tech}
               </Badge>
@@ -117,14 +143,18 @@ export function ProjectCard({ project, variant = 'default', inCarousel = false }
   )
 
   const renderDetailed = () => (
-    <Card className={`group ${hoverClass} shadow-glow glass overflow-hidden h-full flex flex-col`}>
+    <Card
+      className={`group ${hoverClass} shadow-glow glass overflow-hidden h-full flex flex-col`}
+    >
       <CardContent className="p-0 flex flex-col h-full">
         <div className="aspect-video bg-white overflow-hidden relative flex items-center justify-center">
           <img
-            src={project.image || "/placeholder.svg"}
+            src={project.image || '/placeholder.svg'}
             alt={`Screenshot do projeto ${project.title}`}
             className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-300"
-            style={{ transform: `scale(${project.imageZoom ? project.imageZoom / 100 : 1})` }}
+            style={{
+              transform: `scale(${project.imageZoom ? project.imageZoom / 100 : 1})`,
+            }}
           />
           <div className="absolute top-4 left-4 flex gap-2">
             {project.category.map((cat, index) => (
@@ -145,15 +175,23 @@ export function ProjectCard({ project, variant = 'default', inCarousel = false }
             <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
               {project.title}
             </h3>
-            <p className="text-muted-foreground text-sm mb-4 line-clamp-3">{project.description}</p>
+            <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
+              {project.description}
+            </p>
             <div className="flex items-center gap-2 mb-4 text-sm text-muted-foreground">
               <Users className="h-4 w-4" />
-              <span>{project.members.length} integrante{project.members.length !== 1 ? 's' : ''}</span>
+              <span>
+                {project.members.length} integrante
+                {project.members.length !== 1 ? 's' : ''}
+              </span>
               <span>•</span>
-              <span>{project.advisor?.name?.split(' ').slice(0, 3).join(' ') || 'Orientador não informado'}</span>
+              <span>
+                {project.advisor?.name?.split(' ').slice(0, 3).join(' ') ||
+                  'Orientador não informado'}
+              </span>
             </div>
             <div className="flex flex-wrap gap-2 mb-5">
-              {project.technologies.slice(0, 4).map((tech) => (
+              {project.technologies.slice(0, 4).map(tech => (
                 <Badge key={tech} variant="outline" className="text-xs glass">
                   {tech}
                 </Badge>

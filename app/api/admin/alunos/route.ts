@@ -45,7 +45,10 @@ async function resolveLookupId(table: string, nome: string): Promise<number> {
   })
 
   if (!created[0]?.id) {
-    throw new DataSourceError('SUPABASE_PAYLOAD', `Falha ao criar item em ${table}`)
+    throw new DataSourceError(
+      'SUPABASE_PAYLOAD',
+      `Falha ao criar item em ${table}`
+    )
   }
 
   return created[0].id
@@ -126,7 +129,8 @@ export async function POST(
 
     if (!parsedInput.success) {
       const message =
-        parsedInput.error.issues[0]?.message || 'Payload invalido para novo aluno.'
+        parsedInput.error.issues[0]?.message ||
+        'Payload invalido para novo aluno.'
       logApiMetric({
         endpoint: '/api/admin/alunos',
         method: 'POST',
@@ -136,7 +140,10 @@ export async function POST(
         error: message,
       })
 
-      return NextResponse.json({ success: false, error: message }, { status: 400 })
+      return NextResponse.json(
+        { success: false, error: message },
+        { status: 400 }
+      )
     }
 
     const input = parsedInput.data
@@ -165,7 +172,10 @@ export async function POST(
 
     alunoId = inserted[0]?.id || 0
     if (!alunoId) {
-      throw new DataSourceError('SUPABASE_PAYLOAD', 'Supabase nao retornou id do aluno.')
+      throw new DataSourceError(
+        'SUPABASE_PAYLOAD',
+        'Supabase nao retornou id do aluno.'
+      )
     }
 
     for (const nome of input.funcoes) {
@@ -215,7 +225,10 @@ export async function POST(
       ok: true,
     })
 
-    return NextResponse.json({ success: true, data: { id: alunoId } }, { status: 201 })
+    return NextResponse.json(
+      { success: true, data: { id: alunoId } },
+      { status: 201 }
+    )
   } catch (error) {
     if (alunoId) {
       await rollbackAluno(alunoId)
@@ -231,7 +244,10 @@ export async function POST(
       error: message,
     })
 
-    return NextResponse.json({ success: false, error: message }, { status: 500 })
+    return NextResponse.json(
+      { success: false, error: message },
+      { status: 500 }
+    )
   }
 }
 
@@ -239,7 +255,10 @@ export async function GET(request: NextRequest) {
   const tenant = resolveTenantFromRequest(request)
 
   if (tenant?.id !== 'admin') {
-    return NextResponse.json({ error: 'Operacao permitida apenas no tenant admin.' }, { status: 403 })
+    return NextResponse.json(
+      { error: 'Operacao permitida apenas no tenant admin.' },
+      { status: 403 }
+    )
   }
 
   if (!(await hasValidSupabaseSession(request))) {
@@ -248,13 +267,16 @@ export async function GET(request: NextRequest) {
 
   try {
     const students = await supabaseAdminRequest({
-      resourcePath: 'aluno?select=*,aluno_funcao(funcao(nome)),aluno_especializacao(especializacao(nome)),aluno_habilidade(habilidade(nome))&order=nome.asc',
+      resourcePath:
+        'aluno?select=*,aluno_funcao(funcao(nome)),aluno_especializacao(especializacao(nome)),aluno_habilidade(habilidade(nome))&order=nome.asc',
       schema: z.array(z.any()),
     })
 
     return NextResponse.json(students)
   } catch (error) {
-    return NextResponse.json({ error: 'Erro ao buscar alunos.' }, { status: 500 })
+    return NextResponse.json(
+      { error: 'Erro ao buscar alunos.' },
+      { status: 500 }
+    )
   }
 }
-

@@ -1,7 +1,11 @@
 // Layout components
 export { Navigation } from './layout/navigation'
 export { Footer } from './layout/footer'
-export { ProjectCardSkeleton, ProjectsGridSkeleton, ProjectDetailsSkeleton } from './layout/loading-skeleton'
+export {
+  ProjectCardSkeleton,
+  ProjectsGridSkeleton,
+  ProjectDetailsSkeleton,
+} from './layout/loading-skeleton'
 
 // Project components
 export { ProjectCard } from './project/project-card'

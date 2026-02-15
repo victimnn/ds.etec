@@ -25,7 +25,8 @@ export const institutionContact = {
   emailContacts: [
     {
       title: 'Academico',
-      description: 'Para questoes relacionadas ao curso e atividades academicas',
+      description:
+        'Para questoes relacionadas ao curso e atividades academicas',
       address: 'e067acad@cps.sp.gov.br',
     },
     {
@@ -55,4 +56,3 @@ export const institutionContact = {
     youtubeSchool: 'https://www.youtube.com/c/ETECJo%C3%A3oBelarminoOFICIAL',
   },
 }
-

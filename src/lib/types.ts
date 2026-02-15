@@ -54,4 +54,3 @@ export interface TCCProject {
   videoUrl?: string
   gallery?: string[]
 }
-

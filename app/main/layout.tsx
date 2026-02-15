@@ -9,13 +9,15 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Desenvolvimento de Sistemas - Etec João Belarmino',
-  description: 'Curso Técnico em Desenvolvimento de Sistemas integrado ao Ensino Médio na Etec João Belarmino de Amparo',
-  keywords: 'curso técnico, desenvolvimento de sistemas, etec, amparo, programação, ensino médio, ds, ds.etec, dsetec, etecjoaobelarmino, etec jb, etec jb ofcial, etec joão belarmino',
+  description:
+    'Curso Técnico em Desenvolvimento de Sistemas integrado ao Ensino Médio na Etec João Belarmino de Amparo',
+  keywords:
+    'curso técnico, desenvolvimento de sistemas, etec, amparo, programação, ensino médio, ds, ds.etec, dsetec, etecjoaobelarmino, etec jb, etec jb ofcial, etec joão belarmino',
   icons: {
     icon: '/logo-ds.png',
     shortcut: '/logo-ds.png',
     apple: '/logo-ds.png',
-  }
+  },
 }
 
 export default function RootLayout({

@@ -99,9 +99,17 @@ export const rawAlunoSchema = z.object({
   email: z.string().nullable().optional(),
   github: z.string().nullable().optional(),
   site: z.string().nullable().optional(),
-  aluno_funcao: z.array(z.object({ funcao: z.object({ nome: z.string().nullable() }) })).optional(),
-  aluno_especializacao: z.array(z.object({ especializacao: z.object({ nome: z.string().nullable() }) })).optional(),
-  aluno_habilidade: z.array(z.object({ habilidade: z.object({ nome: z.string().nullable() }) })).optional(),
+  aluno_funcao: z
+    .array(z.object({ funcao: z.object({ nome: z.string().nullable() }) }))
+    .optional(),
+  aluno_especializacao: z
+    .array(
+      z.object({ especializacao: z.object({ nome: z.string().nullable() }) })
+    )
+    .optional(),
+  aluno_habilidade: z
+    .array(z.object({ habilidade: z.object({ nome: z.string().nullable() }) }))
+    .optional(),
   conquista: z.array(z.object({ nome: z.string().nullable() })).optional(),
 })
 
@@ -126,7 +134,9 @@ export const rawTccDeepListSchema = z.array(rawTccDeepSchema)
 export const rawTccListSchema = z.array(rawTccSchema)
 export const rawAlunoTccListSchema = z.array(rawAlunoTccSchema)
 export const rawAlunoFuncaoListSchema = z.array(rawAlunoFuncaoSchema)
-export const rawAlunoEspecializacaoListSchema = z.array(rawAlunoEspecializacaoSchema)
+export const rawAlunoEspecializacaoListSchema = z.array(
+  rawAlunoEspecializacaoSchema
+)
 export const rawAlunoHabilidadeListSchema = z.array(rawAlunoHabilidadeSchema)
 export const rawConquistaListSchema = z.array(rawConquistaSchema)
 export const rawProfessorListSchema = z.array(rawProfessorSchema)
@@ -135,20 +145,24 @@ export const rawCategoriaListSchema = z.array(rawCategoriaSchema)
 const commaSeparatedArrayField = z
   .union([z.array(z.string()), z.string()])
   .optional()
-  .transform((value) => {
+  .transform(value => {
     if (!value) {
       return [] as string[]
     }
 
     const list = Array.isArray(value) ? value : value.split(',')
     return list
-      .map((item) => item.trim())
+      .map(item => item.trim())
       .filter(Boolean)
       .slice(0, 50)
   })
 
 export const createAlunoSchema = z.object({
-  nome: z.string().trim().min(2, 'Nome deve ter ao menos 2 caracteres').max(120),
+  nome: z
+    .string()
+    .trim()
+    .min(2, 'Nome deve ter ao menos 2 caracteres')
+    .max(120),
   descricao: z.string().trim().max(2000).optional(),
   carreira: z.string().trim().max(200).optional(),
   cidade: z.string().trim().max(120).optional(),
@@ -174,45 +188,39 @@ export const createTccSchema = z
     github: z.string().url().max(300).optional().or(z.literal('')),
     deploy: z.string().url().max(300).optional().or(z.literal('')),
     video: z.string().url().max(300).optional().or(z.literal('')),
-    categoriaId: z.preprocess(
-      (value) => {
-        if (value === '' || value === null || value === undefined) {
-          return undefined
-        }
+    categoriaId: z.preprocess(value => {
+      if (value === '' || value === null || value === undefined) {
+        return undefined
+      }
 
-        if (typeof value === 'number') {
-          return value
-        }
-
-        if (typeof value === 'string') {
-          const parsed = Number.parseInt(value.trim(), 10)
-          return Number.isNaN(parsed) ? value : parsed
-        }
-
+      if (typeof value === 'number') {
         return value
-      },
-      z.number().int().positive().optional()
-    ),
+      }
+
+      if (typeof value === 'string') {
+        const parsed = Number.parseInt(value.trim(), 10)
+        return Number.isNaN(parsed) ? value : parsed
+      }
+
+      return value
+    }, z.number().int().positive().optional()),
     categoriaNome: z.string().trim().max(120).optional(),
-    professorId: z.preprocess(
-      (value) => {
-        if (value === '' || value === null || value === undefined) {
-          return undefined
-        }
+    professorId: z.preprocess(value => {
+      if (value === '' || value === null || value === undefined) {
+        return undefined
+      }
 
-        if (typeof value === 'number') {
-          return value
-        }
-
-        if (typeof value === 'string') {
-          const parsed = Number.parseInt(value.trim(), 10)
-          return Number.isNaN(parsed) ? value : parsed
-        }
-
+      if (typeof value === 'number') {
         return value
-      },
-      z.number().int().positive().optional()
-    ),
+      }
+
+      if (typeof value === 'string') {
+        const parsed = Number.parseInt(value.trim(), 10)
+        return Number.isNaN(parsed) ? value : parsed
+      }
+
+      return value
+    }, z.number().int().positive().optional()),
     professorNome: z.string().trim().max(120).optional(),
     professorDescricao: z.string().trim().max(1500).optional(),
     professorArea: z.string().trim().max(120).optional(),
@@ -222,7 +230,7 @@ export const createTccSchema = z
     memberIds: z
       .union([z.array(z.number().int().positive()), z.string()])
       .optional()
-      .transform((value) => {
+      .transform(value => {
         if (!value) {
           return [] as number[]
         }
@@ -233,18 +241,18 @@ export const createTccSchema = z
 
         return value
           .split(',')
-          .map((item) => Number.parseInt(item.trim(), 10))
-          .filter((id) => Number.isInteger(id) && id > 0)
+          .map(item => Number.parseInt(item.trim(), 10))
+          .filter(id => Number.isInteger(id) && id > 0)
           .slice(0, 80)
       }),
     conquistasProfessor: commaSeparatedArrayField,
   })
   .refine(
-    (data) => Boolean(data.professorId) || Boolean(data.professorNome?.trim()),
+    data => Boolean(data.professorId) || Boolean(data.professorNome?.trim()),
     'Informe professorId ou professorNome'
   )
   .refine(
-    (data) => Boolean(data.categoriaId) || Boolean(data.categoriaNome?.trim()),
+    data => Boolean(data.categoriaId) || Boolean(data.categoriaNome?.trim()),
     'Informe categoriaId ou categoriaNome'
   )
 
@@ -262,25 +270,22 @@ export const createNamedEntitySchema = z.object({
   nome: z.string().trim().min(2).max(120),
 })
 
-const optionalNumericIdSchema = z.preprocess(
-  (value) => {
-    if (value === '' || value === null || value === undefined) {
-      return undefined
-    }
+const optionalNumericIdSchema = z.preprocess(value => {
+  if (value === '' || value === null || value === undefined) {
+    return undefined
+  }
 
-    if (typeof value === 'number') {
-      return value
-    }
-
-    if (typeof value === 'string') {
-      const parsed = Number.parseInt(value.trim(), 10)
-      return Number.isNaN(parsed) ? value : parsed
-    }
-
+  if (typeof value === 'number') {
     return value
-  },
-  z.number().int().positive().optional()
-)
+  }
+
+  if (typeof value === 'string') {
+    const parsed = Number.parseInt(value.trim(), 10)
+    return Number.isNaN(parsed) ? value : parsed
+  }
+
+  return value
+}, z.number().int().positive().optional())
 
 export const createConquistaSchema = z
   .object({
@@ -289,14 +294,16 @@ export const createConquistaSchema = z
     id_professor: optionalNumericIdSchema,
   })
   .refine(
-    (data) => Boolean(data.id_aluno) || Boolean(data.id_professor),
+    data => Boolean(data.id_aluno) || Boolean(data.id_professor),
     'Informe id_aluno ou id_professor'
   )
 
 export type RawTcc = z.infer<typeof rawTccSchema>
 export type RawAlunoTcc = z.infer<typeof rawAlunoTccSchema>
 export type RawAlunoFuncao = z.infer<typeof rawAlunoFuncaoSchema>
-export type RawAlunoEspecializacao = z.infer<typeof rawAlunoEspecializacaoSchema>
+export type RawAlunoEspecializacao = z.infer<
+  typeof rawAlunoEspecializacaoSchema
+>
 export type RawAlunoHabilidade = z.infer<typeof rawAlunoHabilidadeSchema>
 export type RawConquista = z.infer<typeof rawConquistaSchema>
 export type RawProfessor = z.infer<typeof rawProfessorSchema>

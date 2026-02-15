@@ -7,7 +7,8 @@ const FALLBACK_COORDINATOR: Advisor = {
   id: 0,
   name: 'Coordenação não informada',
   title: 'Coordenação do Curso',
-  about: 'A coordenação do curso será exibida assim que os dados forem cadastrados.',
+  about:
+    'A coordenação do curso será exibida assim que os dados forem cadastrados.',
   expertise: 'Gestão acadêmica',
   photo: '/placeholder-user.jpg',
   achievements: [],
@@ -15,10 +16,13 @@ const FALLBACK_COORDINATOR: Advisor = {
 
 const professorListSchema = z.array(rawProfessorSchema)
 
-export async function getAdvisors(params?: { limit?: number; offset?: number }): Promise<Advisor[]> {
+export async function getAdvisors(params?: {
+  limit?: number
+  offset?: number
+}): Promise<Advisor[]> {
   const config = getSupabasePublicConfig()
   const { limit = 50, offset = 0 } = params || {}
-  
+
   try {
     const resourcePath = `professor?select=*,conquista(nome)&order=nome.asc&limit=${limit}&offset=${offset}`
     const response = await fetch(`${config.url}/rest/v1/${resourcePath}`, {
@@ -34,7 +38,7 @@ export async function getAdvisors(params?: { limit?: number; offset?: number }):
 
     const rawData = await response.json()
     const parsed = professorListSchema.safeParse(rawData)
-    
+
     if (!parsed.success) return []
 
     return parsed.data.map(raw => ({

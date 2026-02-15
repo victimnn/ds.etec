@@ -7,6 +7,7 @@ Site institucional do curso Técnico em Desenvolvimento de Sistemas integrado ao
 ## 🚀 Tecnologias Utilizadas
 
 ### Frontend
+
 - **Next.js 15.2.4** - Framework React para produção
 - **React 19** - Biblioteca para interfaces de usuário
 - **TypeScript 5** - Superset JavaScript com tipagem estática
@@ -15,6 +16,7 @@ Site institucional do curso Técnico em Desenvolvimento de Sistemas integrado ao
 - **Lucide React** - Ícones modernos e consistentes
 
 ### Ferramentas de Desenvolvimento
+
 - **npm** - Gerenciador de pacotes padrão do Node.js
 - **PostCSS** - Processador CSS
 - **ESLint** - Linter para JavaScript/TypeScript
@@ -64,29 +66,32 @@ O projeto utiliza uma paleta de cores roxa com detalhes em rosa:
 
 ### Pré-requisitos
 
-- Node.js 18+ 
+- Node.js 18+
 - npm
 
 ### Instalação
 
 1. **Clone o repositório**
+
 ```bash
 git clone https://github.com/victimnn/ds.etec.git
 cd ds.etec
 ```
 
 2. **Instale as dependências**
+
 ```bash
 npm install
 ```
 
 3. **Execute em modo de desenvolvimento**
+
 ```bash
 npm run dev
 ```
 
 4. **Acesse a aplicação**
-Abra [http://localhost:3000](http://localhost:3000) no seu navegador.
+   Abra [http://localhost:3000](http://localhost:3000) no seu navegador.
 
 ### Scripts Disponíveis
 
@@ -144,6 +149,7 @@ O projeto utiliza um design system consistente baseado em:
 ### Estrutura de Componentes
 
 ### Páginas Principais
+
 - **🏠 Home** - Apresentação do curso e call-to-actions
 - **📚 Sobre** - Informações detalhadas sobre o curso
 - **📝 Vestibulinho** - Processo seletivo e inscrições
@@ -152,6 +158,7 @@ O projeto utiliza um design system consistente baseado em:
 - **📞 Contato** - Formulário e informações de contato
 
 ### Características Técnicas
+
 - ✅ **SSR/SSG** - Renderização otimizada
 - ✅ **Responsivo** - Funciona em todos os dispositivos
 - ✅ **Acessível** - Seguindo padrões WCAG
@@ -159,6 +166,7 @@ O projeto utiliza um design system consistente baseado em:
 - ✅ **SEO** - Meta tags e estrutura otimizada
 
 Configurado com regras para TypeScript e Next.js, incluindo:
+
 - Verificação de tipos
 - Regras de importação
 - Formatação consistente
@@ -166,6 +174,7 @@ Configurado com regras para TypeScript e Next.js, incluindo:
 ### Prettier
 
 Configurado para formatação automática com:
+
 - Aspas simples
 - Vírgula final
 - Largura máxima de 80 caracteres
@@ -173,6 +182,7 @@ Configurado para formatação automática com:
 ### TypeScript
 
 Configurado com:
+
 - Strict mode ativado
 - Path mapping para imports
 - Target ES2020
@@ -211,14 +221,17 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 **Etec João Belarmino de Amparo**
 
 ### 📧 Emails Institucionais
+
 - **Direção Acadêmica**: [e067acad@cps.sp.gov.br](mailto:e067acad@cps.sp.gov.br)
 - **Direção de Serviços**: [e067adm@cps.sp.gov.br](mailto:e067adm@cps.sp.gov.br)
 - **APM (Associação de Pais e Mestres)**: [apmjb@yahoo.com.br](mailto:apmjb@yahoo.com.br)
 
 ### 📱 Telefone
+
 - **WhatsApp**: [(19) 3808-1016](https://wa.me/551938081016)
 
 ### 🌐 Website
+
 - **Site Oficial**: [https://www.etecjoaobelarmino.com.br/](https://www.etecjoaobelarmino.com.br/)
 
 ---

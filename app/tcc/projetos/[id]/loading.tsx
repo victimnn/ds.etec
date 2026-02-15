@@ -1,8 +1,8 @@
-import { Navigation } from "@/src/components/tcc/layout/navigation"
-import { Card, CardContent } from "@/src/components/ui/card"
-import { Skeleton } from "@/src/components/ui/skeleton"
-import { Button } from "@/src/components/ui/button"
-import { ArrowLeft } from "lucide-react"
+import { Navigation } from '@/src/components/tcc/layout/navigation'
+import { Card, CardContent } from '@/src/components/ui/card'
+import { Skeleton } from '@/src/components/ui/skeleton'
+import { Button } from '@/src/components/ui/button'
+import { ArrowLeft } from 'lucide-react'
 
 export default function Loading() {
   return (

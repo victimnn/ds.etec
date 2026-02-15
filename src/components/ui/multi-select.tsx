@@ -42,7 +42,7 @@ export function MultiSelect({
   const [open, setOpen] = React.useState(false)
 
   const handleUnselect = (item: string) => {
-    onChange(selected.filter((i) => i !== item))
+    onChange(selected.filter(i => i !== item))
   }
 
   return (
@@ -60,34 +60,34 @@ export function MultiSelect({
         >
           <div className="flex flex-wrap gap-1">
             {selected.length > 0 ? (
-              selected.map((item) => (
+              selected.map(item => (
                 <Badge
                   variant="secondary"
                   key={item}
                   className="mr-1 mb-1 bg-primary/10 text-primary border-primary/20 hover:bg-primary/20"
-                  onClick={(e) => {
+                  onClick={e => {
                     e.stopPropagation()
                     handleUnselect(item)
                   }}
                 >
-                  {options.find((o) => o.value === item)?.label || item}
+                  {options.find(o => o.value === item)?.label || item}
                   <span
                     role="button"
                     tabIndex={0}
-                    aria-label={`Remover ${options.find((o) => o.value === item)?.label || item}`}
+                    aria-label={`Remover ${options.find(o => o.value === item)?.label || item}`}
                     className="ml-1 ring-offset-background rounded-full outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
-                    onKeyDown={(e) => {
+                    onKeyDown={e => {
                       if (e.key === 'Enter' || e.key === ' ') {
                         e.preventDefault()
                         e.stopPropagation()
                         handleUnselect(item)
                       }
                     }}
-                    onMouseDown={(e) => {
+                    onMouseDown={e => {
                       e.preventDefault()
                       e.stopPropagation()
                     }}
-                    onClick={(e) => {
+                    onClick={e => {
                       e.preventDefault()
                       e.stopPropagation()
                       handleUnselect(item)
@@ -110,13 +110,13 @@ export function MultiSelect({
           <CommandList>
             <CommandEmpty>Nenhum resultado encontrado.</CommandEmpty>
             <CommandGroup className="max-h-64 overflow-auto">
-              {options.map((option) => (
+              {options.map(option => (
                 <CommandItem
                   key={option.value}
                   onSelect={() => {
                     onChange(
                       selected.includes(option.value)
-                        ? selected.filter((item) => item !== option.value)
+                        ? selected.filter(item => item !== option.value)
                         : [...selected, option.value]
                     )
                   }}
@@ -124,7 +124,9 @@ export function MultiSelect({
                   <Check
                     className={cn(
                       'mr-2 h-4 w-4',
-                      selected.includes(option.value) ? 'opacity-100' : 'opacity-0'
+                      selected.includes(option.value)
+                        ? 'opacity-100'
+                        : 'opacity-0'
                     )}
                   />
                   {option.label}

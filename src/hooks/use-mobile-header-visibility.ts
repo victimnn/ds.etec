@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 
 export function useMobileHeaderVisibility(
   desktopBreakpoint = 1024,
-  hideAfterScrollY = 100,
+  hideAfterScrollY = 100
 ) {
   const [isVisible, setIsVisible] = useState(true)
   const lastScrollYRef = useRef(0)
@@ -49,4 +49,3 @@ export function useMobileHeaderVisibility(
 
   return isVisible
 }
-

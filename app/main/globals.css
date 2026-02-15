@@ -12,41 +12,41 @@
   --card-foreground: #2d1b69;
   --popover: #fdfcff;
   --popover-foreground: #2d1b69;
-  
+
   /* Cores Primárias - Roxo vibrante */
   --primary: #7c3aed;
   --primary-foreground: #faf9ff;
-  
+
   /* Cores Secundárias - Rosa suave */
   --secondary: #f3e8ff;
   --secondary-foreground: #581c87;
-  
+
   /* Cores de Destaque - Dourado complementar */
   --accent: #fbbf24;
   --accent-foreground: #581c87;
-  
+
   /* Cores Neutras - Tons de roxo suaves */
   --muted: #f5f3ff;
   --muted-foreground: #8b5cf6;
-  
+
   /* Cores de Destruição - Vermelho suave */
   --destructive: #ef4444;
   --destructive-foreground: #faf9ff;
-  
+
   /* Cores de Interface */
   --border: #e9d5ff;
   --input: #e9d5ff;
   --ring: #7c3aed;
-  
+
   /* Cores de Gráficos - Paleta harmoniosa */
-  --chart-1: #8b5cf6;  /* Roxo principal */
-  --chart-2: #a855f7;  /* Rosa */
-  --chart-3: #fbbf24;  /* Dourado */
-  --chart-4: #06b6d4;  /* Turquesa */
-  --chart-5: #ec4899;  /* Magenta */
-  
+  --chart-1: #8b5cf6; /* Roxo principal */
+  --chart-2: #a855f7; /* Rosa */
+  --chart-3: #fbbf24; /* Dourado */
+  --chart-4: #06b6d4; /* Turquesa */
+  --chart-5: #ec4899; /* Magenta */
+
   --radius: 0.625rem;
-  
+
   /* Cores da Sidebar */
   --sidebar: #faf9ff;
   --sidebar-foreground: #2d1b69;
@@ -60,54 +60,54 @@
 
 .dark {
   /* Cores de Fundo - Tons suaves de azul escuro e cinza */
-  --background: #0f172a;  /* Slate 900 - Fundo principal mais suave */
-  --foreground: #f8fafc;  /* Slate 50 - Texto principal mais suave */
-  --card: #1e293b;        /* Slate 800 - Cards com contraste suave */
-  --card-foreground: #f1f5f9;  /* Slate 100 - Texto dos cards */
-  --popover: #1e293b;     /* Slate 800 - Popovers */
-  --popover-foreground: #f1f5f9;  /* Slate 100 - Texto dos popovers */
-  
+  --background: #0f172a; /* Slate 900 - Fundo principal mais suave */
+  --foreground: #f8fafc; /* Slate 50 - Texto principal mais suave */
+  --card: #1e293b; /* Slate 800 - Cards com contraste suave */
+  --card-foreground: #f1f5f9; /* Slate 100 - Texto dos cards */
+  --popover: #1e293b; /* Slate 800 - Popovers */
+  --popover-foreground: #f1f5f9; /* Slate 100 - Texto dos popovers */
+
   /* Cores Primárias - Azul vibrante e suave */
-  --primary: #3b82f6;     /* Blue 500 - Azul mais suave */
-  --primary-foreground: #ffffff;  /* Branco puro para contraste */
-  
+  --primary: #3b82f6; /* Blue 500 - Azul mais suave */
+  --primary-foreground: #ffffff; /* Branco puro para contraste */
+
   /* Cores Secundárias - Azul escuro suave */
-  --secondary: #1e40af;   /* Blue 800 - Azul escuro */
-  --secondary-foreground: #dbeafe;  /* Blue 100 - Texto secundário */
-  
+  --secondary: #1e40af; /* Blue 800 - Azul escuro */
+  --secondary-foreground: #dbeafe; /* Blue 100 - Texto secundário */
+
   /* Cores de Destaque - Dourado suave */
-  --accent: #f59e0b;      /* Amber 500 - Dourado mais suave */
-  --accent-foreground: #1e293b;  /* Slate 800 - Texto escuro */
-  
+  --accent: #f59e0b; /* Amber 500 - Dourado mais suave */
+  --accent-foreground: #1e293b; /* Slate 800 - Texto escuro */
+
   /* Cores Neutras - Tons de cinza azulado */
-  --muted: #334155;       /* Slate 700 - Fundo neutro */
-  --muted-foreground: #94a3b8;  /* Slate 400 - Texto neutro */
-  
+  --muted: #334155; /* Slate 700 - Fundo neutro */
+  --muted-foreground: #94a3b8; /* Slate 400 - Texto neutro */
+
   /* Cores de Destruição - Vermelho suave */
   --destructive: #ef4444; /* Red 500 - Vermelho */
-  --destructive-foreground: #fef2f2;  /* Red 50 - Fundo vermelho */
-  
+  --destructive-foreground: #fef2f2; /* Red 50 - Fundo vermelho */
+
   /* Cores de Interface */
-  --border: #475569;      /* Slate 600 - Bordas suaves */
-  --input: #475569;       /* Slate 600 - Inputs */
-  --ring: #3b82f6;        /* Blue 500 - Ring azul */
-  
+  --border: #475569; /* Slate 600 - Bordas suaves */
+  --input: #475569; /* Slate 600 - Inputs */
+  --ring: #3b82f6; /* Blue 500 - Ring azul */
+
   /* Cores de Gráficos - Paleta escura harmoniosa */
-  --chart-1: #3b82f6;     /* Blue 500 - Azul principal */
-  --chart-2: #8b5cf6;     /* Violet 500 - Roxo */
-  --chart-3: #f59e0b;     /* Amber 500 - Dourado */
-  --chart-4: #06b6d4;     /* Cyan 500 - Turquesa */
-  --chart-5: #ec4899;     /* Pink 500 - Rosa */
-  
+  --chart-1: #3b82f6; /* Blue 500 - Azul principal */
+  --chart-2: #8b5cf6; /* Violet 500 - Roxo */
+  --chart-3: #f59e0b; /* Amber 500 - Dourado */
+  --chart-4: #06b6d4; /* Cyan 500 - Turquesa */
+  --chart-5: #ec4899; /* Pink 500 - Rosa */
+
   /* Cores da Sidebar */
-  --sidebar: #1e293b;     /* Slate 800 - Sidebar escura */
-  --sidebar-foreground: #f1f5f9;  /* Slate 100 - Texto da sidebar */
-  --sidebar-primary: #3b82f6;     /* Blue 500 - Primário da sidebar */
-  --sidebar-primary-foreground: #ffffff;  /* Branco para contraste */
-  --sidebar-accent: #1e40af;      /* Blue 800 - Accent da sidebar */
-  --sidebar-accent-foreground: #dbeafe;   /* Blue 100 - Texto do accent */
-  --sidebar-border: #475569;      /* Slate 600 - Borda da sidebar */
-  --sidebar-ring: #3b82f6;        /* Blue 500 - Ring da sidebar */
+  --sidebar: #1e293b; /* Slate 800 - Sidebar escura */
+  --sidebar-foreground: #f1f5f9; /* Slate 100 - Texto da sidebar */
+  --sidebar-primary: #3b82f6; /* Blue 500 - Primário da sidebar */
+  --sidebar-primary-foreground: #ffffff; /* Branco para contraste */
+  --sidebar-accent: #1e40af; /* Blue 800 - Accent da sidebar */
+  --sidebar-accent-foreground: #dbeafe; /* Blue 100 - Texto do accent */
+  --sidebar-border: #475569; /* Slate 600 - Borda da sidebar */
+  --sidebar-ring: #3b82f6; /* Blue 500 - Ring da sidebar */
 }
 
 @theme inline {
@@ -160,7 +160,8 @@
   }
 
   .logo-main-primary {
-    filter: invert(10%) sepia(85%) saturate(4500%) hue-rotate(255deg) brightness(40%) contrast(120%);
+    filter: invert(10%) sepia(85%) saturate(4500%) hue-rotate(255deg)
+      brightness(40%) contrast(120%);
   }
 
   .bg-grid-slate {

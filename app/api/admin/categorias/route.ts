@@ -10,7 +10,10 @@ const createdIdSchema = z.array(z.object({ id: z.number().int().positive() }))
 export async function POST(request: NextRequest) {
   const tenant = resolveTenantFromRequest(request)
   if (tenant?.id !== 'admin') {
-    return NextResponse.json({ error: 'Operacao permitida apenas no tenant admin.' }, { status: 403 })
+    return NextResponse.json(
+      { error: 'Operacao permitida apenas no tenant admin.' },
+      { status: 403 }
+    )
   }
 
   if (!(await hasValidSupabaseSession(request))) {
@@ -20,7 +23,10 @@ export async function POST(request: NextRequest) {
   const body = (await request.json()) as unknown
   const parsed = createNamedEntitySchema.safeParse(body)
   if (!parsed.success) {
-    return NextResponse.json({ error: parsed.error.issues[0]?.message || 'Payload invalido.' }, { status: 400 })
+    return NextResponse.json(
+      { error: parsed.error.issues[0]?.message || 'Payload invalido.' },
+      { status: 400 }
+    )
   }
 
   const inserted = await supabaseAdminRequest({
@@ -31,13 +37,19 @@ export async function POST(request: NextRequest) {
     prefer: 'return=representation',
   })
 
-  return NextResponse.json({ success: true, data: { id: inserted[0]?.id } }, { status: 201 })
+  return NextResponse.json(
+    { success: true, data: { id: inserted[0]?.id } },
+    { status: 201 }
+  )
 }
 
 export async function DELETE(request: NextRequest) {
   const tenant = resolveTenantFromRequest(request)
   if (tenant?.id !== 'admin') {
-    return NextResponse.json({ error: 'Operacao permitida apenas no tenant admin.' }, { status: 403 })
+    return NextResponse.json(
+      { error: 'Operacao permitida apenas no tenant admin.' },
+      { status: 403 }
+    )
   }
 
   if (!(await hasValidSupabaseSession(request))) {
@@ -59,4 +71,3 @@ export async function DELETE(request: NextRequest) {
 
   return NextResponse.json({ success: true })
 }
-

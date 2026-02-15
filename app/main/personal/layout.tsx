@@ -10,10 +10,5 @@ export default function PersonalLayout({
 }: {
   children: React.ReactNode
 }) {
-  return (
-    <>
-      {children}
-    </>
-  )
+  return <>{children}</>
 }
-

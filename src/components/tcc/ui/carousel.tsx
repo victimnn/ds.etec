@@ -1,9 +1,9 @@
-"use client"
+'use client'
 
-import { useState, useEffect, useRef, ReactNode } from "react"
-import { Button } from "@/src/components/ui/button"
-import { ChevronLeft, ChevronRight } from "lucide-react"
-import { cn } from "@/src/lib/utils"
+import { useState, useEffect, useRef, ReactNode } from 'react'
+import { Button } from '@/src/components/ui/button'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { cn } from '@/src/lib/utils'
 
 interface CarouselProps {
   children: ReactNode[]
@@ -59,7 +59,7 @@ export function Carousel({
   useEffect(() => {
     if (autoplay && !isHovered && totalSlides > 1) {
       intervalRef.current = setInterval(() => {
-        setCurrentIndex((prev) => (prev + 1) % totalSlides)
+        setCurrentIndex(prev => (prev + 1) % totalSlides)
       }, autoplayInterval)
     } else if (intervalRef.current) {
       clearInterval(intervalRef.current)
@@ -77,11 +77,11 @@ export function Carousel({
   }
 
   const goToPrevious = () => {
-    setCurrentIndex((prev) => (prev - 1 + totalSlides) % totalSlides)
+    setCurrentIndex(prev => (prev - 1 + totalSlides) % totalSlides)
   }
 
   const goToNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % totalSlides)
+    setCurrentIndex(prev => (prev + 1) % totalSlides)
   }
 
   const handleMouseEnter = () => {
@@ -100,23 +100,18 @@ export function Carousel({
   if (totalSlides <= 1 && totalItems <= itemsPerSlide) {
     const itemsToShow = Math.min(itemsPerSlide, totalItems)
     return (
-      <div className={cn("relative w-full", className)}>
-        <div 
-          className="flex"
-          style={{ gap: `${gap}px` }}
-        >
+      <div className={cn('relative w-full', className)}>
+        <div className="flex" style={{ gap: `${gap}px` }}>
           {children.slice(0, itemsToShow).map((child, index) => (
             <div
               key={index}
               className="flex-shrink-0 h-[500px]"
               style={{
-                width: `calc(${100 / itemsToShow}% - ${gap * (itemsToShow - 1) / itemsToShow}px)`,
+                width: `calc(${100 / itemsToShow}% - ${(gap * (itemsToShow - 1)) / itemsToShow}px)`,
                 minHeight: '500px',
               }}
             >
-              <div className="h-full w-full">
-                {child}
-              </div>
+              <div className="h-full w-full">{child}</div>
             </div>
           ))}
         </div>
@@ -125,14 +120,14 @@ export function Carousel({
   }
 
   return (
-    <div 
-      className={cn("relative w-full", className)}
+    <div
+      className={cn('relative w-full', className)}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       {/* Carousel Container */}
       <div className="overflow-hidden">
-        <div 
+        <div
           className="flex transition-transform duration-500 ease-in-out"
           style={{
             transform: `translateX(-${currentIndex * 100}%)`,
@@ -143,27 +138,25 @@ export function Carousel({
               key={slideIndex}
               className="flex-shrink-0 w-full"
               style={{
-                width: "100%",
+                width: '100%',
               }}
             >
-              <div 
-                className="flex"
-                style={{ gap: `${gap}px` }}
-              >
+              <div className="flex" style={{ gap: `${gap}px` }}>
                 {(() => {
-                  const slideItems = children.slice(slideIndex * itemsPerSlide, (slideIndex + 1) * itemsPerSlide)
+                  const slideItems = children.slice(
+                    slideIndex * itemsPerSlide,
+                    (slideIndex + 1) * itemsPerSlide
+                  )
                   return slideItems.map((child, index) => (
                     <div
                       key={index}
                       className="flex-shrink-0 h-[500px]"
                       style={{
-                        width: `calc(${100 / slideItems.length}% - ${gap * (slideItems.length - 1) / slideItems.length}px)`,
+                        width: `calc(${100 / slideItems.length}% - ${(gap * (slideItems.length - 1)) / slideItems.length}px)`,
                         minHeight: '500px',
                       }}
                     >
-                      <div className="h-full w-full">
-                        {child}
-                      </div>
+                      <div className="h-full w-full">{child}</div>
                     </div>
                   ))
                 })()}
@@ -207,10 +200,10 @@ export function Carousel({
             <button
               key={index}
               className={cn(
-                "w-2 h-2 rounded-full transition-all duration-300",
+                'w-2 h-2 rounded-full transition-all duration-300',
                 index === currentIndex
-                  ? "bg-primary w-8"
-                  : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                  ? 'bg-primary w-8'
+                  : 'bg-muted-foreground/30 hover:bg-muted-foreground/50'
               )}
               onClick={() => goToSlide(index)}
               aria-label={`Ir para slide ${index + 1}`}

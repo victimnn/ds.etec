@@ -74,4 +74,3 @@ export async function supabaseAdminRequest<T>({
 
   return parsed.data
 }
-

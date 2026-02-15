@@ -29,19 +29,22 @@ export async function signInWithSupabasePassword(params: {
   password: string
 }): Promise<SupabaseAuthTokenResponse | null> {
   const config = getSupabasePublicConfig()
-  const response = await fetch(`${config.url}/auth/v1/token?grant_type=password`, {
-    method: 'POST',
-    headers: {
-      apikey: config.anonKey,
-      Authorization: `Bearer ${config.anonKey}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      email: params.email,
-      password: params.password,
-    }),
-    cache: 'no-store',
-  })
+  const response = await fetch(
+    `${config.url}/auth/v1/token?grant_type=password`,
+    {
+      method: 'POST',
+      headers: {
+        apikey: config.anonKey,
+        Authorization: `Bearer ${config.anonKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: params.email,
+        password: params.password,
+      }),
+      cache: 'no-store',
+    }
+  )
 
   if (!response.ok) {
     return null
@@ -82,4 +85,3 @@ export async function getSupabaseUserByAccessToken(
 
   return parsed.data
 }
-

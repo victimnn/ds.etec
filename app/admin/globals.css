@@ -6,11 +6,13 @@
   --color-admin-card: var(--card);
   --color-admin-primary: #8b5cf6;
   --color-admin-secondary: #a78bfa;
-  
+
   /* Shared elevation levels */
   --shadow-admin-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-admin-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-admin-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-admin-md:
+    0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-admin-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
 :root {
@@ -64,7 +66,7 @@
   .glass {
     @apply bg-background/70 backdrop-blur-xl border-b border-border/50;
   }
-  
+
   .glass-card {
     @apply bg-card/40 backdrop-blur-md border border-white/10 dark:border-white/5 shadow-admin-md transition-all duration-300 hover:shadow-admin-lg;
   }
@@ -97,7 +99,7 @@
 @layer base {
   body {
     @apply bg-gradient-to-br from-background via-background to-primary/5 min-h-screen selection:bg-primary/20;
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   }
 
   /* Better scrollbar for admin panels */

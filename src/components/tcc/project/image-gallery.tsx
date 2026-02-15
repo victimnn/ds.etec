@@ -1,9 +1,9 @@
-"use client"
+'use client'
 
-import { useState, useEffect } from "react"
-import { Button } from "@/src/components/ui/button"
-import { ChevronLeft, ChevronRight, X, ZoomIn } from "lucide-react"
-import { cn } from "@/src/lib/utils"
+import { useState, useEffect } from 'react'
+import { Button } from '@/src/components/ui/button'
+import { ChevronLeft, ChevronRight, X, ZoomIn } from 'lucide-react'
+import { cn } from '@/src/lib/utils'
 
 interface ImageGalleryProps {
   images: string[]
@@ -11,8 +11,14 @@ interface ImageGalleryProps {
   className?: string
 }
 
-export function ImageGallery({ images, projectTitle, className }: ImageGalleryProps) {
-  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null)
+export function ImageGallery({
+  images,
+  projectTitle,
+  className,
+}: ImageGalleryProps) {
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(
+    null
+  )
 
   const openImage = (index: number) => {
     setSelectedImageIndex(index)
@@ -24,22 +30,26 @@ export function ImageGallery({ images, projectTitle, className }: ImageGalleryPr
 
   const goToPrevious = () => {
     if (selectedImageIndex !== null) {
-      setSelectedImageIndex(selectedImageIndex === 0 ? images.length - 1 : selectedImageIndex - 1)
+      setSelectedImageIndex(
+        selectedImageIndex === 0 ? images.length - 1 : selectedImageIndex - 1
+      )
     }
   }
 
   const goToNext = () => {
     if (selectedImageIndex !== null) {
-      setSelectedImageIndex(selectedImageIndex === images.length - 1 ? 0 : selectedImageIndex + 1)
+      setSelectedImageIndex(
+        selectedImageIndex === images.length - 1 ? 0 : selectedImageIndex + 1
+      )
     }
   }
 
   const handleKeyDown = (e: KeyboardEvent) => {
-    if (e.key === "Escape") {
+    if (e.key === 'Escape') {
       closeImage()
-    } else if (e.key === "ArrowLeft") {
+    } else if (e.key === 'ArrowLeft') {
       goToPrevious()
-    } else if (e.key === "ArrowRight") {
+    } else if (e.key === 'ArrowRight') {
       goToNext()
     }
   }
@@ -62,15 +72,15 @@ export function ImageGallery({ images, projectTitle, className }: ImageGalleryPr
   return (
     <>
       {/* Gallery Grid */}
-      <div className={cn("grid grid-cols-1 md:grid-cols-2 gap-3", className)}>
+      <div className={cn('grid grid-cols-1 md:grid-cols-2 gap-3', className)}>
         {images.map((image, index) => (
-          <div 
-            key={index} 
+          <div
+            key={index}
             className="aspect-video bg-white rounded-lg overflow-hidden relative group cursor-pointer"
             onClick={() => openImage(index)}
           >
             <img
-              src={image || "/placeholder.svg"}
+              src={image || '/placeholder.svg'}
               alt={`${projectTitle} - Imagem ${index + 1}`}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
             />
@@ -122,7 +132,7 @@ export function ImageGallery({ images, projectTitle, className }: ImageGalleryPr
           {/* Image */}
           <div className="w-full h-full flex items-center justify-center p-8">
             <img
-              src={images[selectedImageIndex] || "/placeholder.svg"}
+              src={images[selectedImageIndex] || '/placeholder.svg'}
               alt={`${projectTitle} - Imagem ${selectedImageIndex + 1}`}
               className="max-w-[90%] max-h-[90%] object-contain"
             />

@@ -1,7 +1,7 @@
-import { Card, CardContent } from "@/src/components/ui/card"
-import { Badge } from "@/src/components/ui/badge"
-import { Code } from "lucide-react"
-import type { TCCProject } from "@/lib/types"
+import { Card, CardContent } from '@/src/components/ui/card'
+import { Badge } from '@/src/components/ui/badge'
+import { Code } from 'lucide-react'
+import type { TCCProject } from '@/lib/types'
 
 interface ProjectTechnologiesProps {
   project: TCCProject
@@ -9,10 +9,10 @@ interface ProjectTechnologiesProps {
   maxItems?: number
 }
 
-export function ProjectTechnologies({ 
-  project, 
-  variant = 'sidebar', 
-  maxItems = project.technologies.length 
+export function ProjectTechnologies({
+  project,
+  variant = 'sidebar',
+  maxItems = project.technologies.length,
 }: ProjectTechnologiesProps) {
   const technologies = project.technologies.slice(0, maxItems)
   const remainingCount = project.technologies.length - maxItems
@@ -25,7 +25,7 @@ export function ProjectTechnologies({
           Tecnologias Utilizadas
         </h3>
         <div className="flex flex-wrap gap-2">
-          {technologies.map((tech) => (
+          {technologies.map(tech => (
             <Badge key={tech} variant="outline" className="text-xs">
               {tech}
             </Badge>
@@ -42,7 +42,7 @@ export function ProjectTechnologies({
 
   const renderInline = () => (
     <div className="flex flex-wrap gap-2">
-      {technologies.map((tech) => (
+      {technologies.map(tech => (
         <Badge key={tech} variant="outline" className="text-xs">
           {tech}
         </Badge>
@@ -57,8 +57,12 @@ export function ProjectTechnologies({
 
   const renderGrid = () => (
     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
-      {technologies.map((tech) => (
-        <Badge key={tech} variant="outline" className="text-xs justify-center py-2">
+      {technologies.map(tech => (
+        <Badge
+          key={tech}
+          variant="outline"
+          className="text-xs justify-center py-2"
+        >
           {tech}
         </Badge>
       ))}

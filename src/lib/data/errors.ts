@@ -37,4 +37,3 @@ export class DataSourceError extends Error {
 export function isDataSourceError(error: unknown): error is DataSourceError {
   return error instanceof DataSourceError
 }
-

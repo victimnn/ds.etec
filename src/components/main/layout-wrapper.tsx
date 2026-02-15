@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import { usePathname } from 'next/navigation'
 import { Header } from '@/src/components/main/header'
@@ -20,4 +20,3 @@ export function LayoutWrapper({ children }: { children: React.ReactNode }) {
     </>
   )
 }
-

@@ -29,11 +29,14 @@ export function TenantShell({
         disableTransitionOnChange
       >
         {preContent}
-        {useSuspense ? <Suspense fallback={null}>{children}</Suspense> : children}
+        {useSuspense ? (
+          <Suspense fallback={null}>{children}</Suspense>
+        ) : (
+          children
+        )}
         <Analytics />
       </ThemeProvider>
       {showSpeedInsights ? <SpeedInsights /> : null}
     </div>
   )
 }
-

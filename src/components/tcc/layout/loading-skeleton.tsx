@@ -1,5 +1,5 @@
-import { Card, CardContent } from "@/src/components/ui/card"
-import { Skeleton } from "@/src/components/ui/skeleton"
+import { Card, CardContent } from '@/src/components/ui/card'
+import { Skeleton } from '@/src/components/ui/skeleton'
 
 export function ProjectCardSkeleton() {
   return (
@@ -49,7 +49,7 @@ export function ProjectDetailsSkeleton() {
         <div className="mb-8">
           <Skeleton className="h-10 w-40" />
         </div>
-        
+
         <div className="mb-12">
           <div className="flex flex-col lg:flex-row gap-8">
             <div className="lg:w-2/3">
@@ -85,11 +85,11 @@ export function ProjectDetailsSkeleton() {
             </div>
           </div>
         </div>
-        
+
         <div className="mb-12">
           <Skeleton className="aspect-video w-full rounded-lg" />
         </div>
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           <div className="lg:col-span-2 space-y-12">
             <div>

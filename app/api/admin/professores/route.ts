@@ -10,7 +10,10 @@ const createdIdSchema = z.array(z.object({ id: z.number().int().positive() }))
 export async function POST(request: NextRequest) {
   const tenant = resolveTenantFromRequest(request)
   if (tenant?.id !== 'admin') {
-    return NextResponse.json({ error: 'Operacao permitida apenas no tenant admin.' }, { status: 403 })
+    return NextResponse.json(
+      { error: 'Operacao permitida apenas no tenant admin.' },
+      { status: 403 }
+    )
   }
 
   if (!(await hasValidSupabaseSession(request))) {
@@ -20,7 +23,10 @@ export async function POST(request: NextRequest) {
   const body = (await request.json()) as unknown
   const parsed = createProfessorSchema.safeParse(body)
   if (!parsed.success) {
-    return NextResponse.json({ error: parsed.error.issues[0]?.message || 'Payload invalido.' }, { status: 400 })
+    return NextResponse.json(
+      { error: parsed.error.issues[0]?.message || 'Payload invalido.' },
+      { status: 400 }
+    )
   }
 
   let professorId: number | null = null
@@ -46,14 +52,17 @@ export async function POST(request: NextRequest) {
 
     professorId = inserted[0]?.id || null
     if (!professorId) {
-      return NextResponse.json({ error: 'Falha ao obter id do professor.' }, { status: 500 })
+      return NextResponse.json(
+        { error: 'Falha ao obter id do professor.' },
+        { status: 500 }
+      )
     }
 
     if (input.conquistas.length) {
       await supabaseAdminRequest({
         method: 'POST',
         resourcePath: 'conquista',
-        body: input.conquistas.map((nome) => ({
+        body: input.conquistas.map(nome => ({
           id_professor: professorId,
           nome,
         })),
@@ -61,7 +70,10 @@ export async function POST(request: NextRequest) {
       })
     }
 
-    return NextResponse.json({ success: true, data: { id: professorId } }, { status: 201 })
+    return NextResponse.json(
+      { success: true, data: { id: professorId } },
+      { status: 201 }
+    )
   } catch (error) {
     if (professorId) {
       await Promise.allSettled([
@@ -78,7 +90,8 @@ export async function POST(request: NextRequest) {
       ])
     }
 
-    const message = error instanceof Error ? error.message : 'Falha ao cadastrar professor.'
+    const message =
+      error instanceof Error ? error.message : 'Falha ao cadastrar professor.'
     return NextResponse.json({ error: message }, { status: 500 })
   }
 }

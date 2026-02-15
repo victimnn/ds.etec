@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import { useEffect } from 'react'
 import { useTheme } from 'next-themes'
@@ -9,9 +9,15 @@ export function FaviconSwitcher() {
   useEffect(() => {
     // Função para mudar o favicon
     const changeFavicon = (theme: string | undefined) => {
-      const favicon = document.querySelector('link[rel="icon"]') as HTMLLinkElement
-      const shortcutIcon = document.querySelector('link[rel="shortcut icon"]') as HTMLLinkElement
-      const appleIcon = document.querySelector('link[rel="apple-touch-icon"]') as HTMLLinkElement
+      const favicon = document.querySelector(
+        'link[rel="icon"]'
+      ) as HTMLLinkElement
+      const shortcutIcon = document.querySelector(
+        'link[rel="shortcut icon"]'
+      ) as HTMLLinkElement
+      const appleIcon = document.querySelector(
+        'link[rel="apple-touch-icon"]'
+      ) as HTMLLinkElement
 
       const iconPath = '/logo-ds.png'
 

@@ -20,4 +20,3 @@ export function logApiMetric(metric: ApiMetric): void {
 
   console.error('[api_metric]', payload)
 }
-

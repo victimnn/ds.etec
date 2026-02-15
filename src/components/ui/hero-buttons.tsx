@@ -1,31 +1,31 @@
-import { Button } from "@/src/components/ui/button"
-import { ArrowRight, ExternalLink } from "lucide-react"
-import Link from "next/link"
+import { Button } from '@/src/components/ui/button'
+import { ArrowRight, ExternalLink } from 'lucide-react'
+import Link from 'next/link'
 
 interface HeroButtonsProps {
   primaryText?: string
   primaryHref?: string
   secondaryText?: string
   secondaryHref?: string
-  variant?: "default" | "compact"
+  variant?: 'default' | 'compact'
   className?: string
 }
 
 export function HeroButtons({
-  primaryText = "Fazer Inscrição",
-  primaryHref = "/vestibulinho",
-  secondaryText = "Conheça o Curso",
-  secondaryHref = "/sobre",
-  variant = "default",
-  className = ""
+  primaryText = 'Fazer Inscrição',
+  primaryHref = '/vestibulinho',
+  secondaryText = 'Conheça o Curso',
+  secondaryHref = '/sobre',
+  variant = 'default',
+  className = '',
 }: HeroButtonsProps) {
-  const isCompact = variant === "compact"
-  
+  const isCompact = variant === 'compact'
+
   return (
     <div className={`flex flex-col sm:flex-row gap-4 ${className}`}>
       {/* Botão Primário */}
-      <Button 
-        size={isCompact ? "default" : "lg"}
+      <Button
+        size={isCompact ? 'default' : 'lg'}
         asChild
         className="group relative overflow-hidden bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 dark:from-yellow-500 dark:to-yellow-600 dark:hover:from-yellow-400 dark:hover:to-yellow-500 text-gray-900 dark:text-gray-900 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-0"
       >
@@ -40,8 +40,8 @@ export function HeroButtons({
       </Button>
 
       {/* Botão Secundário */}
-      <Button 
-        size={isCompact ? "default" : "lg"}
+      <Button
+        size={isCompact ? 'default' : 'lg'}
         variant="outline"
         asChild
         className="group relative overflow-hidden border-2 border-white/30 dark:border-slate-300/30 text-gray-800 dark:text-slate-200 hover:bg-white dark:hover:bg-slate-800 hover:text-gray-900 dark:hover:text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 backdrop-blur-sm"
@@ -61,20 +61,20 @@ export function HeroButtons({
 
 // Componente específico para botões de contato
 export function ContactButtons({
-  primaryText = "Fazer Inscrição",
-  primaryHref = "/vestibulinho",
-  secondaryText = "Falar Conosco",
-  secondaryHref = "/contato",
-  variant = "default",
-  className = ""
+  primaryText = 'Fazer Inscrição',
+  primaryHref = '/vestibulinho',
+  secondaryText = 'Falar Conosco',
+  secondaryHref = '/contato',
+  variant = 'default',
+  className = '',
 }: HeroButtonsProps) {
-  const isCompact = variant === "compact"
-  
+  const isCompact = variant === 'compact'
+
   return (
     <div className={`flex flex-col sm:flex-row gap-4 ${className}`}>
       {/* Botão Primário */}
-      <Button 
-        size={isCompact ? "default" : "lg"}
+      <Button
+        size={isCompact ? 'default' : 'lg'}
         asChild
         className="group relative overflow-hidden bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 dark:from-yellow-500 dark:to-yellow-600 dark:hover:from-yellow-400 dark:hover:to-yellow-500 text-gray-900 dark:text-gray-900 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-0"
       >
@@ -89,8 +89,8 @@ export function ContactButtons({
       </Button>
 
       {/* Botão Secundário */}
-      <Button 
-        size={isCompact ? "default" : "lg"}
+      <Button
+        size={isCompact ? 'default' : 'lg'}
         variant="outline"
         asChild
         className="group relative overflow-hidden border-2 border-white/30 dark:border-slate-300/30 text-gray-800 dark:text-slate-200 hover:bg-white dark:hover:bg-slate-800 hover:text-gray-900 dark:hover:text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 backdrop-blur-sm"

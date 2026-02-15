@@ -61,12 +61,12 @@ export function LoginForm({ redirectTo = '/' }: LoginFormProps) {
           <Label htmlFor="email">Email</Label>
           <div className="relative group">
             <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
-            <Input 
-              id="email" 
-              name="email" 
-              type="email" 
+            <Input
+              id="email"
+              name="email"
+              type="email"
               placeholder="exemplo@etec.sp.gov.br"
-              required 
+              required
               className="pl-10 admin-input"
             />
           </div>
@@ -75,12 +75,12 @@ export function LoginForm({ redirectTo = '/' }: LoginFormProps) {
           <Label htmlFor="password">Senha</Label>
           <div className="relative group">
             <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
-            <Input 
-              id="password" 
-              name="password" 
-              type="password" 
+            <Input
+              id="password"
+              name="password"
+              type="password"
               placeholder="••••••••"
-              required 
+              required
               className="pl-10 admin-input"
             />
           </div>
@@ -88,14 +88,21 @@ export function LoginForm({ redirectTo = '/' }: LoginFormProps) {
       </div>
 
       {error && (
-        <Alert variant="destructive" className="animate-in fade-in zoom-in duration-200">
+        <Alert
+          variant="destructive"
+          className="animate-in fade-in zoom-in duration-200"
+        >
           <AlertCircle className="h-4 w-4" />
           <AlertTitle>Falha na autenticação</AlertTitle>
           <AlertDescription>{error}</AlertDescription>
         </Alert>
       )}
 
-      <Button type="submit" disabled={isSubmitting} className="w-full h-11 text-base font-semibold transition-all hover:scale-[1.02] active:scale-[0.98]">
+      <Button
+        type="submit"
+        disabled={isSubmitting}
+        className="w-full h-11 text-base font-semibold transition-all hover:scale-[1.02] active:scale-[0.98]"
+      >
         {isSubmitting ? (
           <>
             <Loader2 className="mr-2 h-5 w-5 animate-spin" />

@@ -1,15 +1,18 @@
-"use client"
+'use client'
 
-import { useState } from "react"
-import { Button } from "@/src/components/ui/button"
-import { Copy, Check, Share2, MessageCircle, Mail, Phone } from "lucide-react"
+import { useState } from 'react'
+import { Button } from '@/src/components/ui/button'
+import { Copy, Check, Share2, MessageCircle, Mail, Phone } from 'lucide-react'
 
 interface ShareButtonsProps {
   projectTitle: string
   projectDescription: string
 }
 
-export function ShareButtons({ projectTitle, projectDescription }: ShareButtonsProps) {
+export function ShareButtons({
+  projectTitle,
+  projectDescription,
+}: ShareButtonsProps) {
   const [linkCopied, setLinkCopied] = useState(false)
   const [showShareOptions, setShowShareOptions] = useState(false)
 
@@ -47,12 +50,7 @@ export function ShareButtons({ projectTitle, projectDescription }: ShareButtonsP
   return (
     <div className="space-y-3">
       {/* Botão Copiar Link */}
-      <Button 
-        size="sm" 
-        variant="outline" 
-        className="w-full"
-        onClick={copyLink}
-      >
+      <Button size="sm" variant="outline" className="w-full" onClick={copyLink}>
         {linkCopied ? (
           <>
             <Check className="mr-2 h-4 w-4 text-green-500" />
@@ -67,9 +65,9 @@ export function ShareButtons({ projectTitle, projectDescription }: ShareButtonsP
       </Button>
 
       {/* Botão Compartilhar */}
-      <Button 
-        size="sm" 
-        variant="outline" 
+      <Button
+        size="sm"
+        variant="outline"
         className="w-full"
         onClick={() => setShowShareOptions(!showShareOptions)}
       >
@@ -80,27 +78,27 @@ export function ShareButtons({ projectTitle, projectDescription }: ShareButtonsP
       {/* Opções de Compartilhamento */}
       {showShareOptions && (
         <div className="space-y-2 pt-2 border-t">
-          <Button 
-            size="sm" 
-            variant="ghost" 
+          <Button
+            size="sm"
+            variant="ghost"
             className="w-full justify-start"
             onClick={shareToWhatsApp}
           >
             <MessageCircle className="mr-2 h-4 w-4 text-green-500" />
             WhatsApp
           </Button>
-          <Button 
-            size="sm" 
-            variant="ghost" 
+          <Button
+            size="sm"
+            variant="ghost"
             className="w-full justify-start"
             onClick={shareToEmail}
           >
             <Mail className="mr-2 h-4 w-4 text-blue-500" />
             Email
           </Button>
-          <Button 
-            size="sm" 
-            variant="ghost" 
+          <Button
+            size="sm"
+            variant="ghost"
             className="w-full justify-start"
             onClick={shareToSMS}
           >

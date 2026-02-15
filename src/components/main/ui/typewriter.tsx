@@ -10,11 +10,11 @@ interface TypewriterProps {
   pauseDuration?: number
 }
 
-export function Typewriter({ 
-  words, 
-  typingSpeed = 150, 
-  deletingSpeed = 100, 
-  pauseDuration = 2000 
+export function Typewriter({
+  words,
+  typingSpeed = 150,
+  deletingSpeed = 100,
+  pauseDuration = 2000,
 }: TypewriterProps) {
   const [index, setIndex] = useState(0)
   const [displayText, setDisplayText] = useState('')
@@ -22,7 +22,7 @@ export function Typewriter({
 
   useEffect(() => {
     const currentWord = words[index]
-    
+
     const handleType = () => {
       if (!isDeleting) {
         // Typing
@@ -38,25 +38,36 @@ export function Typewriter({
           setDisplayText(currentWord.substring(0, displayText.length - 1))
         } else {
           setIsDeleting(false)
-          setIndex((prev) => (prev + 1) % words.length)
+          setIndex(prev => (prev + 1) % words.length)
         }
       }
     }
 
-    const timer = setTimeout(handleType, isDeleting ? deletingSpeed : typingSpeed)
+    const timer = setTimeout(
+      handleType,
+      isDeleting ? deletingSpeed : typingSpeed
+    )
     return () => clearTimeout(timer)
-  }, [displayText, isDeleting, index, words, typingSpeed, deletingSpeed, pauseDuration])
+  }, [
+    displayText,
+    isDeleting,
+    index,
+    words,
+    typingSpeed,
+    deletingSpeed,
+    pauseDuration,
+  ])
 
   return (
     <span className="relative">
       <span className="text-white">{displayText}</span>
       <motion.span
         animate={{ opacity: [1, 0, 1] }}
-        transition={{ 
-          duration: 0.8, 
-          repeat: Infinity, 
-          ease: "linear",
-          times: [0, 0.5, 1]
+        transition={{
+          duration: 0.8,
+          repeat: Infinity,
+          ease: 'linear',
+          times: [0, 0.5, 1],
         }}
         className="inline-block w-[3px] h-[0.9em] bg-white ml-1 align-middle"
       />

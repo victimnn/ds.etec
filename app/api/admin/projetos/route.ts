@@ -58,7 +58,10 @@ async function resolveLookupId(table: string, nome: string): Promise<number> {
   })
 
   if (!created[0]?.id) {
-    throw new DataSourceError('SUPABASE_PAYLOAD', `Falha ao criar item em ${table}`)
+    throw new DataSourceError(
+      'SUPABASE_PAYLOAD',
+      `Falha ao criar item em ${table}`
+    )
   }
 
   return created[0].id
@@ -168,7 +171,8 @@ export async function POST(
 
     if (!parsedInput.success) {
       const message =
-        parsedInput.error.issues[0]?.message || 'Payload invalido para novo projeto.'
+        parsedInput.error.issues[0]?.message ||
+        'Payload invalido para novo projeto.'
       logApiMetric({
         endpoint: '/api/admin/projetos',
         method: 'POST',
@@ -178,7 +182,10 @@ export async function POST(
         error: message,
       })
 
-      return NextResponse.json({ success: false, error: message }, { status: 400 })
+      return NextResponse.json(
+        { success: false, error: message },
+        { status: 400 }
+      )
     }
 
     const input = parsedInput.data
@@ -214,11 +221,14 @@ export async function POST(
 
     projectId = inserted[0]?.id || 0
     if (!projectId) {
-      throw new DataSourceError('SUPABASE_PAYLOAD', 'Supabase nao retornou id do projeto.')
+      throw new DataSourceError(
+        'SUPABASE_PAYLOAD',
+        'Supabase nao retornou id do projeto.'
+      )
     }
 
     if (input.memberIds.length) {
-      const payload = input.memberIds.map((memberId) => ({
+      const payload = input.memberIds.map(memberId => ({
         id_aluno: memberId,
         id_tcc: projectId,
       }))
@@ -231,7 +241,7 @@ export async function POST(
     }
 
     if (input.conquistasProfessor.length) {
-      const payload = input.conquistasProfessor.map((conquista) => ({
+      const payload = input.conquistasProfessor.map(conquista => ({
         id_professor: idProfessor,
         nome: conquista,
       }))
@@ -270,7 +280,10 @@ export async function POST(
       error: message,
     })
 
-    return NextResponse.json({ success: false, error: message }, { status: 500 })
+    return NextResponse.json(
+      { success: false, error: message },
+      { status: 500 }
+    )
   }
 }
 
@@ -278,7 +291,10 @@ export async function GET(request: NextRequest) {
   const tenant = resolveTenantFromRequest(request)
 
   if (tenant?.id !== 'admin') {
-    return NextResponse.json({ error: 'Operacao permitida apenas no tenant admin.' }, { status: 403 })
+    return NextResponse.json(
+      { error: 'Operacao permitida apenas no tenant admin.' },
+      { status: 403 }
+    )
   }
 
   if (!(await hasValidSupabaseSession(request))) {
@@ -287,12 +303,16 @@ export async function GET(request: NextRequest) {
 
   try {
     const projects = await supabaseAdminRequest({
-      resourcePath: 'tcc?select=*,categoria(nome),professor(nome),aluno_tcc(aluno(nome))&order=ano.desc',
+      resourcePath:
+        'tcc?select=*,categoria(nome),professor(nome),aluno_tcc(aluno(nome))&order=ano.desc',
       schema: z.array(z.any()),
     })
 
     return NextResponse.json(projects)
   } catch (error) {
-    return NextResponse.json({ error: 'Erro ao buscar projetos.' }, { status: 500 })
+    return NextResponse.json(
+      { error: 'Erro ao buscar projetos.' },
+      { status: 500 }
+    )
   }
 }

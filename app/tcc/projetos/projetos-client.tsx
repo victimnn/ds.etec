@@ -1,16 +1,30 @@
-"use client"
+'use client'
 
-import { useState, useMemo } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { Card, CardContent } from "@/src/components/ui/card"
-import { Button } from "@/src/components/ui/button"
-import { Input } from "@/src/components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/src/components/ui/select"
-import { Search, Filter, Grid, LayoutGrid, Calendar, Clock, RotateCcw } from "lucide-react"
-import { ProjectCard } from "@/src/components/tcc/project/project-card"
-import { Carousel } from "@/src/components/tcc/ui/carousel"
-import type { TCCProject } from "@/src/lib/types"
-import { cn } from "@/src/lib/utils"
+import { useState, useMemo } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Card, CardContent } from '@/src/components/ui/card'
+import { Button } from '@/src/components/ui/button'
+import { Input } from '@/src/components/ui/input'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/src/components/ui/select'
+import {
+  Search,
+  Filter,
+  Grid,
+  LayoutGrid,
+  Calendar,
+  Clock,
+  RotateCcw,
+} from 'lucide-react'
+import { ProjectCard } from '@/src/components/tcc/project/project-card'
+import { Carousel } from '@/src/components/tcc/ui/carousel'
+import type { TCCProject } from '@/src/lib/types'
+import { cn } from '@/src/lib/utils'
 
 interface ProjetosClientProps {
   projects: TCCProject[]
@@ -21,26 +35,26 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.05
-    }
-  }
+      staggerChildren: 0.05,
+    },
+  },
 }
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: "easeOut" }
-  }
+    transition: { duration: 0.5, ease: 'easeOut' },
+  },
 }
 
 export function ProjetosClient({ projects }: ProjetosClientProps) {
-  const [searchTerm, setSearchTerm] = useState("")
-  const [categoryFilter, setCategoryFilter] = useState("all")
-  const [yearFilter, setYearFilter] = useState("all")
-  const [periodFilter, setPeriodFilter] = useState("all")
-  const [viewMode, setViewMode] = useState<"carousel" | "grid">("grid")
+  const [searchTerm, setSearchTerm] = useState('')
+  const [categoryFilter, setCategoryFilter] = useState('all')
+  const [yearFilter, setYearFilter] = useState('all')
+  const [periodFilter, setPeriodFilter] = useState('all')
+  const [viewMode, setViewMode] = useState<'carousel' | 'grid'>('grid')
 
   // Extrair valores únicos para os filtros dinâmicos
   const uniqueYears = useMemo(() => {
@@ -58,25 +72,32 @@ export function ProjetosClient({ projects }: ProjetosClientProps) {
 
     if (searchTerm.trim()) {
       const search = searchTerm.toLowerCase()
+      filtered = filtered.filter(
+        project =>
+          project.title.toLowerCase().includes(search) ||
+          project.description.toLowerCase().includes(search) ||
+          project.technologies.some(tech =>
+            tech.toLowerCase().includes(search)
+          ) ||
+          project.members.some(member =>
+            member.name.toLowerCase().includes(search)
+          )
+      )
+    }
+
+    if (categoryFilter !== 'all') {
       filtered = filtered.filter(project =>
-        project.title.toLowerCase().includes(search) ||
-        project.description.toLowerCase().includes(search) ||
-        project.technologies.some(tech => tech.toLowerCase().includes(search)) ||
-        project.members.some(member => member.name.toLowerCase().includes(search))
+        project.category.some(
+          cat => cat.toLowerCase() === categoryFilter.toLowerCase()
+        )
       )
     }
 
-    if (categoryFilter !== "all") {
-      filtered = filtered.filter(project => 
-        project.category.some(cat => cat.toLowerCase() === categoryFilter.toLowerCase())
-      )
-    }
-
-    if (yearFilter !== "all") {
+    if (yearFilter !== 'all') {
       filtered = filtered.filter(project => project.year === yearFilter)
     }
 
-    if (periodFilter !== "all") {
+    if (periodFilter !== 'all') {
       filtered = filtered.filter(project => project.period === periodFilter)
     }
 
@@ -84,19 +105,23 @@ export function ProjetosClient({ projects }: ProjetosClientProps) {
   }, [searchTerm, categoryFilter, yearFilter, periodFilter, projects])
 
   const resetFilters = () => {
-    setSearchTerm("")
-    setCategoryFilter("all")
-    setYearFilter("all")
-    setPeriodFilter("all")
+    setSearchTerm('')
+    setCategoryFilter('all')
+    setYearFilter('all')
+    setPeriodFilter('all')
   }
 
-  const isFiltered = searchTerm !== "" || categoryFilter !== "all" || yearFilter !== "all" || periodFilter !== "all"
+  const isFiltered =
+    searchTerm !== '' ||
+    categoryFilter !== 'all' ||
+    yearFilter !== 'all' ||
+    periodFilter !== 'all'
 
   return (
     <div className="mt-10 pt-24 pb-16 px-4">
       <div className="container mx-auto">
         {/* Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -106,12 +131,13 @@ export function ProjetosClient({ projects }: ProjetosClientProps) {
             Explorar <span className="text-primary">Projetos</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-            Filtre por ano, categoria ou período para encontrar os trabalhos acadêmicos de seu interesse.
+            Filtre por ano, categoria ou período para encontrar os trabalhos
+            acadêmicos de seu interesse.
           </p>
         </motion.div>
 
         {/* Multi-Filter Bar */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
@@ -122,17 +148,20 @@ export function ProjetosClient({ projects }: ProjetosClientProps) {
               {/* Search */}
               <div className="flex-1 relative group">
                 <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground group-focus-within:text-primary transition-colors h-4 w-4" />
-                <Input 
-                  placeholder="Pesquisar por título, tecnologia ou integrante..." 
+                <Input
+                  placeholder="Pesquisar por título, tecnologia ou integrante..."
                   className="pl-12 h-12 rounded-2xl bg-background/50 border-none ring-1 ring-border focus-visible:ring-2 focus-visible:ring-primary/50 transition-all"
                   value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
+                  onChange={e => setSearchTerm(e.target.value)}
                 />
               </div>
 
               {/* Selects Grid */}
               <div className="grid grid-cols-2 md:flex items-center gap-3">
-                <Select value={categoryFilter} onValueChange={setCategoryFilter}>
+                <Select
+                  value={categoryFilter}
+                  onValueChange={setCategoryFilter}
+                >
                   <SelectTrigger className="w-full md:w-[150px] h-12 rounded-2xl bg-background/50 border-none ring-1 ring-border">
                     <Filter className="h-4 w-4 mr-2 text-primary" />
                     <SelectValue placeholder="Categoria" />
@@ -153,7 +182,9 @@ export function ProjetosClient({ projects }: ProjetosClientProps) {
                   <SelectContent>
                     <SelectItem value="all">Todos Anos</SelectItem>
                     {uniqueYears.map(year => (
-                      <SelectItem key={year} value={year}>{year}</SelectItem>
+                      <SelectItem key={year} value={year}>
+                        {year}
+                      </SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
@@ -166,7 +197,9 @@ export function ProjetosClient({ projects }: ProjetosClientProps) {
                   <SelectContent>
                     <SelectItem value="all">Todos Turnos</SelectItem>
                     {uniquePeriods.map(period => (
-                      <SelectItem key={period} value={period}>{period}</SelectItem>
+                      <SelectItem key={period} value={period}>
+                        {period}
+                      </SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
@@ -174,9 +207,9 @@ export function ProjetosClient({ projects }: ProjetosClientProps) {
                 {/* Reset & View Toggle */}
                 <div className="col-span-2 md:col-span-1 flex items-center gap-2 justify-end">
                   {isFiltered && (
-                    <Button 
-                      variant="ghost" 
-                      size="icon" 
+                    <Button
+                      variant="ghost"
+                      size="icon"
                       onClick={resetFilters}
                       className="rounded-full hover:bg-destructive/10 hover:text-destructive transition-colors"
                       title="Limpar Filtros"
@@ -184,15 +217,17 @@ export function ProjetosClient({ projects }: ProjetosClientProps) {
                       <RotateCcw className="h-4 w-4" />
                     </Button>
                   )}
-                  
+
                   <div className="flex bg-background/50 p-1 rounded-2xl border ring-1 ring-border shrink-0">
                     <Button
                       variant="ghost"
                       size="icon"
-                      onClick={() => setViewMode("carousel")}
+                      onClick={() => setViewMode('carousel')}
                       className={cn(
-                        "rounded-xl transition-all duration-300 h-8 w-8",
-                        viewMode === "carousel" ? "bg-primary text-primary-foreground shadow-lg" : "text-muted-foreground hover:text-primary"
+                        'rounded-xl transition-all duration-300 h-8 w-8',
+                        viewMode === 'carousel'
+                          ? 'bg-primary text-primary-foreground shadow-lg'
+                          : 'text-muted-foreground hover:text-primary'
                       )}
                     >
                       <LayoutGrid className="h-4 w-4" />
@@ -200,10 +235,12 @@ export function ProjetosClient({ projects }: ProjetosClientProps) {
                     <Button
                       variant="ghost"
                       size="icon"
-                      onClick={() => setViewMode("grid")}
+                      onClick={() => setViewMode('grid')}
                       className={cn(
-                        "rounded-xl transition-all duration-300 h-8 w-8",
-                        viewMode === "grid" ? "bg-primary text-primary-foreground shadow-lg" : "text-muted-foreground hover:text-primary"
+                        'rounded-xl transition-all duration-300 h-8 w-8',
+                        viewMode === 'grid'
+                          ? 'bg-primary text-primary-foreground shadow-lg'
+                          : 'text-muted-foreground hover:text-primary'
                       )}
                     >
                       <Grid className="h-4 w-4" />
@@ -216,7 +253,7 @@ export function ProjetosClient({ projects }: ProjetosClientProps) {
         </motion.div>
 
         {/* Results Info */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           className="mb-8 flex items-center gap-4 px-4"
@@ -231,13 +268,16 @@ export function ProjetosClient({ projects }: ProjetosClientProps) {
         <AnimatePresence mode="wait">
           {filteredProjects.length > 0 ? (
             <motion.div
-              key={viewMode + (searchTerm || categoryFilter || yearFilter || periodFilter)}
+              key={
+                viewMode +
+                (searchTerm || categoryFilter || yearFilter || periodFilter)
+              }
               initial="hidden"
               animate="visible"
               exit={{ opacity: 0, scale: 0.98 }}
               variants={containerVariants}
             >
-              {viewMode === "carousel" ? (
+              {viewMode === 'carousel' ? (
                 <Carousel
                   itemsPerView={{ mobile: 1, tablet: 2, desktop: 4 }}
                   showArrows={true}
@@ -245,15 +285,19 @@ export function ProjetosClient({ projects }: ProjetosClientProps) {
                   gap={24}
                   className="pb-12"
                 >
-                  {filteredProjects.map((project) => (
+                  {filteredProjects.map(project => (
                     <motion.div key={project.id} variants={itemVariants}>
-                      <ProjectCard project={project} variant="detailed" inCarousel={true} />
+                      <ProjectCard
+                        project={project}
+                        variant="detailed"
+                        inCarousel={true}
+                      />
                     </motion.div>
                   ))}
                 </Carousel>
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {filteredProjects.map((project) => (
+                  {filteredProjects.map(project => (
                     <motion.div key={project.id} variants={itemVariants} layout>
                       <ProjectCard project={project} variant="detailed" />
                     </motion.div>
@@ -262,16 +306,19 @@ export function ProjetosClient({ projects }: ProjetosClientProps) {
               )}
             </motion.div>
           ) : (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               className="text-center py-24 bg-muted/20 rounded-[3rem] border border-dashed border-border/50"
             >
               <Search className="h-16 w-16 mx-auto mb-6 text-muted-foreground/30" />
               <h3 className="text-2xl font-bold mb-2">Nenhum resultado</h3>
-              <p className="text-muted-foreground mb-8">Não encontramos projetos que correspondam a todos os filtros selecionados.</p>
-              <Button 
-                variant="outline" 
+              <p className="text-muted-foreground mb-8">
+                Não encontramos projetos que correspondam a todos os filtros
+                selecionados.
+              </p>
+              <Button
+                variant="outline"
                 className="rounded-full px-8 border-2"
                 onClick={resetFilters}
               >

@@ -22,7 +22,8 @@ export function Footer() {
     {
       titulo: 'E-mail',
       valor:
-        institutionContact.emailContacts[0]?.address || 'e067acad@cps.sp.gov.br',
+        institutionContact.emailContacts[0]?.address ||
+        'e067acad@cps.sp.gov.br',
       href: `mailto:${
         institutionContact.emailContacts[0]?.address || 'e067acad@cps.sp.gov.br'
       }`,
@@ -87,7 +88,7 @@ export function Footer() {
               Navegacao
             </h3>
             <ul className="space-y-3">
-              {linksRapidos.map((link) => (
+              {linksRapidos.map(link => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
@@ -127,7 +128,7 @@ export function Footer() {
           <div className="space-y-6">
             <h3 className="font-bold text-lg">Contato e Redes</h3>
             <div className="space-y-4">
-              {contatos.map((contato) => {
+              {contatos.map(contato => {
                 const IconComponent = contato.icon
                 return (
                   <a
@@ -149,9 +150,14 @@ export function Footer() {
       <div className="border-t bg-primary-foreground/5 border-primary-foreground/10">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center gap-4 flex-wrap">
-            <div className="text-sm text-primary-foreground">Desenvolvido por</div>
+            <div className="text-sm text-primary-foreground">
+              Desenvolvido por
+            </div>
             <div className="[&_a]:text-primary-foreground/70 [&_a:hover]:text-primary-foreground">
-              <DeveloperLinks className="flex items-center gap-4 flex-wrap" includePortfolio />
+              <DeveloperLinks
+                className="flex items-center gap-4 flex-wrap"
+                includePortfolio
+              />
             </div>
           </div>
         </div>
@@ -161,8 +167,8 @@ export function Footer() {
         <div className="container mx-auto px-4 py-6">
           <div className="text-sm text-primary-foreground/70 text-center md:text-left">
             <p>
-              &copy; 2025 {institutionContact.name} - {institutionContact.unit}. Todos os
-              direitos reservados.
+              &copy; 2025 {institutionContact.name} - {institutionContact.unit}.
+              Todos os direitos reservados.
             </p>
           </div>
         </div>

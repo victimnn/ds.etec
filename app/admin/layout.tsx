@@ -5,7 +5,11 @@ import { Inter } from 'next/font/google'
 import { usePathname } from 'next/navigation'
 import { TenantShell } from '@/src/components/shared/tenant-shell'
 import { AdminSidebar } from '@/src/components/admin/admin-sidebar'
-import { SidebarProvider, SidebarInset, SidebarTrigger } from '@/src/components/ui/sidebar'
+import {
+  SidebarProvider,
+  SidebarInset,
+  SidebarTrigger,
+} from '@/src/components/ui/sidebar'
 import { Separator } from '@/src/components/ui/separator'
 import {
   Breadcrumb,
@@ -32,9 +36,7 @@ export default function AdminLayout({
   if (isLoginPage) {
     return (
       <TenantShell className={inter.className} defaultTheme="light">
-        <main className="min-h-screen">
-          {children}
-        </main>
+        <main className="min-h-screen">{children}</main>
       </TenantShell>
     )
   }
@@ -56,17 +58,22 @@ export default function AdminLayout({
                   <BreadcrumbSeparator className="hidden md:block" />
                   <BreadcrumbItem>
                     <BreadcrumbPage>
-                      {pathname === '/' ? 'Dashboard' : 
-                       pathname.includes('/alunos') ? 'Alunos' :
-                       pathname.includes('/projetos') ? 'Projetos' :
-                       pathname.includes('/cadastros') ? 'Configurações' : 'Painel'}
+                      {pathname === '/'
+                        ? 'Dashboard'
+                        : pathname.includes('/alunos')
+                          ? 'Alunos'
+                          : pathname.includes('/projetos')
+                            ? 'Projetos'
+                            : pathname.includes('/cadastros')
+                              ? 'Configurações'
+                              : 'Painel'}
                     </BreadcrumbPage>
                   </BreadcrumbItem>
                 </BreadcrumbList>
               </Breadcrumb>
             </div>
             <div className="flex items-center gap-4">
-               <ThemeToggle />
+              <ThemeToggle />
             </div>
           </header>
           <div className="flex flex-1 flex-col gap-4 p-4 md:p-8">
@@ -77,4 +84,3 @@ export default function AdminLayout({
     </TenantShell>
   )
 }
-
