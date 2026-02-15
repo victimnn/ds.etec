@@ -15,7 +15,7 @@ Site institucional do curso Técnico em Desenvolvimento de Sistemas integrado ao
 - **Lucide React** - Ícones modernos e consistentes
 
 ### Ferramentas de Desenvolvimento
-- **pnpm** - Gerenciador de pacotes rápido e eficiente
+- **npm** - Gerenciador de pacotes padrão do Node.js
 - **PostCSS** - Processador CSS
 - **ESLint** - Linter para JavaScript/TypeScript
 - **Vercel Analytics** - Análise de performance e métricas
@@ -65,7 +65,7 @@ O projeto utiliza uma paleta de cores roxa com detalhes em rosa:
 ### Pré-requisitos
 
 - Node.js 18+ 
-- pnpm (recomendado) ou npm
+- npm
 
 ### Instalação
 
@@ -77,15 +77,11 @@ cd ds.etec
 
 2. **Instale as dependências**
 ```bash
-pnpm install
-# ou
 npm install
 ```
 
 3. **Execute em modo de desenvolvimento**
 ```bash
-pnpm dev
-# ou
 npm run dev
 ```
 
@@ -96,20 +92,44 @@ Abra [http://localhost:3000](http://localhost:3000) no seu navegador.
 
 ```bash
 # Desenvolvimento
-pnpm dev              # Inicia o servidor de desenvolvimento
-pnpm build            # Gera build de produção
-pnpm start            # Inicia o servidor de produção
+npm run dev           # Inicia o servidor de desenvolvimento
+npm run build         # Gera build de produção
+npm start             # Inicia o servidor de produção
 
 # Qualidade de Código
-pnpm lint             # Executa o ESLint
-pnpm lint:fix         # Corrige problemas do ESLint
-pnpm type-check       # Verifica tipos TypeScript
-pnpm format           # Formata o código com Prettier
-pnpm format:check     # Verifica formatação
+npm run lint          # Executa o ESLint
+npm run lint:fix      # Corrige problemas do ESLint
+npm run type-check    # Verifica tipos TypeScript
+npm run format        # Formata o código com Prettier
+npm run format:check  # Verifica formatação
 
 # Manutenção
-pnpm clean            # Limpa cache e reinstala dependências
+npm run clean         # Limpa cache e reinstala dependências
 ```
+
+## Supabase (TCC + Admin)
+
+### Variaveis de ambiente
+
+Copie `.env.example` para `.env.local` e preencha:
+
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `SUPABASE_SERVICE_ROLE_KEY`
+- `NEXT_PUBLIC_ADMIN_URL`
+
+### Ordem de aplicacao no banco
+
+1. Estrutura base: `database.sql`
+2. Politicas RLS: `supabase/policies.sql`
+3. Seed de dados (quando houver)
+
+### Modelo de seguranca
+
+- Leitura publica do catalogo TCC usa `NEXT_PUBLIC_SUPABASE_ANON_KEY` + RLS.
+- Escrita (`/api/admin/alunos` e `/api/admin/projetos`) roda apenas no servidor com `SUPABASE_SERVICE_ROLE_KEY`.
+- Login administrativo e sessao usam Supabase Auth no tenant `admin`.
+- Rotas de escrita exigem cookie `auth-session` valido e tenant `admin`.
 
 ## 🎨 Design System
 
