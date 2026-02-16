@@ -216,6 +216,12 @@ export default function ProjetosListPage() {
                         </div>
                       </TableCell>
                       <TableCell className="text-right">
+                        <Button asChild variant="outline" size="sm" className="mr-2">
+                          <Link href={`/projetos/${projeto.id}`} className="gap-1">
+                            <Edit className="h-3.5 w-3.5" />
+                            Editar
+                          </Link>
+                        </Button>
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
                             <Button
@@ -229,8 +235,10 @@ export default function ProjetosListPage() {
                           <DropdownMenuContent align="end" className="w-48">
                             <DropdownMenuLabel>Ações</DropdownMenuLabel>
                             <DropdownMenuSeparator />
-                            <DropdownMenuItem className="gap-2">
-                              <Edit className="h-4 w-4" /> Editar Projeto
+                            <DropdownMenuItem asChild className="gap-2">
+                              <Link href={`/projetos/${projeto.id}`}>
+                                <Edit className="h-4 w-4" /> Editar Projeto
+                              </Link>
                             </DropdownMenuItem>
                             <DropdownMenuItem className="gap-2">
                               <ExternalLink className="h-4 w-4" /> Ver na

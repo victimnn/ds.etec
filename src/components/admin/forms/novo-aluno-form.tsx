@@ -1,6 +1,7 @@
 'use client'
 
 import * as React from 'react'
+import Link from 'next/link'
 import { useEffect, useState, type FormEvent } from 'react'
 import {
   AlertCircle,
@@ -32,6 +33,32 @@ type OptionsResponse = {
   habilidades: OptionItem[]
 }
 
+export type AlunoFormInitialData = {
+  nome?: string
+  email?: string
+  numero?: string
+  cidade?: string
+  carreira?: string
+  turno?: string
+  ano?: string
+  linkedin?: string
+  github?: string
+  site?: string
+  foto?: string
+  descricao?: string
+  conquistas?: string[]
+  funcoes?: string[]
+  especializacoes?: string[]
+  habilidades?: string[]
+}
+
+type NovoAlunoFormProps = {
+  mode?: 'create' | 'edit'
+  alunoId?: number
+  initialData?: AlunoFormInitialData | null
+  cancelHref?: string
+}
+
 const STEPS = [
   { id: 1, title: 'Dados Pessoais', icon: User },
   { id: 2, title: 'Acadêmico', icon: GraduationCap },
@@ -39,7 +66,12 @@ const STEPS = [
   { id: 4, title: 'Competências', icon: Trophy },
 ]
 
-export function NovoAlunoForm() {
+export function NovoAlunoForm({
+  mode = 'create',
+  alunoId,
+  initialData = null,
+  cancelHref = '/alunos',
+}: NovoAlunoFormProps) {
   const formRef = React.useRef<HTMLFormElement>(null)
   const [currentStep, setCurrentStep] = useState(1)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -58,6 +90,7 @@ export function NovoAlunoForm() {
   const [selectedHabilidades, setSelectedHabilidades] = useState<string[]>([])
 
   const [phone, setPhone] = useState('')
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false)
 
   useEffect(() => {
     async function loadOptions() {
@@ -82,6 +115,28 @@ export function NovoAlunoForm() {
     }
     loadOptions()
   }, [])
+
+  useEffect(() => {
+    if (!initialData) return
+
+    setSelectedFuncoes(initialData.funcoes || [])
+    setSelectedEspecializacoes(initialData.especializacoes || [])
+    setSelectedHabilidades(initialData.habilidades || [])
+    setPhone(formatPhone(initialData.numero || ''))
+  }, [initialData])
+
+  useEffect(() => {
+    if (mode !== 'edit') return
+
+    const handleBeforeUnload = (event: BeforeUnloadEvent) => {
+      if (!hasUnsavedChanges) return
+      event.preventDefault()
+      event.returnValue = ''
+    }
+
+    window.addEventListener('beforeunload', handleBeforeUnload)
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload)
+  }, [hasUnsavedChanges, mode])
 
   const formatPhone = (value: string) => {
     const digits = value.replace(/\D/g, '').substring(0, 11)
@@ -187,6 +242,12 @@ export function NovoAlunoForm() {
     }
   }
 
+  const handleFormChange = () => {
+    if (mode === 'edit') {
+      setHasUnsavedChanges(true)
+    }
+  }
+
   async function handleFinalSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     if (currentStep < STEPS.length) return
@@ -207,8 +268,13 @@ export function NovoAlunoForm() {
     }
 
     try {
-      const response = await fetch('/api/admin/alunos', {
-        method: 'POST',
+      const endpoint =
+        mode === 'edit' && alunoId
+          ? `/api/admin/alunos/${alunoId}`
+          : '/api/admin/alunos'
+      const method = mode === 'edit' ? 'PATCH' : 'POST'
+      const response = await fetch(endpoint, {
+        method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       })
@@ -223,12 +289,15 @@ export function NovoAlunoForm() {
       }
 
       setSubmitResult({ success: true, data: data.data })
-      form.reset()
-      setPhone('')
-      setSelectedFuncoes([])
-      setSelectedEspecializacoes([])
-      setSelectedHabilidades([])
-      setCurrentStep(1)
+      setHasUnsavedChanges(false)
+      if (mode === 'create') {
+        form.reset()
+        setPhone('')
+        setSelectedFuncoes([])
+        setSelectedEspecializacoes([])
+        setSelectedHabilidades([])
+        setCurrentStep(1)
+      }
       window.scrollTo({ top: 0, behavior: 'smooth' })
     } catch (error) {
       const message =
@@ -274,6 +343,11 @@ export function NovoAlunoForm() {
           <span>{Math.round(progress)}% Completo</span>
         </div>
         <Progress value={progress} className="h-2" />
+        {mode === 'edit' && hasUnsavedChanges ? (
+          <p className="text-xs font-medium text-amber-600">
+            Existem alteracoes nao salvas neste formulario.
+          </p>
+        ) : null}
         <div className="flex justify-between px-2">
           {STEPS.map(step => {
             const Icon = step.icon
@@ -316,6 +390,7 @@ export function NovoAlunoForm() {
         ref={formRef}
         onSubmit={handleFinalSubmit}
         onKeyDown={handleKeyDown}
+        onChange={handleFormChange}
         className="space-y-8 min-h-[400px]"
       >
         {/* Step 1: Dados Pessoais */}
@@ -335,6 +410,7 @@ export function NovoAlunoForm() {
                 required
                 className="admin-input h-11"
                 placeholder="Ex: Victor Hugo"
+                defaultValue={initialData?.nome || ''}
               />
             </div>
             <div className="space-y-2">
@@ -346,6 +422,7 @@ export function NovoAlunoForm() {
                 required
                 className="admin-input h-11"
                 placeholder="aluno@etec.sp.gov.br"
+                defaultValue={initialData?.email || ''}
               />
             </div>
             <div className="space-y-2">
@@ -374,6 +451,7 @@ export function NovoAlunoForm() {
                 required
                 className="admin-input h-11"
                 placeholder="Ex: Americana"
+                defaultValue={initialData?.cidade || ''}
               />
             </div>
           </div>
@@ -396,6 +474,8 @@ export function NovoAlunoForm() {
                 required
                 className="admin-input h-11"
                 placeholder="Ex: Desenvolvedor Fullstack"
+                defaultValue={initialData?.carreira || ''}
+                maxLength={500}
               />
             </div>
             <div className="space-y-2">
@@ -405,7 +485,7 @@ export function NovoAlunoForm() {
                 name="turno"
                 required
                 className="admin-input bg-background h-11 w-full rounded-md border px-3 text-sm focus:ring-2 focus:ring-primary/20"
-                defaultValue=""
+                defaultValue={initialData?.turno || ''}
               >
                 <option value="" disabled>
                   Selecionar turno
@@ -422,6 +502,7 @@ export function NovoAlunoForm() {
                 required
                 className="admin-input h-11"
                 placeholder="Ex: 3º M-DS"
+                defaultValue={initialData?.ano || ''}
               />
             </div>
           </div>
@@ -445,6 +526,7 @@ export function NovoAlunoForm() {
                 required
                 className="admin-input h-11"
                 placeholder="https://linkedin.com/in/..."
+                defaultValue={initialData?.linkedin || ''}
               />
             </div>
             <div className="space-y-2">
@@ -456,6 +538,7 @@ export function NovoAlunoForm() {
                 required
                 className="admin-input h-11"
                 placeholder="https://github.com/..."
+                defaultValue={initialData?.github || ''}
               />
             </div>
             <div className="space-y-2 md:col-span-2">
@@ -467,6 +550,20 @@ export function NovoAlunoForm() {
                 required
                 className="admin-input h-11"
                 placeholder="https://meusite.com"
+                defaultValue={initialData?.site || ''}
+              />
+            </div>
+            <div className="space-y-2 md:col-span-2">
+              <Label htmlFor="foto" className="text-sm font-semibold">
+                URL da Foto
+              </Label>
+              <Input
+                id="foto"
+                name="foto"
+                type="text"
+                className="admin-input h-11"
+                placeholder="https://... ou /alunos/foto.jpg"
+                defaultValue={initialData?.foto || ''}
               />
             </div>
             <div className="space-y-2 md:col-span-2">
@@ -478,6 +575,7 @@ export function NovoAlunoForm() {
                 rows={6}
                 className="admin-input resize-none"
                 placeholder="Conte um pouco sobre suas experiências e objetivos..."
+                defaultValue={initialData?.descricao || ''}
               />
             </div>
           </div>
@@ -545,6 +643,7 @@ export function NovoAlunoForm() {
                 required
                 className="admin-input h-11"
                 placeholder="Feira de ciências, Hackathon, Monitoria"
+                defaultValue={initialData?.conquistas?.join(', ') || ''}
               />
               <p className="text-[10px] text-muted-foreground">
                 Separe por vírgula
@@ -569,23 +668,34 @@ export function NovoAlunoForm() {
           <Alert className="animate-in fade-in zoom-in duration-300 border-emerald-500/50 bg-emerald-500/5">
             <CheckCircle2 className="h-4 w-4 text-emerald-500" />
             <AlertTitle className="text-emerald-700">
-              Aluno criado com sucesso!
+              {mode === 'edit'
+                ? 'Aluno atualizado com sucesso!'
+                : 'Aluno criado com sucesso!'}
             </AlertTitle>
             <AlertDescription>
-              O perfil já está disponível para vinculação a projetos.
+              {mode === 'edit'
+                ? 'As alterações do perfil foram salvas.'
+                : 'O perfil já está disponível para vinculação a projetos.'}
             </AlertDescription>
           </Alert>
         )}
 
         <div className="flex justify-between border-t pt-6">
-          <Button
-            type="button"
-            variant="outline"
-            onClick={prevStep}
-            disabled={currentStep === 1}
-          >
-            <ChevronLeft className="mr-2 h-4 w-4" /> Voltar
-          </Button>
+          <div className="flex items-center gap-2">
+            {mode === 'edit' ? (
+              <Button type="button" variant="ghost" asChild>
+                <Link href={cancelHref}>Cancelar</Link>
+              </Button>
+            ) : null}
+            <Button
+              type="button"
+              variant="outline"
+              onClick={prevStep}
+              disabled={currentStep === 1}
+            >
+              <ChevronLeft className="mr-2 h-4 w-4" /> Voltar
+            </Button>
+          </div>
 
           {currentStep < STEPS.length ? (
             <Button type="button" onClick={nextStep}>
@@ -603,7 +713,7 @@ export function NovoAlunoForm() {
                   Salvando...
                 </>
               ) : (
-                'Finalizar Cadastro'
+                mode === 'edit' ? 'Salvar Alterações' : 'Finalizar Cadastro'
               )}
             </Button>
           )}

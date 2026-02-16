@@ -4,12 +4,19 @@ import { hasValidSupabaseSession } from '@/src/lib/auth-session'
 import { type ApiResult } from '@/src/lib/api-result'
 import { DataSourceError, isDataSourceError } from '@/src/lib/data/errors'
 import { supabaseAdminRequest } from '@/src/lib/data/supabase-admin'
-import { createAlunoSchema } from '@/src/lib/schemas/tcc'
+import { updateAlunoSchema } from '@/src/lib/schemas/tcc'
 import { logApiMetric } from '@/src/lib/telemetry'
 import { resolveTenantFromRequest } from '@/src/lib/tenant-service'
 
 const idOnlyListSchema = z.array(z.object({ id: z.number().int().positive() }))
-const alunoInsertSchema = z.array(z.object({ id: z.number().int().positive() }))
+
+function parseId(params: { id: string }): number {
+  const id = Number.parseInt(params.id, 10)
+  if (!Number.isInteger(id) || id <= 0) {
+    throw new DataSourceError('SUPABASE_PAYLOAD', 'ID de aluno invalido.')
+  }
+  return id
+}
 
 function asErrorMessage(error: unknown): string {
   if (isDataSourceError(error)) {
@@ -20,7 +27,7 @@ function asErrorMessage(error: unknown): string {
     return error.message
   }
 
-  return 'Erro interno ao criar aluno.'
+  return 'Erro interno ao atualizar aluno.'
 }
 
 async function resolveLookupId(table: string, nome: string): Promise<number> {
@@ -54,46 +61,70 @@ async function resolveLookupId(table: string, nome: string): Promise<number> {
   return created[0].id
 }
 
-async function rollbackAluno(alunoId: number): Promise<void> {
-  const suffix = `id_aluno=eq.${alunoId}`
-  const requests = [
-    supabaseAdminRequest({
-      method: 'DELETE',
-      resourcePath: `aluno_funcao?${suffix}`,
-      prefer: 'return=minimal',
-    }),
-    supabaseAdminRequest({
-      method: 'DELETE',
-      resourcePath: `aluno_especializacao?${suffix}`,
-      prefer: 'return=minimal',
-    }),
-    supabaseAdminRequest({
-      method: 'DELETE',
-      resourcePath: `aluno_habilidade?${suffix}`,
-      prefer: 'return=minimal',
-    }),
-    supabaseAdminRequest({
-      method: 'DELETE',
-      resourcePath: `conquista?${suffix}`,
-      prefer: 'return=minimal',
-    }),
-    supabaseAdminRequest({
-      method: 'DELETE',
-      resourcePath: `aluno_tcc?${suffix}`,
-      prefer: 'return=minimal',
-    }),
-    supabaseAdminRequest({
-      method: 'DELETE',
-      resourcePath: `aluno?id=eq.${alunoId}`,
-      prefer: 'return=minimal',
-    }),
-  ]
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const tenant = resolveTenantFromRequest(request)
 
-  await Promise.allSettled(requests)
+  if (tenant?.id !== 'admin') {
+    return NextResponse.json(
+      { error: 'Operacao permitida apenas no tenant admin.' },
+      { status: 403 }
+    )
+  }
+
+  if (!(await hasValidSupabaseSession(request))) {
+    return NextResponse.json({ error: 'Nao autorizado.' }, { status: 401 })
+  }
+
+  try {
+    const resolvedParams = await params
+    const alunoId = parseId(resolvedParams)
+    const rows = await supabaseAdminRequest({
+      resourcePath: `aluno?select=*,aluno_funcao(funcao(nome)),aluno_especializacao(especializacao(nome)),aluno_habilidade(habilidade(nome)),conquista(nome)&id=eq.${alunoId}&limit=1`,
+      schema: z.array(z.any()),
+    })
+
+    const aluno = rows[0]
+    if (!aluno) {
+      return NextResponse.json(
+        { error: 'Aluno nao encontrado.' },
+        { status: 404 }
+      )
+    }
+
+    return NextResponse.json({
+      ...aluno,
+      funcoes:
+        aluno.aluno_funcao
+          ?.map((item: any) => item.funcao?.nome)
+          .filter(Boolean) || [],
+      especializacoes:
+        aluno.aluno_especializacao
+          ?.map((item: any) => item.especializacao?.nome)
+          .filter(Boolean) || [],
+      habilidades:
+        aluno.aluno_habilidade
+          ?.map((item: any) => item.habilidade?.nome)
+          .filter(Boolean) || [],
+      conquistas:
+        aluno.conquista
+          ?.map((item: any) => item.nome)
+          .filter(Boolean) || [],
+    })
+  } catch (error) {
+    console.error('GET /api/admin/alunos/[id] error:', error)
+    return NextResponse.json(
+      { error: asErrorMessage(error) },
+      { status: 500 }
+    )
+  }
 }
 
-export async function POST(
-  request: NextRequest
+export async function PATCH(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
 ): Promise<NextResponse<ApiResult<{ id: number }>>> {
   const startedAt = Date.now()
   const tenant = resolveTenantFromRequest(request)
@@ -107,8 +138,8 @@ export async function POST(
 
   if (!(await hasValidSupabaseSession(request))) {
     logApiMetric({
-      endpoint: '/api/admin/alunos',
-      method: 'POST',
+      endpoint: '/api/admin/alunos/[id]',
+      method: 'PATCH',
       status: 401,
       durationMs: Date.now() - startedAt,
       ok: false,
@@ -121,19 +152,19 @@ export async function POST(
     )
   }
 
-  let alunoId = 0
-
   try {
+    const resolvedParams = await params
+    const alunoId = parseId(resolvedParams)
     const body = (await request.json()) as unknown
-    const parsedInput = createAlunoSchema.safeParse(body)
+    const parsedInput = updateAlunoSchema.safeParse(body)
 
     if (!parsedInput.success) {
       const message =
         parsedInput.error.issues[0]?.message ||
-        'Payload invalido para novo aluno.'
+        'Payload invalido para atualizacao de aluno.'
       logApiMetric({
-        endpoint: '/api/admin/alunos',
-        method: 'POST',
+        endpoint: '/api/admin/alunos/[id]',
+        method: 'PATCH',
         status: 400,
         durationMs: Date.now() - startedAt,
         ok: false,
@@ -148,36 +179,48 @@ export async function POST(
 
     const input = parsedInput.data
 
-    const inserted = await supabaseAdminRequest({
-      method: 'POST',
-      resourcePath: 'aluno?select=id',
-      body: [
-        {
-          nome: input.nome,
-          descricao: input.descricao || null,
-          foto: input.foto || null,
-          carreira: input.carreira || null,
-          cidade: input.cidade || null,
-          turno: input.turno || null,
-          ano: input.ano || null,
-          linkedin: input.linkedin || null,
-          email: input.email || null,
-          numero: input.numero || null,
-          github: input.github || null,
-          site: input.site || null,
-        },
-      ],
-      schema: alunoInsertSchema,
-      prefer: 'return=representation',
+    await supabaseAdminRequest({
+      method: 'PATCH',
+      resourcePath: `aluno?id=eq.${alunoId}`,
+      body: {
+        nome: input.nome,
+        descricao: input.descricao || null,
+        foto: input.foto || null,
+        carreira: input.carreira || null,
+        cidade: input.cidade || null,
+        turno: input.turno || null,
+        ano: input.ano || null,
+        linkedin: input.linkedin || null,
+        email: input.email || null,
+        numero: input.numero || null,
+        github: input.github || null,
+        site: input.site || null,
+      },
+      prefer: 'return=minimal',
     })
 
-    alunoId = inserted[0]?.id || 0
-    if (!alunoId) {
-      throw new DataSourceError(
-        'SUPABASE_PAYLOAD',
-        'Supabase nao retornou id do aluno.'
-      )
-    }
+    await Promise.all([
+      supabaseAdminRequest({
+        method: 'DELETE',
+        resourcePath: `aluno_funcao?id_aluno=eq.${alunoId}`,
+        prefer: 'return=minimal',
+      }),
+      supabaseAdminRequest({
+        method: 'DELETE',
+        resourcePath: `aluno_especializacao?id_aluno=eq.${alunoId}`,
+        prefer: 'return=minimal',
+      }),
+      supabaseAdminRequest({
+        method: 'DELETE',
+        resourcePath: `aluno_habilidade?id_aluno=eq.${alunoId}`,
+        prefer: 'return=minimal',
+      }),
+      supabaseAdminRequest({
+        method: 'DELETE',
+        resourcePath: `conquista?id_aluno=eq.${alunoId}`,
+        prefer: 'return=minimal',
+      }),
+    ])
 
     for (const nome of input.funcoes) {
       const idFuncao = await resolveLookupId('funcao', nome)
@@ -219,26 +262,22 @@ export async function POST(
     }
 
     logApiMetric({
-      endpoint: '/api/admin/alunos',
-      method: 'POST',
-      status: 201,
+      endpoint: '/api/admin/alunos/[id]',
+      method: 'PATCH',
+      status: 200,
       durationMs: Date.now() - startedAt,
       ok: true,
     })
 
     return NextResponse.json(
       { success: true, data: { id: alunoId } },
-      { status: 201 }
+      { status: 200 }
     )
   } catch (error) {
-    if (alunoId) {
-      await rollbackAluno(alunoId)
-    }
-
     const message = asErrorMessage(error)
     logApiMetric({
-      endpoint: '/api/admin/alunos',
-      method: 'POST',
+      endpoint: '/api/admin/alunos/[id]',
+      method: 'PATCH',
       status: 500,
       durationMs: Date.now() - startedAt,
       ok: false,
@@ -247,37 +286,6 @@ export async function POST(
 
     return NextResponse.json(
       { success: false, error: message },
-      { status: 500 }
-    )
-  }
-}
-
-export async function GET(request: NextRequest) {
-  const tenant = resolveTenantFromRequest(request)
-
-  if (tenant?.id !== 'admin') {
-    return NextResponse.json(
-      { error: 'Operacao permitida apenas no tenant admin.' },
-      { status: 403 }
-    )
-  }
-
-  if (!(await hasValidSupabaseSession(request))) {
-    return NextResponse.json({ error: 'Nao autorizado.' }, { status: 401 })
-  }
-
-  try {
-    const students = await supabaseAdminRequest({
-      resourcePath:
-        'aluno?select=*,aluno_funcao(funcao(nome)),aluno_especializacao(especializacao(nome)),aluno_habilidade(habilidade(nome))&order=nome.asc',
-      schema: z.array(z.any()),
-    })
-
-    return NextResponse.json(students)
-  } catch (error) {
-    console.error('GET /api/admin/alunos error:', error)
-    return NextResponse.json(
-      { error: 'Erro ao buscar alunos.' },
       { status: 500 }
     )
   }

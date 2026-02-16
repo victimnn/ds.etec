@@ -1,6 +1,7 @@
 'use client'
 
 import * as React from 'react'
+import Link from 'next/link'
 import { useEffect, useState, type FormEvent } from 'react'
 import {
   AlertCircle,
@@ -32,6 +33,27 @@ type OptionsResponse = {
   alunos: OptionItem[]
 }
 
+export type TccFormInitialData = {
+  nome?: string
+  descricao?: string
+  introducao?: string
+  ano?: number | string
+  categoriaId?: number | string
+  professorId?: number | string
+  github?: string
+  deploy?: string
+  video?: string
+  foto?: string
+  memberIds?: number[]
+}
+
+type NovoTccFormProps = {
+  mode?: 'create' | 'edit'
+  projectId?: number
+  initialData?: TccFormInitialData | null
+  cancelHref?: string
+}
+
 const STEPS = [
   { id: 1, title: 'Identidade', icon: Layout },
   { id: 2, title: 'Detalhes', icon: FileText },
@@ -39,7 +61,12 @@ const STEPS = [
   { id: 4, title: 'Mídia & Links', icon: Video },
 ]
 
-export function NovoTccForm() {
+export function NovoTccForm({
+  mode = 'create',
+  projectId,
+  initialData = null,
+  cancelHref = '/projetos',
+}: NovoTccFormProps) {
   const formRef = React.useRef<HTMLFormElement>(null)
   const [currentStep, setCurrentStep] = useState(1)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -51,6 +78,7 @@ export function NovoTccForm() {
     useState<CreateProjectResponse | null>(null)
 
   const [selectedMembers, setSelectedMembers] = useState<string[]>([])
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false)
 
   useEffect(() => {
     async function loadOptions() {
@@ -74,6 +102,24 @@ export function NovoTccForm() {
     }
     loadOptions()
   }, [])
+
+  useEffect(() => {
+    if (!initialData?.memberIds?.length) return
+    setSelectedMembers(initialData.memberIds.map(id => String(id)))
+  }, [initialData])
+
+  useEffect(() => {
+    if (mode !== 'edit') return
+
+    const handleBeforeUnload = (event: BeforeUnloadEvent) => {
+      if (!hasUnsavedChanges) return
+      event.preventDefault()
+      event.returnValue = ''
+    }
+
+    window.addEventListener('beforeunload', handleBeforeUnload)
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload)
+  }, [hasUnsavedChanges, mode])
 
   const validateCurrentStep = () => {
     if (!formRef.current) return false
@@ -131,6 +177,12 @@ export function NovoTccForm() {
     }
   }
 
+  const handleFormChange = () => {
+    if (mode === 'edit') {
+      setHasUnsavedChanges(true)
+    }
+  }
+
   async function handleFinalSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     if (currentStep < STEPS.length) return
@@ -150,8 +202,13 @@ export function NovoTccForm() {
     }
 
     try {
-      const response = await fetch('/api/admin/projetos', {
-        method: 'POST',
+      const endpoint =
+        mode === 'edit' && projectId
+          ? `/api/admin/projetos/${projectId}`
+          : '/api/admin/projetos'
+      const method = mode === 'edit' ? 'PATCH' : 'POST'
+      const response = await fetch(endpoint, {
+        method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       })
@@ -166,9 +223,12 @@ export function NovoTccForm() {
       }
 
       setSubmitResult({ success: true, data: data.data })
-      form.reset()
-      setSelectedMembers([])
-      setCurrentStep(1)
+      setHasUnsavedChanges(false)
+      if (mode === 'create') {
+        form.reset()
+        setSelectedMembers([])
+        setCurrentStep(1)
+      }
       window.scrollTo({ top: 0, behavior: 'smooth' })
     } catch (error) {
       const message =
@@ -214,6 +274,11 @@ export function NovoTccForm() {
           <span>{Math.round(progress)}% Completo</span>
         </div>
         <Progress value={progress} className="h-2" />
+        {mode === 'edit' && hasUnsavedChanges ? (
+          <p className="text-xs font-medium text-amber-600">
+            Existem alteracoes nao salvas neste formulario.
+          </p>
+        ) : null}
         <div className="flex justify-between px-2">
           {STEPS.map(step => {
             const Icon = step.icon
@@ -256,6 +321,7 @@ export function NovoTccForm() {
         ref={formRef}
         onSubmit={handleFinalSubmit}
         onKeyDown={handleKeyDown}
+        onChange={handleFormChange}
         className="space-y-8 min-h-[400px]"
       >
         {/* Step 1: Identidade */}
@@ -275,6 +341,7 @@ export function NovoTccForm() {
                 required
                 className="admin-input h-11"
                 placeholder="Ex: Sistema de Gestão Escolar"
+                defaultValue={initialData?.nome || ''}
               />
             </div>
             <div className="space-y-2">
@@ -288,6 +355,7 @@ export function NovoTccForm() {
                 placeholder="2026"
                 required
                 className="admin-input h-11"
+                defaultValue={initialData?.ano ? String(initialData.ano) : ''}
               />
             </div>
             <div className="space-y-2">
@@ -297,7 +365,11 @@ export function NovoTccForm() {
                 name="categoriaId"
                 required
                 className="admin-input bg-background h-11 w-full rounded-md border px-3 text-sm focus:ring-2 focus:ring-primary/20"
-                defaultValue=""
+                defaultValue={
+                  initialData?.categoriaId
+                    ? String(initialData.categoriaId)
+                    : ''
+                }
                 disabled={isLoadingOptions}
               >
                 <option value="">Selecionar categoria</option>
@@ -329,6 +401,7 @@ export function NovoTccForm() {
                 rows={3}
                 className="admin-input resize-none"
                 placeholder="Uma frase impactante que resume o projeto..."
+                defaultValue={initialData?.descricao || ''}
               />
             </div>
             <div className="space-y-2">
@@ -342,6 +415,7 @@ export function NovoTccForm() {
                 rows={8}
                 className="admin-input resize-none"
                 placeholder="Explique o problema, a solução e as tecnologias utilizadas..."
+                defaultValue={initialData?.introducao || ''}
               />
             </div>
           </div>
@@ -365,7 +439,11 @@ export function NovoTccForm() {
                 name="professorId"
                 required
                 className="admin-input bg-background h-11 w-full rounded-md border px-3 text-sm focus:ring-2 focus:ring-primary/20"
-                defaultValue=""
+                defaultValue={
+                  initialData?.professorId
+                    ? String(initialData.professorId)
+                    : ''
+                }
                 disabled={isLoadingOptions}
               >
                 <option value="">Selecionar professor</option>
@@ -404,6 +482,19 @@ export function NovoTccForm() {
         >
           <div className="grid gap-6">
             <div className="space-y-2">
+              <Label htmlFor="foto" className="text-sm font-semibold">
+                URL da Imagem de Capa
+              </Label>
+              <Input
+                id="foto"
+                name="foto"
+                type="text"
+                className="admin-input h-11"
+                placeholder="https://... ou /projetos/capa.jpg"
+                defaultValue={initialData?.foto || ''}
+              />
+            </div>
+            <div className="space-y-2">
               <RequiredLabel htmlFor="github">GitHub</RequiredLabel>
               <Input
                 id="github"
@@ -412,6 +503,7 @@ export function NovoTccForm() {
                 required
                 className="admin-input h-11"
                 placeholder="https://github.com/..."
+                defaultValue={initialData?.github || ''}
               />
             </div>
             <div className="space-y-2">
@@ -423,6 +515,7 @@ export function NovoTccForm() {
                 required
                 className="admin-input h-11"
                 placeholder="https://projeto.vercel.app"
+                defaultValue={initialData?.deploy || ''}
               />
             </div>
             <div className="space-y-2">
@@ -436,6 +529,7 @@ export function NovoTccForm() {
                 required
                 className="admin-input h-11"
                 placeholder="https://youtube.com/watch?v=..."
+                defaultValue={initialData?.video || ''}
               />
             </div>
           </div>
@@ -456,23 +550,34 @@ export function NovoTccForm() {
           <Alert className="animate-in fade-in zoom-in duration-300 border-emerald-500/50 bg-emerald-500/5">
             <CheckCircle2 className="h-4 w-4 text-emerald-500" />
             <AlertTitle className="text-emerald-700">
-              Projeto criado com sucesso!
+              {mode === 'edit'
+                ? 'Projeto atualizado com sucesso!'
+                : 'Projeto criado com sucesso!'}
             </AlertTitle>
             <AlertDescription>
-              O TCC já está listado na galeria de projetos.
+              {mode === 'edit'
+                ? 'As alterações do TCC foram salvas.'
+                : 'O TCC já está listado na galeria de projetos.'}
             </AlertDescription>
           </Alert>
         )}
 
         <div className="flex justify-between border-t pt-6">
-          <Button
-            type="button"
-            variant="outline"
-            onClick={prevStep}
-            disabled={currentStep === 1}
-          >
-            <ChevronLeft className="mr-2 h-4 w-4" /> Voltar
-          </Button>
+          <div className="flex items-center gap-2">
+            {mode === 'edit' ? (
+              <Button type="button" variant="ghost" asChild>
+                <Link href={cancelHref}>Cancelar</Link>
+              </Button>
+            ) : null}
+            <Button
+              type="button"
+              variant="outline"
+              onClick={prevStep}
+              disabled={currentStep === 1}
+            >
+              <ChevronLeft className="mr-2 h-4 w-4" /> Voltar
+            </Button>
+          </div>
 
           {currentStep < STEPS.length ? (
             <Button type="button" onClick={nextStep}>
@@ -490,7 +595,7 @@ export function NovoTccForm() {
                   Salvando...
                 </>
               ) : (
-                'Finalizar Cadastro'
+                mode === 'edit' ? 'Salvar Alterações' : 'Finalizar Cadastro'
               )}
             </Button>
           )}

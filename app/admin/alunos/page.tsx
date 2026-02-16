@@ -67,8 +67,7 @@ export default function AlunosListPage() {
   const filteredAlunos = alunos.filter(
     aluno =>
       aluno.nome?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      aluno.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      aluno.carreira?.toLowerCase().includes(searchTerm.toLowerCase())
+      aluno.email?.toLowerCase().includes(searchTerm.toLowerCase())
   )
 
   return (
@@ -138,7 +137,7 @@ export default function AlunosListPage() {
                 <TableHeader>
                   <TableRow className="bg-muted/50">
                     <TableHead className="w-[300px]">Aluno</TableHead>
-                    <TableHead>Carreira / Turma</TableHead>
+                    <TableHead>Turma</TableHead>
                     <TableHead>Contato</TableHead>
                     <TableHead>Habilidades</TableHead>
                     <TableHead className="text-right">Ações</TableHead>
@@ -159,12 +158,6 @@ export default function AlunosListPage() {
                       </TableCell>
                       <TableCell>
                         <div className="flex flex-col gap-1">
-                          <Badge
-                            variant="outline"
-                            className="w-fit text-[10px] font-normal"
-                          >
-                            {aluno.carreira || 'Sem carreira'}
-                          </Badge>
                           <span className="text-xs text-muted-foreground">
                             {aluno.ano || 'S/ Turma'} •{' '}
                             {aluno.turno || 'S/ Turno'}
@@ -208,6 +201,12 @@ export default function AlunosListPage() {
                         </div>
                       </TableCell>
                       <TableCell className="text-right">
+                        <Button asChild variant="outline" size="sm" className="mr-2">
+                          <Link href={`/alunos/${aluno.id}`} className="gap-1">
+                            <Edit className="h-3.5 w-3.5" />
+                            Editar
+                          </Link>
+                        </Button>
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
                             <Button
@@ -221,8 +220,10 @@ export default function AlunosListPage() {
                           <DropdownMenuContent align="end" className="w-48">
                             <DropdownMenuLabel>Ações</DropdownMenuLabel>
                             <DropdownMenuSeparator />
-                            <DropdownMenuItem className="gap-2">
-                              <Edit className="h-4 w-4" /> Editar Aluno
+                            <DropdownMenuItem asChild className="gap-2">
+                              <Link href={`/alunos/${aluno.id}`}>
+                                <Edit className="h-4 w-4" /> Editar Aluno
+                              </Link>
                             </DropdownMenuItem>
                             <DropdownMenuItem className="gap-2">
                               <ExternalLink className="h-4 w-4" /> Ver Perfil

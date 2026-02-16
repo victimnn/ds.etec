@@ -16,6 +16,9 @@ import {
   Trophy,
   BookOpen,
   GraduationCap,
+  Linkedin,
+  Mail,
+  Sparkles,
   UserCheck,
 } from 'lucide-react'
 import { AdvisorPopup } from '@/src/components/tcc/team/advisor-popup'
@@ -58,11 +61,12 @@ export function HomeClient({
   totalStudents,
   totalTechnologies,
 }: HomeClientProps) {
+  const advisorCount = advisors.length
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
 
-      {/* Hero Section */}
       <section className="relative pt-32 pb-20 px-4 overflow-hidden">
         <div className="absolute inset-0 gradient-bg opacity-30" />
 
@@ -109,10 +113,9 @@ export function HomeClient({
             </h1>
 
             <p className="text-lg text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed text-pretty">
-              No dia 28 de novembro, os alunos apresentam seus Trabalhos de
-              Conclusão de Curso. Uma oportunidade para conhecer projetos
-              inovadores e soluções criativas. Venha prestigiar o futuro da
-              tecnologia!
+              No dia 28 de novembro, os alunos apresentam seus trabalhos de
+              conclusao de curso. Conheca os projetos e os docentes que guiam
+              essa jornada.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -139,14 +142,13 @@ export function HomeClient({
         </div>
       </section>
 
-      {/* Coordenadora do Curso */}
       <section className="py-20 px-4 bg-muted/30 border-y overflow-hidden">
         <div className="container mx-auto">
           <motion.div {...fadeInUp} className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">Coordenadora do Curso</h2>
+            <h2 className="text-3xl font-bold mb-4">Coordenador(a) do Curso</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Liderança responsável pela gestão e excelência pedagógica do
-              curso.
+              Lideranca responsavel pela gestao e excelencia pedagogica do
+              curso tecnico.
             </p>
           </motion.div>
 
@@ -155,42 +157,75 @@ export function HomeClient({
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: 'easeOut' as const }}
-            className="max-w-4xl mx-auto"
+            className="max-w-5xl mx-auto"
           >
             <AdvisorPopup advisor={coordinator}>
-              <Card className="glass hover-lift shadow-glow cursor-pointer border-primary/10 group overflow-hidden">
-                <CardContent className="p-8">
-                  <div className="flex flex-col md:flex-row items-center gap-8">
-                    <div className="relative shrink-0">
-                      <img
-                        src={coordinator.photo || '/placeholder-user.jpg'}
-                        alt={coordinator.name}
-                        className="w-32 h-32 rounded-full object-cover border-4 border-primary/20 shadow-xl transition-transform duration-500 group-hover:scale-110"
-                      />
-                      <div className="absolute -bottom-2 -right-2 bg-primary text-primary-foreground rounded-full p-2.5">
-                        <UserCheck className="h-5 w-5" />
+              <Card className="glass hover-lift shadow-glow cursor-pointer border-primary/20 group overflow-hidden">
+                <CardContent className="p-0">
+                  <div className="grid grid-cols-1 md:grid-cols-[300px_1fr]">
+                    <div className="gradient-bg p-8 flex flex-col items-center justify-center text-center border-b md:border-b-0 md:border-r">
+                      <div className="relative mb-5">
+                        <div className="absolute -inset-2 rounded-full bg-primary/10 blur-xl" />
+                        <img
+                          src={coordinator.photo || '/placeholder-user.jpg'}
+                          alt={coordinator.name}
+                          className="relative w-36 h-36 rounded-full object-cover border-4 border-primary/20 shadow-xl transition-transform duration-500 group-hover:scale-105"
+                        />
+                        <div className="absolute -bottom-2 -right-2 bg-primary text-primary-foreground rounded-full p-2.5 shadow-md">
+                          <UserCheck className="h-5 w-5" />
+                        </div>
                       </div>
+                      <h3 className="text-2xl font-bold">{coordinator.name}</h3>
+                      <p className="text-primary font-semibold mt-1">
+                        {coordinator.title}
+                      </p>
                     </div>
 
-                    <div className="flex-1 text-center md:text-left space-y-4">
-                      <div>
-                        <h3 className="text-2xl font-bold">
-                          {coordinator.name}
-                        </h3>
-                        <p className="text-primary font-medium">
-                          {coordinator.title}
-                        </p>
+                    <div className="p-8 space-y-5">
+                      <div className="flex flex-wrap gap-2">
+                        <Badge variant="secondary" className="gap-1.5">
+                          <Sparkles className="h-3.5 w-3.5" />
+                          Coordenacao
+                        </Badge>
+                        {coordinator.department && (
+                          <Badge variant="outline">{coordinator.department}</Badge>
+                        )}
                       </div>
-                      <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-                        {coordinator.achievements?.map((skill, index) => (
-                          <Badge key={index} variant="secondary">
-                            {skill}
-                          </Badge>
-                        ))}
-                      </div>
+
                       <p className="text-muted-foreground leading-relaxed italic">
                         &quot;{coordinator.about}&quot;
                       </p>
+
+                      <div className="flex flex-wrap gap-2">
+                        {coordinator.achievements?.slice(0, 4).map((item, index) => (
+                          <Badge key={index} variant="secondary">
+                            {item}
+                          </Badge>
+                        ))}
+                      </div>
+
+                      <div className="flex items-center gap-2">
+                        {coordinator.linkedin && (
+                          <Button asChild variant="outline" size="sm">
+                            <a
+                              href={coordinator.linkedin}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <Linkedin className="h-4 w-4 mr-1.5" />
+                              LinkedIn
+                            </a>
+                          </Button>
+                        )}
+                        {coordinator.email && (
+                          <Button asChild variant="outline" size="sm">
+                            <a href={`mailto:${coordinator.email}`}>
+                              <Mail className="h-4 w-4 mr-1.5" />
+                              E-mail
+                            </a>
+                          </Button>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </CardContent>
@@ -200,17 +235,17 @@ export function HomeClient({
         </div>
       </section>
 
-      {/* Professores Orientadores */}
       <section className="py-20 px-4">
         <div className="container mx-auto">
           <motion.div {...fadeInUp} className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">
-              Professores Orientadores
-            </h2>
-            <p className="text-muted-foreground">
-              Conheça os docentes que apoiam o desenvolvimento técnico dos
-              projetos.
+            <h2 className="text-3xl font-bold mb-4">Professores Orientadores</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Corpo docente que acompanha os projetos de TCC da turma.
             </p>
+            <div className="mt-5 inline-flex items-center gap-2 rounded-full border bg-card px-4 py-1.5 text-sm text-muted-foreground">
+              <GraduationCap className="h-4 w-4 text-primary" />
+              {advisorCount} orientador(es)
+            </div>
           </motion.div>
 
           <motion.div
@@ -218,53 +253,61 @@ export function HomeClient({
             initial="initial"
             whileInView="whileInView"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto"
+            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 max-w-6xl mx-auto"
           >
-            {advisors.length > 0 ? (
+            {advisorCount > 0 ? (
               advisors.map(advisor => (
-                <motion.div
-                  key={advisor.id}
-                  variants={fadeInUp}
-                  className="h-full"
-                >
+                <motion.div key={advisor.id} variants={fadeInUp} className="h-full">
                   <AdvisorPopup advisor={advisor}>
                     <Card className="glass hover-lift shadow-glow cursor-pointer h-full border-border/50 transition-all group overflow-hidden">
-                      <CardContent className="p-8">
-                        <div className="flex items-center gap-6">
-                          <div className="relative shrink-0">
-                            <img
-                              src={advisor.photo || '/placeholder-user.jpg'}
-                              alt={advisor.name}
-                              className="w-20 h-20 rounded-full object-cover border-4 border-primary/10 shadow-lg transition-transform duration-500 group-hover:scale-110"
-                            />
-                            <div className="absolute -bottom-1 -right-1 bg-primary text-primary-foreground rounded-full p-1.5">
-                              <GraduationCap className="h-3 w-3" />
+                      <CardContent className="p-0">
+                        <div className="p-6 border-b bg-gradient-to-r from-primary/5 to-transparent">
+                          <div className="flex items-center gap-4">
+                            <div className="relative shrink-0">
+                              <img
+                                src={advisor.photo || '/placeholder-user.jpg'}
+                                alt={advisor.name}
+                                className="w-16 h-16 rounded-full object-cover border-2 border-primary/20 shadow-lg transition-transform duration-500 group-hover:scale-105"
+                              />
+                              <div className="absolute -bottom-1 -right-1 bg-primary text-primary-foreground rounded-full p-1">
+                                <GraduationCap className="h-3 w-3" />
+                              </div>
+                            </div>
+                            <div className="min-w-0">
+                              <h3 className="text-lg font-bold truncate">{advisor.name}</h3>
+                              <p className="text-xs text-muted-foreground mt-0.5">
+                                {advisor.title}
+                              </p>
                             </div>
                           </div>
+                        </div>
 
-                          <div className="flex-1">
-                            <h3 className="text-xl font-bold mb-1">
-                              {advisor.name}
-                            </h3>
-                            <p className="text-sm text-primary mb-3 font-medium uppercase tracking-wider">
-                              {advisor.expertise}
-                            </p>
-                            <div className="flex flex-wrap gap-1.5 mb-4">
-                              {advisor.achievements
-                                ?.slice(0, 3)
-                                .map((ach, i) => (
-                                  <Badge
-                                    key={i}
-                                    variant="outline"
-                                    className="text-[10px] px-2 py-0"
-                                  >
-                                    {ach}
-                                  </Badge>
-                                ))}
+                        <div className="p-6 space-y-4">
+                          <p className="text-sm text-primary font-medium line-clamp-2">
+                            {advisor.expertise}
+                          </p>
+                          <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed">
+                            {advisor.about}
+                          </p>
+                          <div className="flex flex-wrap gap-1.5">
+                            {advisor.achievements?.slice(0, 2).map((ach, i) => (
+                              <Badge key={i} variant="outline" className="text-[11px]">
+                                {ach}
+                              </Badge>
+                            ))}
+                          </div>
+                          <div className="flex items-center justify-between pt-1">
+                            <span className="text-xs uppercase tracking-wide text-muted-foreground">
+                              Ver perfil completo
+                            </span>
+                            <div className="flex items-center gap-1.5">
+                              {advisor.linkedin && (
+                                <Linkedin className="h-4 w-4 text-muted-foreground" />
+                              )}
+                              {advisor.email && (
+                                <Mail className="h-4 w-4 text-muted-foreground" />
+                              )}
                             </div>
-                            <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">
-                              {advisor.about}
-                            </p>
                           </div>
                         </div>
                       </CardContent>
@@ -273,7 +316,7 @@ export function HomeClient({
                 </motion.div>
               ))
             ) : (
-              <p className="text-center col-span-2 text-muted-foreground italic">
+              <p className="text-center col-span-full text-muted-foreground italic">
                 Carregando corpo docente...
               </p>
             )}
@@ -281,7 +324,6 @@ export function HomeClient({
         </div>
       </section>
 
-      {/* Stats Section */}
       <section className="py-20 px-4 gradient-bg border-y">
         <div className="container mx-auto">
           <motion.div
@@ -302,7 +344,7 @@ export function HomeClient({
               {
                 icon: Trophy,
                 end: totalTechnologies,
-                label: 'Stack Tecnológica',
+                label: 'Stack Tecnologica',
                 suffix: '+',
               },
             ].map((stat, i) => (
@@ -335,7 +377,6 @@ export function HomeClient({
         </div>
       </section>
 
-      {/* Featured Projects Preview */}
       <section className="py-20 px-4">
         <div className="container mx-auto">
           <motion.div {...fadeInUp} className="text-center mb-16">

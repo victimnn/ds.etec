@@ -104,6 +104,7 @@ CREATE TABLE public.tcc (
   nome text,
   descricao text,
   introducao text,
+  foto text,
   id_categoria smallint,
   ano numeric,
   id_professor smallint,

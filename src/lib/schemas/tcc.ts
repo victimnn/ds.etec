@@ -10,6 +10,7 @@ export const rawTccSchema = z.object({
   nome: z.string().nullable(),
   descricao: z.string().nullable(),
   introducao: z.string().nullable(),
+  foto: z.string().nullable().optional(),
   ano: z.union([z.number(), z.string()]).nullable(),
   github: z.string().nullable(),
   deploy: z.string().nullable(),
@@ -41,6 +42,7 @@ export const rawAlunoTccSchema = z.object({
       descricao: z.string().nullable().optional(),
       carreira: z.string().nullable().optional(),
       cidade: z.string().nullable().optional(),
+      foto: z.string().nullable().optional(),
       linkedin: z.string().nullable().optional(),
       email: z.string().nullable().optional(),
       github: z.string().nullable().optional(),
@@ -95,6 +97,7 @@ export const rawAlunoSchema = z.object({
   carreira: z.string().nullable().optional(),
   cidade: z.string().nullable().optional(),
   turno: z.string().nullable().optional(),
+  foto: z.string().nullable().optional(),
   linkedin: z.string().nullable().optional(),
   email: z.string().nullable().optional(),
   github: z.string().nullable().optional(),
@@ -118,6 +121,7 @@ export const rawTccDeepSchema = z.object({
   nome: z.string().nullable(),
   descricao: z.string().nullable(),
   introducao: z.string().nullable(),
+  foto: z.string().nullable().optional(),
   ano: z.union([z.number(), z.string()]).nullable(),
   github: z.string().nullable(),
   deploy: z.string().nullable(),
@@ -164,7 +168,8 @@ export const createAlunoSchema = z.object({
     .min(2, 'Nome deve ter ao menos 2 caracteres')
     .max(120),
   descricao: z.string().trim().max(2000).optional(),
-  carreira: z.string().trim().max(200).optional(),
+  foto: z.string().trim().max(500).optional(),
+  carreira: z.string().trim().max(500).optional(),
   cidade: z.string().trim().max(120).optional(),
   turno: z.string().trim().max(30).optional(),
   ano: z.string().trim().max(20).optional(),
@@ -184,6 +189,7 @@ export const createTccSchema = z
     nome: z.string().trim().min(2).max(180),
     descricao: z.string().trim().min(2).max(2500),
     introducao: z.string().trim().max(8000).optional(),
+    foto: z.string().trim().max(500).optional(),
     ano: z.union([z.number().int(), z.string().trim()]),
     github: z.string().url().max(300).optional().or(z.literal('')),
     deploy: z.string().url().max(300).optional().or(z.literal('')),
@@ -266,6 +272,9 @@ export const createProfessorSchema = z.object({
   conquistas: commaSeparatedArrayField,
 })
 
+export const updateAlunoSchema = createAlunoSchema
+export const updateTccSchema = createTccSchema
+
 export const createNamedEntitySchema = z.object({
   nome: z.string().trim().min(2).max(120),
 })
@@ -310,6 +319,8 @@ export type RawProfessor = z.infer<typeof rawProfessorSchema>
 export type RawCategoria = z.infer<typeof rawCategoriaSchema>
 export type CreateAlunoInput = z.infer<typeof createAlunoSchema>
 export type CreateTccInput = z.infer<typeof createTccSchema>
+export type UpdateAlunoInput = z.infer<typeof updateAlunoSchema>
+export type UpdateTccInput = z.infer<typeof updateTccSchema>
 export type CreateProfessorInput = z.infer<typeof createProfessorSchema>
 export type CreateNamedEntityInput = z.infer<typeof createNamedEntitySchema>
 export type CreateConquistaInput = z.infer<typeof createConquistaSchema>

@@ -15,6 +15,7 @@ export default async function HomePage() {
     getAdvisors(),
     getCoordinator(),
   ])
+  const advisorList = advisors.filter(advisor => advisor.id !== coordinator.id)
 
   const totalProjects = projects.length
   const totalStudents = Array.from(
@@ -27,7 +28,7 @@ export default async function HomePage() {
   return (
     <HomeClient
       projects={projects}
-      advisors={advisors}
+      advisors={advisorList}
       coordinator={coordinator}
       totalProjects={totalProjects}
       totalStudents={totalStudents}

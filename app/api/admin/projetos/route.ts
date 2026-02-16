@@ -204,6 +204,7 @@ export async function POST(
           nome: input.nome,
           descricao: input.descricao,
           introducao: input.introducao || null,
+          foto: input.foto || null,
           ano:
             typeof input.ano === 'number'
               ? input.ano

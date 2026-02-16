@@ -71,7 +71,7 @@ function mapRawMember(raw: RawAlunoSchema): TeamMember {
     about: raw.descricao || 'Estudante de Desenvolvimento de Sistemas.',
     career: raw.carreira || 'Carreira em tecnologia.',
     location: raw.cidade || undefined,
-    photo: '/placeholder-user.jpg',
+    photo: raw.foto || '/placeholder-user.jpg',
     linkedin: raw.linkedin || undefined,
     github: raw.github || undefined,
     portfolio: raw.site || undefined,
@@ -137,7 +137,7 @@ export async function getTccProjects(): Promise<TCCProject[]> {
         category: [categoryName],
         year: row.ano ? String(row.ano) : '',
         period,
-        image: '/logo-ds.png', // Fallback to DS logo for project card
+        image: row.foto || '/logo-ds.png',
         technologies,
         members,
         advisor: mapRawAdvisor(row.professor),
