@@ -188,13 +188,14 @@ export function NovoAlunoForm({
       const phoneInput = formRef.current.querySelector(
         '#numero'
       ) as HTMLInputElement
-      if (phoneDigits.length !== 11) {
+      if (phoneDigits.length > 0 && phoneDigits.length !== 11) {
         phoneInput?.setCustomValidity(
           'O telefone deve ter exatamente 11 dígitos.'
         )
         phoneInput?.reportValidity()
         return false
       }
+      phoneInput?.setCustomValidity('')
     }
 
     inputs.forEach(input => {
@@ -409,30 +410,30 @@ export function NovoAlunoForm({
                 name="nome"
                 required
                 className="admin-input h-11"
-                placeholder="Ex: Victor Hugo"
+                placeholder="Ex: Victor Ramos"
                 defaultValue={initialData?.nome || ''}
               />
             </div>
             <div className="space-y-2">
-              <RequiredLabel htmlFor="email">Email</RequiredLabel>
+              <Label htmlFor="email" className="text-sm font-semibold">
+                Email
+              </Label>
               <Input
                 id="email"
                 name="email"
                 type="email"
-                required
                 className="admin-input h-11"
                 placeholder="aluno@etec.sp.gov.br"
                 defaultValue={initialData?.email || ''}
               />
             </div>
             <div className="space-y-2">
-              <RequiredLabel htmlFor="numero">
+              <Label htmlFor="numero" className="text-sm font-semibold">
                 WhatsApp / Telefone
-              </RequiredLabel>
+              </Label>
               <Input
                 id="numero"
                 name="numero"
-                required
                 className="admin-input h-11"
                 placeholder="(11) 99999-9999"
                 value={phone}
@@ -467,11 +468,10 @@ export function NovoAlunoForm({
         >
           <div className="grid gap-6 md:grid-cols-2">
             <div className="space-y-2">
-              <RequiredLabel htmlFor="carreira">Carreira Alvo</RequiredLabel>
+              <Label htmlFor="carreira">Carreira Alvo</Label>
               <Input
                 id="carreira"
                 name="carreira"
-                required
                 className="admin-input h-11"
                 placeholder="Ex: Desenvolvedor Fullstack"
                 defaultValue={initialData?.carreira || ''}
@@ -495,7 +495,7 @@ export function NovoAlunoForm({
               </select>
             </div>
             <div className="space-y-2">
-              <RequiredLabel htmlFor="ano">Ano/Turma</RequiredLabel>
+              <RequiredLabel htmlFor="ano">Ano</RequiredLabel>
               <Input
                 id="ano"
                 name="ano"
@@ -518,36 +518,33 @@ export function NovoAlunoForm({
         >
           <div className="grid gap-6 md:grid-cols-2">
             <div className="space-y-2">
-              <RequiredLabel htmlFor="linkedin">LinkedIn</RequiredLabel>
+              <Label htmlFor="linkedin">LinkedIn</Label>
               <Input
                 id="linkedin"
                 name="linkedin"
                 type="url"
-                required
                 className="admin-input h-11"
                 placeholder="https://linkedin.com/in/..."
                 defaultValue={initialData?.linkedin || ''}
               />
             </div>
             <div className="space-y-2">
-              <RequiredLabel htmlFor="github">GitHub</RequiredLabel>
+              <Label htmlFor="github">GitHub</Label>
               <Input
                 id="github"
                 name="github"
                 type="url"
-                required
                 className="admin-input h-11"
                 placeholder="https://github.com/..."
                 defaultValue={initialData?.github || ''}
               />
             </div>
             <div className="space-y-2 md:col-span-2">
-              <RequiredLabel htmlFor="site">Portfolio / Website</RequiredLabel>
+              <Label htmlFor="site">Portfolio / Website</Label>
               <Input
                 id="site"
                 name="site"
                 type="url"
-                required
                 className="admin-input h-11"
                 placeholder="https://meusite.com"
                 defaultValue={initialData?.site || ''}
@@ -567,11 +564,10 @@ export function NovoAlunoForm({
               />
             </div>
             <div className="space-y-2 md:col-span-2">
-              <RequiredLabel htmlFor="descricao">Descrição / Bio</RequiredLabel>
+              <Label htmlFor="descricao">Descrição / Bio</Label>
               <Textarea
                 id="descricao"
                 name="descricao"
-                required
                 rows={6}
                 className="admin-input resize-none"
                 placeholder="Conte um pouco sobre suas experiências e objetivos..."
@@ -636,11 +632,10 @@ export function NovoAlunoForm({
               />
             </div>
             <div className="space-y-2">
-              <RequiredLabel htmlFor="conquistas">Conquistas</RequiredLabel>
+              <Label htmlFor="conquistas">Conquistas</Label>
               <Input
                 id="conquistas"
                 name="conquistas"
-                required
                 className="admin-input h-11"
                 placeholder="Feira de ciências, Hackathon, Monitoria"
                 defaultValue={initialData?.conquistas?.join(', ') || ''}

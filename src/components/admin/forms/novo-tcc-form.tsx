@@ -490,29 +490,28 @@ export function NovoTccForm({
                 name="foto"
                 type="text"
                 className="admin-input h-11"
-                placeholder="https://... ou /projetos/capa.jpg"
+                placeholder="https://..."
                 defaultValue={initialData?.foto || ''}
               />
             </div>
             <div className="space-y-2">
-              <RequiredLabel htmlFor="github">GitHub</RequiredLabel>
+              <Label htmlFor="github">GitHub</Label>
               <Input
                 id="github"
                 name="github"
                 type="url"
-                required
+            
                 className="admin-input h-11"
                 placeholder="https://github.com/..."
                 defaultValue={initialData?.github || ''}
               />
             </div>
             <div className="space-y-2">
-              <RequiredLabel htmlFor="deploy">Deploy / Demo</RequiredLabel>
+              <Label htmlFor="deploy">Deploy / Demo</Label>
               <Input
                 id="deploy"
                 name="deploy"
                 type="url"
-                required
                 className="admin-input h-11"
                 placeholder="https://projeto.vercel.app"
                 defaultValue={initialData?.deploy || ''}
