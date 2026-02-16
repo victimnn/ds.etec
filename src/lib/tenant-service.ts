@@ -19,6 +19,24 @@ const TENANTS_BY_SUBDOMAIN: Record<string, TenantConfig> = {
   tcc: TENANTS.tcc,
 }
 
+function getHostnameFromUrl(value: string | undefined): string | undefined {
+  if (!value) {
+    return undefined
+  }
+
+  try {
+    return normalizeHostname(new URL(value).host)
+  } catch {
+    return normalizeHostname(value)
+  }
+}
+
+const TENANT_HOSTNAMES: Partial<Record<TenantId, string>> = {
+  main: getHostnameFromUrl(process.env.NEXT_PUBLIC_MAIN_URL),
+  admin: getHostnameFromUrl(process.env.NEXT_PUBLIC_ADMIN_URL),
+  tcc: getHostnameFromUrl(process.env.NEXT_PUBLIC_TCC_URL),
+}
+
 const IPV4_REGEX = /^\d{1,3}(\.\d{1,3}){3}$/
 
 function normalizeHostname(host: string): string {
@@ -52,6 +70,19 @@ function extractSubdomain(hostname: string): string | null {
 
 export function resolveTenantFromHost(hostHeader: string): TenantConfig | null {
   const hostname = normalizeHostname(hostHeader)
+
+  if (hostname === TENANT_HOSTNAMES.main) {
+    return TENANTS.main
+  }
+
+  if (hostname === TENANT_HOSTNAMES.admin) {
+    return TENANTS.admin
+  }
+
+  if (hostname === TENANT_HOSTNAMES.tcc) {
+    return TENANTS.tcc
+  }
+
   const subdomain = extractSubdomain(hostname)
 
   if (!subdomain) {
