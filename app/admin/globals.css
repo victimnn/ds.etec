@@ -1,0 +1,116 @@
+@import '../main/globals.css';
+
+@theme inline {
+  /* Overriding variables for Admin Context */
+  --color-admin-bg: var(--background);
+  --color-admin-card: var(--card);
+  --color-admin-primary: #8b5cf6;
+  --color-admin-secondary: #a78bfa;
+
+  /* Shared elevation levels */
+  --shadow-admin-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-admin-md:
+    0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-admin-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+:root {
+  /* Light Mode - Refined */
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --popover: #ffffff;
+  --popover-foreground: #0f172a;
+  --primary: #7c3aed;
+  --primary-foreground: #ffffff;
+  --secondary: #f1f5f9;
+  --secondary-foreground: #1e293b;
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+  --accent: #f8fafc;
+  --accent-foreground: #0f172a;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #7c3aed;
+  --radius: 0.75rem;
+}
+
+.dark {
+  /* Dark Mode - Midnight Professional */
+  --background: #020617; /* Deepest Navy */
+  --foreground: #f8fafc;
+  --card: #0f172a; /* Navy Slate */
+  --card-foreground: #f8fafc;
+  --popover: #0f172a;
+  --popover-foreground: #f8fafc;
+  --primary: #a78bfa; /* Softer purple for dark mode */
+  --primary-foreground: #020617;
+  --secondary: #1e293b;
+  --secondary-foreground: #f8fafc;
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+  --accent: #1e293b;
+  --accent-foreground: #f8fafc;
+  --destructive: #ef4444;
+  --destructive-foreground: #f8fafc;
+  --border: #1e293b;
+  --input: #1e293b;
+  --ring: #8b5cf6;
+}
+
+@layer components {
+  .glass {
+    @apply bg-background/70 backdrop-blur-xl border-b border-border/50;
+  }
+
+  .glass-card {
+    @apply bg-card/40 backdrop-blur-md border border-white/10 dark:border-white/5 shadow-admin-md transition-all duration-300 hover:shadow-admin-lg;
+  }
+
+  .admin-input {
+    @apply transition-all duration-200 
+           focus:ring-2 focus:ring-primary/30 focus:border-primary/50 
+           hover:border-primary/30 bg-background/50;
+  }
+
+  .sidebar-active-item {
+    @apply bg-primary/10 text-primary font-semibold shadow-[inset_0_0_0_1px_rgba(124,58,237,0.2)] relative;
+  }
+
+  .sidebar-active-item::before {
+    content: '';
+    @apply absolute left-0 top-1/2 -translate-y-1/2 w-1 h-1/2 bg-primary rounded-r-full shadow-[0_0_10px_rgba(124,58,237,0.5)];
+  }
+
+  .sidebar-group-label {
+    @apply text-[10px] uppercase tracking-[0.15em] font-bold text-muted-foreground/60 px-4 py-2 mt-4;
+  }
+
+  /* Zebra tables with better blending */
+  .admin-table-row {
+    @apply border-b border-border/40 hover:bg-primary/5 transition-colors;
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-gradient-to-br from-background via-background to-primary/5 min-h-screen selection:bg-primary/20;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+
+  /* Better scrollbar for admin panels */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/20 rounded-full hover:bg-muted-foreground/40 transition-colors;
+  }
+}

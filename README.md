@@ -7,6 +7,7 @@ Site institucional do curso Técnico em Desenvolvimento de Sistemas integrado ao
 ## 🚀 Tecnologias Utilizadas
 
 ### Frontend
+
 - **Next.js 15.2.4** - Framework React para produção
 - **React 19** - Biblioteca para interfaces de usuário
 - **TypeScript 5** - Superset JavaScript com tipagem estática
@@ -15,7 +16,8 @@ Site institucional do curso Técnico em Desenvolvimento de Sistemas integrado ao
 - **Lucide React** - Ícones modernos e consistentes
 
 ### Ferramentas de Desenvolvimento
-- **pnpm** - Gerenciador de pacotes rápido e eficiente
+
+- **npm** - Gerenciador de pacotes padrão do Node.js
 - **PostCSS** - Processador CSS
 - **ESLint** - Linter para JavaScript/TypeScript
 - **Vercel Analytics** - Análise de performance e métricas
@@ -64,52 +66,75 @@ O projeto utiliza uma paleta de cores roxa com detalhes em rosa:
 
 ### Pré-requisitos
 
-- Node.js 18+ 
-- pnpm (recomendado) ou npm
+- Node.js 18+
+- npm
 
 ### Instalação
 
 1. **Clone o repositório**
+
 ```bash
 git clone https://github.com/victimnn/ds.etec.git
 cd ds.etec
 ```
 
 2. **Instale as dependências**
+
 ```bash
-pnpm install
-# ou
 npm install
 ```
 
 3. **Execute em modo de desenvolvimento**
+
 ```bash
-pnpm dev
-# ou
 npm run dev
 ```
 
 4. **Acesse a aplicação**
-Abra [http://localhost:3000](http://localhost:3000) no seu navegador.
+   Abra [http://localhost:3000](http://localhost:3000) no seu navegador.
 
 ### Scripts Disponíveis
 
 ```bash
 # Desenvolvimento
-pnpm dev              # Inicia o servidor de desenvolvimento
-pnpm build            # Gera build de produção
-pnpm start            # Inicia o servidor de produção
+npm run dev           # Inicia o servidor de desenvolvimento
+npm run build         # Gera build de produção
+npm start             # Inicia o servidor de produção
 
 # Qualidade de Código
-pnpm lint             # Executa o ESLint
-pnpm lint:fix         # Corrige problemas do ESLint
-pnpm type-check       # Verifica tipos TypeScript
-pnpm format           # Formata o código com Prettier
-pnpm format:check     # Verifica formatação
+npm run lint          # Executa o ESLint
+npm run lint:fix      # Corrige problemas do ESLint
+npm run type-check    # Verifica tipos TypeScript
+npm run format        # Formata o código com Prettier
+npm run format:check  # Verifica formatação
 
 # Manutenção
-pnpm clean            # Limpa cache e reinstala dependências
+npm run clean         # Limpa cache e reinstala dependências
 ```
+
+## Supabase (TCC + Admin)
+
+### Variaveis de ambiente
+
+Copie `.env.example` para `.env.local` e preencha:
+
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `SUPABASE_SERVICE_ROLE_KEY`
+- `NEXT_PUBLIC_ADMIN_URL`
+
+### Ordem de aplicacao no banco
+
+1. Estrutura base: `database.sql`
+2. Politicas RLS: `supabase/policies.sql`
+3. Seed de dados (quando houver)
+
+### Modelo de seguranca
+
+- Leitura publica do catalogo TCC usa `NEXT_PUBLIC_SUPABASE_ANON_KEY` + RLS.
+- Escrita (`/api/admin/alunos` e `/api/admin/projetos`) roda apenas no servidor com `SUPABASE_SERVICE_ROLE_KEY`.
+- Login administrativo e sessao usam Supabase Auth no tenant `admin`.
+- Rotas de escrita exigem cookie `auth-session` valido e tenant `admin`.
 
 ## 🎨 Design System
 
@@ -124,6 +149,7 @@ O projeto utiliza um design system consistente baseado em:
 ### Estrutura de Componentes
 
 ### Páginas Principais
+
 - **🏠 Home** - Apresentação do curso e call-to-actions
 - **📚 Sobre** - Informações detalhadas sobre o curso
 - **📝 Vestibulinho** - Processo seletivo e inscrições
@@ -132,6 +158,7 @@ O projeto utiliza um design system consistente baseado em:
 - **📞 Contato** - Formulário e informações de contato
 
 ### Características Técnicas
+
 - ✅ **SSR/SSG** - Renderização otimizada
 - ✅ **Responsivo** - Funciona em todos os dispositivos
 - ✅ **Acessível** - Seguindo padrões WCAG
@@ -139,6 +166,7 @@ O projeto utiliza um design system consistente baseado em:
 - ✅ **SEO** - Meta tags e estrutura otimizada
 
 Configurado com regras para TypeScript e Next.js, incluindo:
+
 - Verificação de tipos
 - Regras de importação
 - Formatação consistente
@@ -146,6 +174,7 @@ Configurado com regras para TypeScript e Next.js, incluindo:
 ### Prettier
 
 Configurado para formatação automática com:
+
 - Aspas simples
 - Vírgula final
 - Largura máxima de 80 caracteres
@@ -153,6 +182,7 @@ Configurado para formatação automática com:
 ### TypeScript
 
 Configurado com:
+
 - Strict mode ativado
 - Path mapping para imports
 - Target ES2020
@@ -191,14 +221,17 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 **Etec João Belarmino de Amparo**
 
 ### 📧 Emails Institucionais
+
 - **Direção Acadêmica**: [e067acad@cps.sp.gov.br](mailto:e067acad@cps.sp.gov.br)
 - **Direção de Serviços**: [e067adm@cps.sp.gov.br](mailto:e067adm@cps.sp.gov.br)
 - **APM (Associação de Pais e Mestres)**: [apmjb@yahoo.com.br](mailto:apmjb@yahoo.com.br)
 
 ### 📱 Telefone
+
 - **WhatsApp**: [(19) 3808-1016](https://wa.me/551938081016)
 
 ### 🌐 Website
+
 - **Site Oficial**: [https://www.etecjoaobelarmino.com.br/](https://www.etecjoaobelarmino.com.br/)
 
 ---
