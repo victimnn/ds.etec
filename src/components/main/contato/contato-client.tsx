@@ -250,7 +250,7 @@ export function ContatoClient() {
                     a: 'Não. Por ser uma instituição pública (Etec/CPS), todo o ensino e material didático são 100% gratuitos.',
                   },
                   {
-                    q: 'Como funcionam os estágios?',
+                    q: 'Como funcionam as oportunidades?',
                     a: 'Temos parcerias estratégicas com empresas da região que buscam talentos diretamente em nossos laboratórios.',
                   },
                 ].map((faq, i) => (

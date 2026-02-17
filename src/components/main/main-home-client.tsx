@@ -174,7 +174,8 @@ export function MainHomeClient() {
               </Badge>
               <h1 className="text-white text-4xl lg:text-6xl font-bold leading-tight tracking-tight">
                 Desenvolvimento de <br />
-                <Typewriter words={['Sistemas', 'Ideias', 'Futuros']} />
+                <Typewriter words={['Sistemas', 'Sonhos', 'Soluções', 'Ideias', 'Futuros']} />
+                .
               </h1>
               <p className="text-xl text-primary-foreground/90 leading-relaxed max-w-xl">
                 Forme-se na Etec João Belarmino. Uma formação completa que
@@ -199,7 +200,7 @@ export function MainHomeClient() {
             </motion.div>
           </div>
 
-          <motion.div {...fadeInUp} className="flex justify-center mt-12">
+          {/* <motion.div {...fadeInUp} className="flex justify-center mt-12">
             <Link href="/personal">
               <Button
                 variant="outline"
@@ -210,7 +211,7 @@ export function MainHomeClient() {
                 Conheça o Desenvolvedor
               </Button>
             </Link>
-          </motion.div>
+          </motion.div> */}
         </div>
       </section>
 

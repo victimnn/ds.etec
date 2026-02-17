@@ -48,11 +48,11 @@ export function Footer() {
       href: '/projetos',
       descricao: 'Veja os trabalhos dos alunos',
     },
-    {
-      nome: 'Vestibulinho',
-      href: '/vestibulinho',
-      descricao: 'Faca sua inscricao',
-    },
+    // {
+    //   nome: 'Vestibulinho',
+    //   href: '/vestibulinho',
+    //   descricao: 'Faca sua inscricao',
+    // },
     {
       nome: 'Mercado de Trabalho',
       href: '/mercado',
@@ -303,7 +303,7 @@ export function Footer() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center gap-4 flex-wrap">
             <div className="text-sm text-primary-foreground">
-              Desenvolvido por
+              Desenvolvido por: Victor Ramos
             </div>
             <div className="[&_a]:text-primary-foreground/70 [&_a:hover]:text-primary-foreground">
               <DeveloperLinks className="flex items-center gap-4 flex-wrap" />
@@ -316,7 +316,7 @@ export function Footer() {
         <div className="container mx-auto px-4 py-6">
           <div className="text-sm text-primary-foreground/70 text-center md:text-left">
             <p>
-              &copy; 2025 {institutionContact.name} - {institutionContact.unit}.
+              &copy; 2026 {institutionContact.name} - {institutionContact.unit}.
               Todos os direitos reservados.
             </p>
           </div>
