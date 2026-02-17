@@ -8,9 +8,7 @@ import { AdminSidebar } from '@/src/components/admin/admin-sidebar'
 import {
   SidebarProvider,
   SidebarInset,
-  SidebarTrigger,
 } from '@/src/components/ui/sidebar'
-import { Separator } from '@/src/components/ui/separator'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -46,26 +44,26 @@ export default function AdminLayout({
       <SidebarProvider>
         <AdminSidebar />
         <SidebarInset>
-          <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4 glass sticky top-0 z-30">
-            <div className="flex items-center gap-2 flex-1">
-              <SidebarTrigger className="-ml-1" />
-              <Separator orientation="vertical" className="mr-2 h-4" />
+          <header className="flex h-20 shrink-0 items-center gap-2 border-b px-6 glass sticky top-0 z-30">
+            <div className="flex items-center gap-4 flex-1">
               <Breadcrumb>
                 <BreadcrumbList>
                   <BreadcrumbItem className="hidden md:block">
-                    <BreadcrumbLink href="/">Admin</BreadcrumbLink>
+                    <BreadcrumbLink href="/" className="font-medium hover:text-primary transition-colors">
+                      Admin
+                    </BreadcrumbLink>
                   </BreadcrumbItem>
                   <BreadcrumbSeparator className="hidden md:block" />
                   <BreadcrumbItem>
-                    <BreadcrumbPage>
+                    <BreadcrumbPage className="font-bold text-foreground">
                       {pathname === '/'
                         ? 'Dashboard'
                         : pathname.includes('/alunos')
                           ? 'Alunos'
                           : pathname.includes('/projetos')
-                            ? 'Projetos'
+                            ? 'Projetos TCC'
                             : pathname.includes('/cadastros')
-                              ? 'Configurações'
+                              ? 'Cadastros Base'
                               : 'Painel'}
                     </BreadcrumbPage>
                   </BreadcrumbItem>
