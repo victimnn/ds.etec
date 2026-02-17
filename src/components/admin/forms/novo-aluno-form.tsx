@@ -24,6 +24,10 @@ import { Progress } from '@/src/components/ui/progress'
 import { MultiSelect } from '@/src/components/ui/multi-select'
 import { cn } from '@/src/lib/utils'
 import type { ApiResult } from '@/src/lib/api-result'
+import {
+  getCachedOrFetch,
+  invalidateCacheByPrefix,
+} from '@/src/lib/client-cache'
 
 type CreateAlunoResponse = ApiResult<{ id: number }>
 type OptionItem = { id: number; nome: string | null }
@@ -32,6 +36,9 @@ type OptionsResponse = {
   especializacoes: OptionItem[]
   habilidades: OptionItem[]
 }
+
+const OPTIONS_CACHE_KEY = 'admin:options'
+const OPTIONS_CACHE_TTL_MS = 15 * 60 * 1000
 
 export type AlunoFormInitialData = {
   nome?: string
@@ -97,12 +104,18 @@ export function NovoAlunoForm({
       setIsLoadingOptions(true)
       setOptionsError(null)
       try {
-        const response = await fetch('/api/admin/options', {
-          cache: 'no-store',
+        const data = await getCachedOrFetch<OptionsResponse>({
+          key: OPTIONS_CACHE_KEY,
+          ttlMs: OPTIONS_CACHE_TTL_MS,
+          fetcher: async () => {
+            const response = await fetch('/api/admin/options')
+            const payload = await response.json()
+            if (!response.ok) {
+              throw new Error(payload.error || 'Erro desconhecido na API')
+            }
+            return payload as OptionsResponse
+          },
         })
-        const data = await response.json()
-        if (!response.ok)
-          throw new Error(data.error || 'Erro desconhecido na API')
         setOptions(data as OptionsResponse)
       } catch (error) {
         console.error('Failed to load options:', error)
@@ -290,6 +303,11 @@ export function NovoAlunoForm({
       }
 
       setSubmitResult({ success: true, data: data.data })
+      invalidateCacheByPrefix('admin:options')
+      invalidateCacheByPrefix('admin:alunos:list')
+      invalidateCacheByPrefix('admin:projetos:list')
+      invalidateCacheByPrefix('admin:filters:anos')
+      invalidateCacheByPrefix('admin:filters:turnos')
       setHasUnsavedChanges(false)
       if (mode === 'create') {
         form.reset()

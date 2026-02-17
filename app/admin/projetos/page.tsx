@@ -37,6 +37,9 @@ import { Card, CardContent, CardHeader } from '@/src/components/ui/card'
 import { AdminListFilters } from '@/src/components/admin/admin-list-filters'
 import { AdminListState } from '@/src/components/admin/admin-list-state'
 import { useAdminYearShiftFilters } from '@/src/hooks/use-admin-year-shift-filters'
+import { getCachedOrFetch } from '@/src/lib/client-cache'
+
+const LIST_CACHE_TTL_MS = 5 * 60 * 1000
 
 export default function ProjetosListPage() {
   const [projetos, setProjetos] = useState<any[]>([])
@@ -74,12 +77,19 @@ export default function ProjetosListPage() {
         if (selectedShift) {
           params.set('turno', selectedShift)
         }
-
-        const response = await fetch(`/api/admin/projetos?${params.toString()}`)
-        const payload = await response.json()
-        if (!response.ok) {
-          throw new Error(payload?.error || 'Erro ao carregar projetos.')
-        }
+        const cacheKey = `admin:projetos:list:${selectedYear}:${selectedShift || 'all'}`
+        const payload = await getCachedOrFetch<any[]>({
+          key: cacheKey,
+          ttlMs: LIST_CACHE_TTL_MS,
+          fetcher: async () => {
+            const response = await fetch(`/api/admin/projetos?${params.toString()}`)
+            const data = await response.json()
+            if (!response.ok) {
+              throw new Error(data?.error || 'Erro ao carregar projetos.')
+            }
+            return data
+          },
+        })
         setProjetos(payload)
       } catch (error) {
         console.error('Failed to load projects', error)

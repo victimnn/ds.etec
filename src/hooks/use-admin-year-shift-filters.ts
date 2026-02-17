@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { getCachedOrFetch } from '@/src/lib/client-cache'
 
 export type AdminFilterContext = 'alunos' | 'projetos'
 
@@ -21,6 +22,9 @@ type UseAdminYearShiftFiltersResult = {
   setSelectedShift: (shift: string) => void
 }
 
+const YEARS_CACHE_TTL_MS = 15 * 60 * 1000
+const SHIFTS_CACHE_TTL_MS = 10 * 60 * 1000
+
 export function useAdminYearShiftFilters({
   context,
   defaultShift = 'Matutino',
@@ -39,11 +43,18 @@ export function useAdminYearShiftFilters({
         setLoadingYears(true)
         setErrorMessage(null)
 
-        const response = await fetch('/api/admin/anos')
-        const payload = await response.json()
-        if (!response.ok) {
-          throw new Error(payload?.error || 'Erro ao carregar anos.')
-        }
+        const payload = await getCachedOrFetch<{ anos: number[] }>({
+          key: 'admin:filters:anos',
+          ttlMs: YEARS_CACHE_TTL_MS,
+          fetcher: async () => {
+            const response = await fetch('/api/admin/anos')
+            const data = await response.json()
+            if (!response.ok) {
+              throw new Error(data?.error || 'Erro ao carregar anos.')
+            }
+            return data as { anos: number[] }
+          },
+        })
 
         if (Array.isArray(payload?.anos)) {
           const availableYears = payload.anos as number[]
@@ -81,13 +92,20 @@ export function useAdminYearShiftFilters({
         setLoadingShifts(true)
         setErrorMessage(null)
 
-        const response = await fetch(
-          `/api/admin/turnos?context=${context}&ano=${encodeURIComponent(selectedYear)}`
-        )
-        const payload = await response.json()
-        if (!response.ok) {
-          throw new Error(payload?.error || 'Erro ao carregar turnos.')
-        }
+        const payload = await getCachedOrFetch<{ turnos: string[] }>({
+          key: `admin:filters:turnos:${context}:${selectedYear}`,
+          ttlMs: SHIFTS_CACHE_TTL_MS,
+          fetcher: async () => {
+            const response = await fetch(
+              `/api/admin/turnos?context=${context}&ano=${encodeURIComponent(selectedYear)}`
+            )
+            const data = await response.json()
+            if (!response.ok) {
+              throw new Error(data?.error || 'Erro ao carregar turnos.')
+            }
+            return data as { turnos: string[] }
+          },
+        })
 
         if (Array.isArray(payload?.turnos)) {
           const availableShifts = payload.turnos as string[]
