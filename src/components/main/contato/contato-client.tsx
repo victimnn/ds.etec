@@ -59,7 +59,7 @@ export function ContatoClient() {
               Canais de Atendimento
             </div>
             <h1 className="text-4xl md:text-7xl font-black leading-none tracking-tighter">
-              Fale com a <span className="text-secondary">Gente</span>
+              Fale conosco!
             </h1>
             <p className="text-xl text-primary-foreground/90 leading-relaxed max-w-3xl mx-auto text-pretty">
               Dúvidas sobre o curso, vestibulinho ou parcerias? Nossa equipe

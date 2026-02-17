@@ -176,7 +176,7 @@ export function ProjetosMainClient() {
               Portfólio em Evolução
             </Badge>
             <h1 className="text-4xl md:text-7xl font-black tracking-tighter leading-none">
-              Projetos dos <span className="text-secondary">Alunos</span>
+              Projetos dos Alunos
             </h1>
             <p className="text-xl text-primary-foreground/90 leading-relaxed max-w-2xl mx-auto text-pretty">
               Conheça as aplicações reais, hardwares e soluções construídas

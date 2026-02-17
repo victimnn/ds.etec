@@ -224,7 +224,7 @@ export function MercadoClient() {
               Oportunidades Globais
             </div>
             <h1 className="text-4xl md:text-7xl font-black leading-none tracking-tighter">
-              Mercado de <span className="text-secondary">Trabalho</span>
+              Mercado de Trabalho
             </h1>
             <p className="text-xl text-primary-foreground/90 leading-relaxed max-w-3xl mx-auto text-pretty">
               Conectamos talentos às melhores empresas da região e do mundo. O
