@@ -267,9 +267,18 @@ export async function GET(request: NextRequest) {
   }
 
   try {
+    const requestedYear = request.nextUrl.searchParams.get('ano')?.trim()
+    const requestedShift = request.nextUrl.searchParams.get('turno')?.trim()
+    const yearFilter = requestedYear
+      ? `&ano=ilike.*${encodeURIComponent(requestedYear)}*`
+      : ''
+    const shiftFilter = requestedShift
+      ? `&turno=ilike.*${encodeURIComponent(requestedShift)}*`
+      : ''
+
     const students = await supabaseAdminRequest({
       resourcePath:
-        'aluno?select=*,aluno_funcao(funcao(nome)),aluno_especializacao(especializacao(nome)),aluno_habilidade(habilidade(nome))&order=nome.asc',
+        `aluno?select=*,aluno_funcao(funcao(nome)),aluno_especializacao(especializacao(nome)),aluno_habilidade(habilidade(nome))${yearFilter}${shiftFilter}&order=nome.asc`,
       schema: z.array(z.any()),
     })
 

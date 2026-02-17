@@ -303,13 +303,41 @@ export async function GET(request: NextRequest) {
   }
 
   try {
+    const requestedYear = request.nextUrl.searchParams.get('ano')?.trim()
+    const requestedShift = request.nextUrl.searchParams.get('turno')?.trim()
+    let yearFilter = ''
+
+    if (requestedYear) {
+      const parsedYear = Number.parseInt(requestedYear, 10)
+      if (!Number.isInteger(parsedYear)) {
+        return NextResponse.json(
+          { error: 'Parametro "ano" invalido.' },
+          { status: 400 }
+        )
+      }
+      yearFilter = `&ano=eq.${parsedYear}`
+    }
+
     const projects = await supabaseAdminRequest({
       resourcePath:
-        'tcc?select=*,categoria(nome),professor(nome),aluno_tcc(aluno(nome))&order=ano.desc',
+        `tcc?select=*,categoria(nome),professor(nome),aluno_tcc(aluno(nome,turno))${yearFilter}&order=ano.desc`,
       schema: z.array(z.any()),
     })
 
-    return NextResponse.json(projects)
+    if (!requestedShift) {
+      return NextResponse.json(projects)
+    }
+
+    const normalizedShift = requestedShift.toLowerCase()
+    const filteredProjects = projects.filter(project =>
+      (project.aluno_tcc || []).some((member: any) =>
+        String(member?.aluno?.turno || '')
+          .toLowerCase()
+          .includes(normalizedShift)
+      )
+    )
+
+    return NextResponse.json(filteredProjects)
   } catch (error) {
     console.error('GET /api/admin/projetos error:', error)
     return NextResponse.json(
