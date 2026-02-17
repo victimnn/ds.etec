@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { motion, AnimatePresence, type Variants } from 'framer-motion'
 import { Button } from '@/src/components/ui/button'
 import { Input } from '@/src/components/ui/input'
@@ -49,13 +49,25 @@ const itemVariants: Variants = {
 }
 
 export function ProjetosClient({ projects }: ProjetosClientProps) {
+  const currentYear = String(new Date().getFullYear())
   const [searchTerm, setSearchTerm] = useState('')
   const [categoryFilter, setCategoryFilter] = useState('all')
-  const [yearFilter, setYearFilter] = useState('all')
+  const [yearFilter, setYearFilter] = useState(currentYear)
   const [periodFilter, setPeriodFilter] = useState('all')
   const [viewMode, setViewMode] = useState<'carousel' | 'grid'>('grid')
+  const [hasInitializedYearFilter, setHasInitializedYearFilter] =
+    useState(false)
 
   // Extrair valores únicos para os filtros dinâmicos
+  const uniqueCategories = useMemo(() => {
+    const categories = projects
+      .flatMap(project => project.category)
+      .map(category => category?.trim())
+      .filter((category): category is string => Boolean(category))
+
+    return [...new Set(categories)].sort((a, b) => a.localeCompare(b))
+  }, [projects])
+
   const uniqueYears = useMemo(() => {
     const years = [...new Set(projects.map(p => p.year))].filter(Boolean)
     return years.sort((a, b) => b.localeCompare(a))
@@ -71,6 +83,17 @@ export function ProjetosClient({ projects }: ProjetosClientProps) {
     ]
     return periods.sort()
   }, [projects])
+
+  const defaultYearFilter = useMemo(
+    () => (uniqueYears.includes(currentYear) ? currentYear : 'all'),
+    [currentYear, uniqueYears]
+  )
+
+  useEffect(() => {
+    if (hasInitializedYearFilter) return
+    setYearFilter(defaultYearFilter)
+    setHasInitializedYearFilter(true)
+  }, [defaultYearFilter, hasInitializedYearFilter])
 
   const filteredProjects = useMemo(() => {
     let filtered = projects
@@ -112,14 +135,14 @@ export function ProjetosClient({ projects }: ProjetosClientProps) {
   const resetFilters = () => {
     setSearchTerm('')
     setCategoryFilter('all')
-    setYearFilter('all')
+    setYearFilter(defaultYearFilter)
     setPeriodFilter('all')
   }
 
   const isFiltered =
     searchTerm !== '' ||
     categoryFilter !== 'all' ||
-    yearFilter !== 'all' ||
+    yearFilter !== defaultYearFilter ||
     periodFilter !== 'all'
 
   return (
@@ -173,9 +196,11 @@ export function ProjetosClient({ projects }: ProjetosClientProps) {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="all">Categorias</SelectItem>
-                    <SelectItem value="web">Web</SelectItem>
-                    <SelectItem value="mobile">Mobile</SelectItem>
-                    <SelectItem value="desktop">Desktop</SelectItem>
+                    {uniqueCategories.map(category => (
+                      <SelectItem key={category} value={category}>
+                        {category}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
 
