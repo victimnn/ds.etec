@@ -222,7 +222,7 @@ export function Header() {
 
                       <div className="pt-4 mt-4 border-t border-border/10">
                         <Link
-                          href="/tcc"
+                          href="https://tcc.dsetecjb.com.br"
                           className="flex items-center justify-between px-6 py-5 rounded-2xl bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-xl shadow-primary/20 group"
                           onClick={() => setIsMenuOpen(false)}
                         >

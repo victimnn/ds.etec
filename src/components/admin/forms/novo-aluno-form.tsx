@@ -517,10 +517,13 @@ export function NovoAlunoForm({
               <Input
                 id="ano"
                 name="ano"
+                type="number"
+                min="2000"
+                max="2100"
+                placeholder="2026"
                 required
                 className="admin-input h-11"
-                placeholder="Ex: 3º M-DS"
-                defaultValue={initialData?.ano || ''}
+                defaultValue={initialData?.ano ? String(initialData.ano) : ''}
               />
             </div>
           </div>
