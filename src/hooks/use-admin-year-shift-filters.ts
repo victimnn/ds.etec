@@ -24,6 +24,17 @@ type UseAdminYearShiftFiltersResult = {
 
 const YEARS_CACHE_TTL_MS = 15 * 60 * 1000
 const SHIFTS_CACHE_TTL_MS = 10 * 60 * 1000
+const UNAUTHORIZED_ERROR = 'UNAUTHORIZED'
+
+function isUnauthorizedError(error: unknown): boolean {
+  return error instanceof Error && error.message === UNAUTHORIZED_ERROR
+}
+
+function redirectToLogin(): void {
+  if (typeof window === 'undefined') return
+  sessionStorage.removeItem('admin_email')
+  window.location.href = '/login'
+}
 
 export function useAdminYearShiftFilters({
   context,
@@ -50,6 +61,9 @@ export function useAdminYearShiftFilters({
             const response = await fetch('/api/admin/anos')
             const data = await response.json()
             if (!response.ok) {
+              if (response.status === 401) {
+                throw new Error(UNAUTHORIZED_ERROR)
+              }
               throw new Error(data?.error || 'Erro ao carregar anos.')
             }
             return data as { anos: number[] }
@@ -70,6 +84,10 @@ export function useAdminYearShiftFilters({
           }
         }
       } catch (error) {
+        if (isUnauthorizedError(error)) {
+          redirectToLogin()
+          return
+        }
         console.error('Failed to load years', error)
         setErrorMessage('Nao foi possivel carregar os anos disponiveis.')
       } finally {
@@ -101,6 +119,9 @@ export function useAdminYearShiftFilters({
             )
             const data = await response.json()
             if (!response.ok) {
+              if (response.status === 401) {
+                throw new Error(UNAUTHORIZED_ERROR)
+              }
               throw new Error(data?.error || 'Erro ao carregar turnos.')
             }
             return data as { turnos: string[] }
@@ -120,6 +141,10 @@ export function useAdminYearShiftFilters({
           setSelectedShift('')
         }
       } catch (error) {
+        if (isUnauthorizedError(error)) {
+          redirectToLogin()
+          return
+        }
         console.error('Failed to load shifts', error)
         setErrorMessage('Nao foi possivel carregar turnos para o ano selecionado.')
       } finally {

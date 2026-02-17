@@ -18,10 +18,6 @@ import {
 } from 'lucide-react'
 import { DashboardStats } from '@/src/components/admin/dashboard-stats'
 
-export const metadata: Metadata = {
-  title: 'Dashboard',
-}
-
 export default function AdminHomePage() {
   const cards = [
     {
@@ -113,95 +109,6 @@ export default function AdminHomePage() {
         })}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card className="glass-card">
-          <CardHeader className="flex flex-row items-center gap-4">
-            <div className="p-2 bg-primary/10 rounded-lg">
-              <History className="h-5 w-5 text-primary" />
-            </div>
-            <div>
-              <CardTitle className="text-lg">Atividade Recente</CardTitle>
-              <CardDescription>
-                Últimas atualizações no sistema.
-              </CardDescription>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {[1, 2, 3].map(i => (
-                <div
-                  key={i}
-                  className="flex items-center justify-between p-3 rounded-lg bg-accent/30 border border-border/50"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-[10px] font-bold">
-                      DS
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium">
-                        Novo aluno cadastrado
-                      </p>
-                      <p className="text-xs text-muted-foreground">
-                        Há 2 horas atrás
-                      </p>
-                    </div>
-                  </div>
-                  <Button variant="ghost" size="sm" className="h-8 text-xs">
-                    Ver
-                  </Button>
-                </div>
-              ))}
-            </div>
-            <Button
-              variant="link"
-              className="w-full mt-4 text-xs text-muted-foreground"
-            >
-              Ver todo o histórico
-            </Button>
-          </CardContent>
-        </Card>
-
-        <Card className="glass-card">
-          <CardHeader className="flex flex-row items-center gap-4">
-            <div className="p-2 bg-yellow-500/10 rounded-lg">
-              <Star className="h-5 w-5 text-yellow-500" />
-            </div>
-            <div>
-              <CardTitle className="text-lg">Projetos em Destaque</CardTitle>
-              <CardDescription>
-                TCCs com melhor avaliação ou visualizações.
-              </CardDescription>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <div className="flex flex-col gap-3">
-              <div className="p-4 rounded-xl bg-gradient-to-r from-primary/10 to-transparent border border-primary/10">
-                <p className="text-sm font-bold">BusHere - Sistema de Ônibus</p>
-                <p className="text-xs text-muted-foreground mt-1">
-                  Desenvolvido por: Turma 2024
-                </p>
-                <div className="flex items-center gap-2 mt-3">
-                  <div className="px-2 py-0.5 rounded text-[10px] bg-primary/20 text-primary font-medium">
-                    Web
-                  </div>
-                  <div className="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-600 font-medium">
-                    Ativo
-                  </div>
-                </div>
-              </div>
-              <div className="p-4 rounded-xl bg-accent/30 border border-border/50">
-                <p className="text-sm font-bold">Mão Robótica Educacional</p>
-                <p className="text-xs text-muted-foreground mt-1">
-                  Desenvolvido por: Turma 2023
-                </p>
-              </div>
-            </div>
-            <Button variant="outline" className="w-full mt-4 text-xs">
-              Explorar Galeria
-            </Button>
-          </CardContent>
-        </Card>
-      </div>
     </div>
   )
 }

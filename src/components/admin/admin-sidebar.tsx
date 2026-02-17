@@ -98,7 +98,7 @@ export function AdminSidebar({
   return (
     <Sidebar
       collapsible="none"
-      className="border-r border-border/50 bg-card/50 backdrop-blur-2xl sidebar-item-transition"
+      className="h-svh border-r border-border/50 bg-card/50 backdrop-blur-2xl sidebar-item-transition"
       {...props}
     >
       <SidebarHeader className="h-20 flex flex-col justify-center border-b border-border/50 px-4 transition-all duration-300">
@@ -117,7 +117,7 @@ export function AdminSidebar({
         </div>
       </SidebarHeader>
 
-      <SidebarContent className="mt-6 px-3 transition-all duration-300">
+      <SidebarContent className="mt-6 min-h-0 flex-1 px-3 transition-all duration-300">
         <SidebarGroup className="p-0">
           <SidebarGroupLabel className="sidebar-group-label transition-opacity duration-300">
             Menu Principal
@@ -202,8 +202,8 @@ export function AdminSidebar({
       </SidebarContent>
 
       <SidebarFooter className={cn(
-        "border-t border-border/50 bg-muted/20 transition-all duration-300",
-        "p-4"
+        "border-t border-border/50 bg-muted/20 transition-all duration-300 p-4",
+        "mt-auto"
       )}>
         <SidebarMenu>
           <SidebarMenuItem>
